@@ -601,10 +601,10 @@ footer strong { color: var(--gold); font-family: 'Bebas Neue'; font-size: 15px; 
 <div class="tab-panel" id="tab-matchups">
 
   <div class="section-head">
-    <div class="section-title">Elite Eight — Matchup Intel</div>
-    <div class="section-badge">Sat Mar 28 + Sun Mar 29 · All 4 Games</div>
+    <div class="section-title">Final Four — Matchup Intel</div>
+    <div class="section-badge">Sat Apr 4 · 2 Games · Indianapolis</div>
   </div>
-  <p class="section-sub">Every Elite Eight matchup with spread, total, tournament path, injury context, and the sharpest betting edge.</p>
+  <p class="section-sub">Both Final Four matchups with spread, total, full tournament path, and the sharpest betting edge for each game.</p>
 
   <!-- INJURY ALERTS -->
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px;margin-bottom:24px;">
@@ -639,8 +639,8 @@ footer strong { color: var(--gold); font-family: 'Bebas Neue'; font-size: 15px; 
   <!-- SWEET 16 BEST BETS -->
   <div class="section-gap">
     <div class="section-head">
-      <div class="section-title">Elite Eight — Best Bets</div>
-      <div class="section-badge">Sat Mar 28 + Sun Mar 29 · 4 Games</div>
+      <div class="section-title">Final Four — Best Bets</div>
+      <div class="section-badge">Sat Apr 4 · Indianapolis · 2 Games</div>
     </div>
     <p class="section-sub">Sharp edges on every Sweet 16 game — overs, unders, dogs, and fades. Foster OUT for Duke, Jefferson healthy for Iowa State. Big Ten sends 6 teams, Texas is the only double-digit seed remaining.</p>
     <div id="r32EdgeCards"></div>
@@ -656,7 +656,7 @@ footer strong { color: var(--gold); font-family: 'Bebas Neue'; font-size: 15px; 
     <div class="tbl-wrap">
       <table>
         <thead><tr>
-          <th>Team</th><th>Seed</th><th>KenPom</th><th>R1 Result</th><th>Current Odds</th><th>E8 Matchup</th><th>Value</th>
+          <th>Team</th><th>Seed</th><th>KenPom</th><th>R1 Result</th><th>Current Odds</th><th>F4 Matchup</th><th>Value</th>
         </tr></thead>
         <tbody id="futuresTbody"></tbody>
       </table>
@@ -840,27 +840,27 @@ footer strong { color: var(--gold); font-family: 'Bebas Neue'; font-size: 15px; 
 
 <script>
 // ════════════════════════════════════════════════════════════════════════════
-// BENNYTHEBET — 2026 NCAA TOURNAMENT — ELITE EIGHT UPDATE
+// BENNYTHEBET — 2026 NCAA TOURNAMENT — FINAL FOUR UPDATE
 // ════════════════════════════════════════════════════════════════════════════
 
 // ── ALL 68 TEAMS RAW DATA [seed, team, kp, wl, netrtg, ortg, ortgRk, drtg, drtgRk, adjT, adjTRk, luck]
 var raw = [
-[1,"Duke",1,"35-2",38.90,128.0,4,89.1,2,65.3,287,0.049],
-[1,"Arizona",2,"35-2",37.66,127.7,5,90.0,3,69.8,54,0.023],
-[1,"Michigan",3,"33-3",37.59,126.6,8,89.0,1,70.9,22,0.045],
+[1,"Duke",1,"33-3",38.90,128.0,4,89.1,2,65.3,287,0.049],
+[1,"Arizona",2,"36-2",37.66,127.7,5,90.0,3,69.8,54,0.023],
+[1,"Michigan",3,"35-3",37.59,126.6,8,89.0,1,70.9,22,0.045],
 [1,"Florida",4,"26-8",33.79,125.5,9,91.7,6,70.5,28,-0.036],
-[2,"Houston",5,"30-7",33.43,124.9,14,91.4,5,63.3,352,-0.006],
+[2,"Houston",5,"28-8",33.43,124.9,14,91.4,5,63.3,352,-0.006],
 [2,"Iowa St.",6,"29-8",32.42,123.8,21,91.4,4,66.5,225,-0.012],
-[3,"Illinois",7,"27-8",32.10,131.2,2,99.1,28,65.5,277,-0.050],
-[2,"Purdue",8,"30-8",31.20,131.6,1,100.4,36,64.4,324,-0.006],
+[3,"Illinois",7,"28-8",32.10,131.2,2,99.1,28,65.5,277,-0.050],
+[2,"Purdue",8,"29-9",31.20,131.6,1,100.4,36,64.4,324,-0.006],
 [3,"Michigan St.",9,"27-8",28.31,123.0,24,94.7,13,66.0,252,0.005],
 [3,"Gonzaga",10,"30-4",28.10,122.0,29,93.9,9,68.6,111,0.072],
-[2,"Connecticut",11,"32-5",27.87,122.0,30,94.1,11,64.4,322,0.055],
+[2,"Connecticut",11,"33-5",27.87,122.0,30,94.1,11,64.4,322,0.055],
 [5,"Vanderbilt",12,"26-9",27.51,126.8,7,99.3,31,68.8,98,0.018],
 [3,"Virginia",13,"29-6",26.71,122.5,27,95.8,16,65.7,271,0.056],
 [4,"Nebraska",14,"28-7",26.16,118.5,55,92.4,7,66.7,218,0.034],
 [4,"Arkansas",15,"28-9",26.05,127.7,6,101.6,48,71.0,20,0.051],
-[6,"Tennessee",16,"25-11",26.02,121.1,37,95.0,15,65.0,307,-0.060],
+[6,"Tennessee",16,"24-12",26.02,121.1,37,95.0,15,65.0,307,-0.060],
 [5,"St. John's",17,"30-7",25.91,120.1,44,94.2,12,69.6,68,0.061],
 [4,"Alabama",18,"25-10",25.72,129.0,3,103.3,67,73.1,4,0.019],
 [6,"Louisville",19,"23-11",25.42,124.1,20,98.6,25,69.6,62,-0.020],
@@ -869,7 +869,7 @@ var raw = [
 [5,"Wisconsin",22,"24-11",23.39,125.3,11,102.0,51,68.7,104,0.041],
 [6,"BYU",23,"23-12",23.25,125.5,10,102.2,57,69.9,46,-0.017],
 [7,"Saint Mary's",24,"27-6",23.07,120.3,43,97.2,19,65.2,297,0.011],
-[9,"Iowa",25,"24-12",22.44,121.7,31,99.3,30,63.0,357,-0.061],
+[9,"Iowa",25,"23-13",22.44,121.7,31,99.3,30,63.0,357,-0.061],
 [8,"Ohio St.",26,"21-13",22.24,124.3,17,102.1,54,66.1,251,-0.031],
 [7,"UCLA",27,"23-12",21.67,123.7,22,102.1,53,64.6,318,0.017],
 [7,"Kentucky",28,"21-14",21.48,120.5,39,99.0,27,68.3,124,-0.019],
@@ -920,37 +920,35 @@ var teams = raw.map(function(r) {
           ortg:r[5],ortgRk:r[6],drtg:r[7],drtgRk:r[8],adjT:r[9],adjTRk:r[10],luck:r[11]};
 });
 
-// ── ELITE 8 TEAMS STILL ALIVE
-var alive = ["Duke","Michigan","Arizona","Purdue","Illinois","Iowa","Connecticut","Tennessee"];
+// ── FINAL FOUR TEAMS
+var alive = ["Illinois","Connecticut","Arizona","Michigan"];
 
 // ── HELPERS
 function sb(seed) {
-  var n = Math.min(parseInt(seed)||1, 5);
-  return '<span class="sb s' + n + '">' + seed + '</span>';
+  var n = Math.min(parseInt(seed)||1,5);
+  return '<span class="sb s'+n+'">'+seed+'</span>';
 }
 function teamPill(team) {
-  return '<span style="background:var(--bg3);border:1px solid var(--border2);color:var(--gold);font-size:10px;font-weight:700;border-radius:4px;padding:3px 8px;white-space:nowrap;">' + team + '</span>';
+  return '<span style="background:var(--bg3);border:1px solid var(--border2);color:var(--gold);font-size:10px;font-weight:700;border-radius:4px;padding:3px 8px;white-space:nowrap;">'+team+'</span>';
 }
-function tag(cls, label) {
-  return '<span class="tag ' + cls + '">' + label + '</span>';
-}
+function tag(cls,label) { return '<span class="tag '+cls+'">'+label+'</span>'; }
 function pct(rk) { return Math.round(Math.max(3,(1-(rk-1)/365)*100)); }
-function bar(rk, cls) {
-  return '<div class="rk-bar"><div class="rk-bg" style="width:52px"><div class="rk-fill ' + cls + '" style="width:' + pct(rk) + '%"></div></div><span style="font-size:11px;color:var(--muted);min-width:30px;">#' + rk + '</span></div>';
+function bar(rk,cls) {
+  return '<div class="rk-bar"><div class="rk-bg" style="width:52px"><div class="rk-fill '+cls+'" style="width:'+pct(rk)+'%"></div></div><span style="font-size:11px;color:var(--muted);min-width:30px;">#'+rk+'</span></div>';
 }
 
 // ── TAB SWITCHING
 function showTab(name) {
   document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
   document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
-  var panel = document.getElementById('tab-' + name);
+  var panel = document.getElementById('tab-'+name);
   if (panel) panel.classList.add('active');
   var order = ['contenders','players','matchups','gambling','value','upsets','tempo','luck','table','tracker'];
   var idx = order.indexOf(name);
   var btns = document.querySelectorAll('.tab-btn');
-  if (idx >= 0 && btns[idx]) btns[idx].classList.add('active');
-  if (name === 'tracker') setTimeout(renderTracker, 50);
-  if (name === 'table')   setTimeout(renderTable, 50);
+  if (idx>=0 && btns[idx]) btns[idx].classList.add('active');
+  if (name==='tracker') setTimeout(renderTracker,50);
+  if (name==='table')   setTimeout(renderTable,50);
 }
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -959,120 +957,120 @@ function showTab(name) {
 function renderContenders() {
   var elite = teams.filter(function(t){ return t.ortgRk<=20 && t.drtgRk<=20; });
   var extended = teams.filter(function(t){ return t.ortgRk<=30 && t.drtgRk<=30 && !(t.ortgRk<=20 && t.drtgRk<=20); });
+
   var el = document.getElementById('contenderCards');
   if (el) {
     el.innerHTML = elite.map(function(t){
-      var stillIn = alive.indexOf(t.team) >= 0;
-      return '<div class="card gold-border fade-up"' + (!stillIn?' style="opacity:0.45"':'') + '>' +
-        '<div class="card-head">' + sb(t.seed) +
-          '<div><div class="card-name">' + t.team + '</div>' +
-          '<div style="font-size:11px;color:var(--muted);">KenPom #' + t.kp + ' · ' + t.wl + ' · ' + (stillIn?'<span style="color:var(--gold);">✓ E8</span>':'<span style="color:var(--red);">ELIM</span>') + '</div></div>' +
+      var inF4 = alive.indexOf(t.team)>=0;
+      return '<div class="card gold-border fade-up"'+(inF4?'':' style="opacity:0.45"')+'>' +
+        '<div class="card-head">'+sb(t.seed)+
+          '<div><div class="card-name">'+t.team+'</div>' +
+          '<div style="font-size:11px;color:var(--muted);">KenPom #'+t.kp+' · '+t.wl+(inF4?' · <span style="color:var(--gold);">🏆 F4</span>':' · <span style="color:var(--red);">ELIM</span>')+'</div></div>' +
         '</div>' +
-        '<div class="cstat"><span class="clbl">Net Rtg</span><span class="cval" style="color:var(--gold);">' + (t.netrtg>0?'+':'') + t.netrtg.toFixed(2) + '</span></div>' +
-        '<div class="cstat"><span class="clbl">ORtg</span>' + bar(t.ortgRk,'off-fill') + '</div>' +
-        '<div class="cstat"><span class="clbl">DRtg</span>' + bar(t.drtgRk,'def-fill') + '</div>' +
+        '<div class="cstat"><span class="clbl">Net Rtg</span><span class="cval" style="color:var(--gold);">'+(t.netrtg>0?'+':'')+t.netrtg.toFixed(2)+'</span></div>' +
+        '<div class="cstat"><span class="clbl">ORtg</span>'+bar(t.ortgRk,'off-fill')+'</div>' +
+        '<div class="cstat"><span class="clbl">DRtg</span>'+bar(t.drtgRk,'def-fill')+'</div>' +
       '</div>';
     }).join('');
   }
+
   var note = document.getElementById('contenderNote');
-  if (note) {
-    var inCount = elite.filter(function(t){ return alive.indexOf(t.team)>=0; }).length;
-    note.innerHTML = '<strong>' + elite.length + ' teams</strong> cleared top-20 on both O and D entering the tournament. <strong>' + inCount + '</strong> of them are still alive in the Elite Eight.';
-  }
+  if (note) note.innerHTML = '<strong>'+elite.length+' teams</strong> cleared top-20 on both offense AND defense. Of these, '+elite.filter(function(t){ return alive.indexOf(t.team)>=0; }).length+' are in the Final Four. The field is elite — every remaining team is a legitimate champion.';
+
   var ext = document.getElementById('extendedCards');
   if (ext) {
     ext.innerHTML = extended.map(function(t){
-      var stillIn = alive.indexOf(t.team) >= 0;
-      return '<div class="card fade-up"' + (!stillIn?' style="opacity:0.45"':'') + '>' +
-        '<div class="card-head">' + sb(t.seed) +
-          '<div><div class="card-name">' + t.team + '</div>' +
-          '<div style="font-size:11px;color:var(--muted);">KenPom #' + t.kp + ' · ' + (stillIn?'<span style="color:var(--gold);">✓ E8</span>':'<span style="color:var(--red);">ELIM</span>') + '</div></div>' +
+      var inF4 = alive.indexOf(t.team)>=0;
+      return '<div class="card fade-up"'+(inF4?'':' style="opacity:0.45"')+'>' +
+        '<div class="card-head">'+sb(t.seed)+
+          '<div><div class="card-name">'+t.team+'</div>' +
+          '<div style="font-size:11px;color:var(--muted);">KenPom #'+t.kp+(inF4?' · <span style="color:var(--gold);">F4</span>':' · <span style="color:var(--red);">ELIM</span>')+'</div></div>' +
         '</div>' +
-        '<div class="cstat"><span class="clbl">Net Rtg</span><span class="cval">' + (t.netrtg>0?'+':'') + t.netrtg.toFixed(2) + '</span></div>' +
-        '<div class="cstat"><span class="clbl">O/D Rank</span><span class="cval">#' + t.ortgRk + ' / #' + t.drtgRk + '</span></div>' +
+        '<div class="cstat"><span class="clbl">Net Rtg</span><span class="cval">'+(t.netrtg>0?'+':'')+t.netrtg.toFixed(2)+'</span></div>' +
+        '<div class="cstat"><span class="clbl">O/D</span><span class="cval">#'+t.ortgRk+' / #'+t.drtgRk+'</span></div>' +
       '</div>';
     }).join('');
   }
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// ELITE EIGHT MATCHUPS — all 4 games
+// FINAL FOUR MATCHUPS — the two games
 // ════════════════════════════════════════════════════════════════════════════
-var e8Matchups = [
-  // SATURDAY MARCH 28
-  {t1:"Illinois",s1:3,t2:"Iowa",s2:9,spread:"Illinois -6.5",total:"137.5",region:"South",site:"Houston",time:"Sat 6:09 PM",tv:"TBS",
-   edge:"OVER 137.5",edgeType:"OVER",
-   path:"Illinois: 105-70 Penn → 76-55 VCU → 65-55 Houston (D-masterclass). Iowa: 67-61 Clemson → 73-72 Florida (Folgueiras buzzer) → 77-71 Nebraska (Stirtz 3 with 2:10 left).",
-   analysis:"Iowa's Cinderella run is one of the great tournament stories in years — 9-seed beat the defending champs, then rallied from behind vs Nebraska for 37+ minutes. But Illinois is a different animal. The Illini have held their last three opponents to 55 points or fewer. Bennett Stirtz is a matchup problem (20.1 pts projected) but Illinois knows him cold — they're 9-1 ATS vs Iowa in the last 10 meetings. The edge: OVER 137.5. SportsLine's model projects 151 combined points, and the over has hit in 4 of last 6 head-to-head meetings. Illinois wins comfortably, but this game goes deep in possessions."},
-  {t1:"Arizona",s1:1,t2:"Purdue",s2:2,spread:"Arizona -6.5",total:"153.5",region:"West",site:"San Jose",time:"Sat 8:49 PM",tv:"TBS",
-   edge:"Arizona -6.5",edgeType:"FAV",
-   path:"Arizona: 92-58 LIU → 78-66 Utah State → 109-88 Arkansas (Burries 23, dominant wire-to-wire). Purdue: 104-71 Queens → 79-69 Miami FL → 79-77 Texas (Kaufman-Renn tip-in <1 sec).",
-   analysis:"Arizona has won 12 straight and may be the best team remaining. The 109-88 demolition of Arkansas was their most dominant performance yet — 7 players scored 8+ points, they scored near 150-point pace on a top-15 defense. Purdue survived Texas on a buzzer tip-in and is 7 straight wins. But Purdue's defense is porous against teams that attack the paint — exactly what Arizona does. Braden Smith needs a monster game to keep Purdue in it. OVER 153.5 has strong merit too — over hit in 4 of 5 Purdue games and 4 of 5 Arizona games."},
-  // SUNDAY MARCH 29
-  {t1:"Michigan",s1:1,t2:"Tennessee",s2:6,spread:"Michigan -7.5",total:"146.5",region:"Midwest",site:"Chicago",time:"Sun 2:15 PM",tv:"CBS",
-   edge:"Michigan -7.5",edgeType:"FAV",
-   path:"Michigan: 101-80 Howard → 95-72 Saint Louis → 90-77 Alabama (Lendeborg 23/12, 43-28 2nd half). Tennessee: 78-56 Miami OH → 79-72 Virginia → 76-62 Iowa State (20-8 run to open 2nd half).",
-   analysis:"Michigan has won every tournament game by double digits. Lendeborg had 23 pts and nearly a triple-double vs Alabama. Tennessee pulled off a massive upset of Iowa State on a furious second-half run, but ISU missed 10 free throws and Jefferson wasn't 100%. Michigan's jumbo lineup (top-5 nationally in height) is a nightmare for Tennessee's frontcourt. The Vols must own the offensive glass (#1 nationally) to have any chance. Michigan's defense (allows just 69.6 PPG, #3 in 3PT% defense) is the perfect foil for Tennessee's attack. Michigan -7.5 is correct pricing. UNDER lean as well — Michigan controls pace and slows this down."},
-  {t1:"Duke",s1:1,t2:"UConn",s2:2,spread:"Duke -5.5",total:"134.5",region:"East",site:"Washington D.C.",time:"Sun 5:05 PM",tv:"CBS",
-   edge:"UConn +5.5",edgeType:"DOG",
-   path:"Duke: 71-65 Siena → 81-58 TCU → 80-75 St. John's (Evans 25, Foster 11 off bench in comeback from 10 down). UConn: 82-71 Furman → 73-57 UCLA (Karaban 27) → 67-63 Michigan St. (blew 19-pt lead, held on).",
-   analysis:"Best game of the Elite Eight. Duke rallied from 10 down to beat St. John's behind a gutsy Caleb Foster return, but they're clearly not 100%. Ngongba II has played only 29 total minutes since returning from a foot fracture. Duke makes just 30% of 3s since ACC tourney — wins through paint domination. UConn's counter: Reed is the best big in the tournament (31/27 vs Furman, then 20/20 avg through tourney). Dan Hurley is 9-0 ATS in Sweet 16-or-later as UConn coach. 59% of early bets on UConn. The public is right here. UConn +5.5 in what should be a grind in the 60s and low 70s."},
+var f4Matchups = [
+  {
+    t1:"Illinois",s1:3,t2:"Connecticut",s2:2,
+    spread:"Illinois -1.5",total:"139.5",
+    region:"National Semi · Game 1",site:"Indianapolis",time:"Sat Apr 4 · 6:09 PM",tv:"TBS",
+    edge:"UConn +1.5",edgeType:"DOG",
+    path:"Illinois: Penn W, VCU W, Houston W (65-55 S16 upset), Iowa W (71-59 E8). UConn: Furman W, UCLA W, Michigan St. W (67-63), Duke W (73-72, Mullins buzzer from 35 ft).",
+    analysis:"Illinois is 4-0 ATS this tournament — every game covered. Keaton Wagler erupted for 25 pts vs Iowa. But UConn is riding the greatest momentum wave in the field — came back from 15 down at halftime vs Duke, Mullins hit a 35-foot buzzer that will live forever. Tarris Reed averaging 21.5 pts and 13.5 reb in the tournament. Hurley is 17-3 all-time as UConn's tournament coach. These two played in November — UConn won 74-61 holding Illinois to 32% FG and 21% from 3. Illinois has shot significantly fewer 3s in the tournament (strength). Line moved from -2.5 to -1.5 as money came in on UConn. Near pick-em for a reason. OVER model: SportsLine projects both teams clear 70 — 151 combined in simulations, Over hits 79% of the time."
+  },
+  {
+    t1:"Michigan",s1:1,t2:"Arizona",s2:1,
+    spread:"Michigan -1.5",total:"157.5",
+    region:"National Semi · Game 2",site:"Indianapolis",time:"Sat Apr 4 · 8:49 PM",tv:"TBS",
+    edge:"OVER 157.5",edgeType:"OVER",
+    path:"Michigan: Howard W, Saint Louis W, Alabama W (95-72), Tennessee W (95-62, 21-0 run). Arizona: LIU W, Utah State W, Arkansas W (109-88), Purdue W (79-64, comeback from -7 at half).",
+    analysis:"The marquee game of the tournament. Two 1-seeds, two elite offenses. Michigan averaging 22.5 pts margin of victory across 4 tourney games. Arizona averaging 20.5 pts margin. Lendeborg averaging 21 pts on 50% from 3. Arizona's Burries, Peat, and Kharchenkov — three elite freshmen. Bradley vs Cadeau is the guard matchup that decides this. Michigan is the slight favorite (-122 ML) but Arizona has been the most dominant team in the bracket. Arizona trailed Purdue by 7 at half and outscored them 48-26 in the second half — that's a team that doesn't quit. OVER 157.5: both offenses are elite and neither defense has been tested this late. Michigan allows 69.6 pts/game but Arizona scores on everyone. Arizona's tempo (#54 nationally) keeps possessions flowing."
+  }
 ];
 
 function renderMatchups() {
   var el = document.getElementById('r32MatchupCards');
   if (!el) return;
-  var sat = e8Matchups.filter(function(m){ return m.time.indexOf('Sat') >= 0; });
-  var sun = e8Matchups.filter(function(m){ return m.time.indexOf('Sun') >= 0; });
+
   function gameCard(m) {
     var colors = {DOG:'var(--orange)',FAV:'var(--green)',OVER:'var(--green)',UNDER:'var(--blue)'};
-    var ec = colors[m.edgeType] || 'var(--green)';
-    return '<div style="background:var(--bg2);border:1px solid var(--border);border-left:4px solid ' + ec + ';border-radius:0 12px 12px 0;padding:18px 20px;margin-bottom:16px;">' +
-      '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:12px;">' +
-        '<div style="display:flex;align-items:center;gap:10px;">' + sb(m.s1) + '<span style="font-size:17px;font-weight:700;">' + m.t1 + '</span><span style="font-size:13px;color:var(--muted);">vs</span><span style="font-size:17px;font-weight:700;">' + m.t2 + '</span>' + sb(m.s2) + '</div>' +
+    var ec = colors[m.edgeType]||'var(--green)';
+    return '<div style="background:var(--bg2);border:1px solid var(--border);border-left:4px solid '+ec+';border-radius:0 12px 12px 0;padding:20px 22px;margin-bottom:18px;">' +
+      '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px;">' +
+        '<div style="display:flex;align-items:center;gap:10px;">' +
+          sb(m.s1)+'<span style="font-size:19px;font-weight:700;">'+m.t1+'</span>' +
+          '<span style="font-size:14px;color:var(--muted);">vs</span>' +
+          '<span style="font-size:19px;font-weight:700;">'+m.t2+'</span>'+sb(m.s2) +
+        '</div>' +
         '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">' +
-          '<span style="font-size:10px;color:var(--muted);font-family:monospace;">' + m.region + ' · ' + m.site + ' · ' + m.time + ' ' + m.tv + '</span>' +
-          '<span style="background:var(--bg3);border:1px solid var(--border2);color:var(--gold);font-size:11px;font-weight:700;padding:3px 10px;border-radius:4px;font-family:monospace;">' + m.spread + '</span>' +
-          '<span style="background:var(--bg3);border:1px solid var(--border2);color:var(--muted);font-size:11px;padding:3px 10px;border-radius:4px;font-family:monospace;">O/U ' + m.total + '</span>' +
+          '<span style="font-size:11px;color:var(--muted);font-family:monospace;">'+m.region+' · '+m.site+' · '+m.time+' '+m.tv+'</span>' +
+          '<span style="background:var(--bg3);border:1px solid var(--border2);color:var(--gold);font-size:11px;font-weight:700;padding:3px 10px;border-radius:4px;font-family:monospace;">'+m.spread+'</span>' +
+          '<span style="background:var(--bg3);border:1px solid var(--border2);color:var(--muted);font-size:11px;padding:3px 10px;border-radius:4px;font-family:monospace;">O/U '+m.total+'</span>' +
         '</div>' +
       '</div>' +
-      '<div style="font-size:12px;color:var(--blue);font-family:monospace;margin-bottom:10px;background:rgba(59,130,246,0.06);padding:8px 10px;border-radius:6px;line-height:1.6;"><strong>PATH:</strong> ' + m.path + '</div>' +
-      '<div style="font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:14px;border-bottom:1px solid var(--border);padding-bottom:12px;">' + m.analysis + '</div>' +
+      '<div style="font-size:12px;color:var(--blue);font-family:monospace;margin-bottom:10px;background:rgba(59,130,246,0.06);padding:8px 12px;border-radius:6px;line-height:1.55;"><strong>TOURNAMENT PATH:</strong> '+m.path+'</div>' +
+      '<div style="font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:16px;border-bottom:1px solid var(--border);padding-bottom:14px;">'+m.analysis+'</div>' +
       '<div style="display:flex;align-items:center;gap:10px;">' +
-        '<span style="background:' + ec + ';color:#000;padding:3px 10px;border-radius:4px;font-size:11px;font-weight:700;">' + m.edgeType + '</span>' +
-        '<span style="font-size:13px;font-weight:700;color:' + ec + ';">⚡ ' + m.edge + '</span>' +
+        '<span style="background:'+ec+';color:#000;padding:4px 12px;border-radius:4px;font-size:11px;font-weight:700;">'+m.edgeType+'</span>' +
+        '<span style="font-size:14px;font-weight:700;color:'+ec+';">⚡ '+m.edge+'</span>' +
       '</div>' +
     '</div>';
   }
+
   el.innerHTML =
-    '<div style="background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.25);border-radius:10px;padding:14px;margin-bottom:20px;">' +
-      '<div style="font-size:13px;color:var(--gold);font-weight:700;margin-bottom:3px;">🏆 Elite Eight · Sat Mar 28 + Sun Mar 29 · 4 Games · Final Four Bound</div>' +
-      '<div style="font-size:12px;color:var(--muted);">Iowa the lone Cinderella (9-seed). Duke vs UConn the marquee clash. Michigan the best team remaining. All Big Ten in both Saturday matchups.</div>' +
+    '<div style="background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.3);border-radius:12px;padding:16px;margin-bottom:24px;">' +
+      '<div style="font-size:14px;color:var(--gold);font-weight:700;margin-bottom:4px;">🏆 Final Four · Lucas Oil Stadium · Indianapolis · Sat Apr 4</div>' +
+      '<div style="font-size:12px;color:var(--muted);">4 teams remain. Two 1-seeds meet in the nightcap. Hurley going for 3-in-4. Arizona\'s first Final Four since 2001. Illinois\' first since 2005. Michigan\'s first since 2018.</div>' +
     '</div>' +
-    '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:19px;letter-spacing:1px;color:var(--gold);padding-bottom:5px;border-bottom:1px solid var(--border);margin-bottom:14px;">SATURDAY MARCH 28 · SOUTH + WEST</div>' +
-    sat.map(gameCard).join('') +
-    '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:19px;letter-spacing:1px;color:var(--gold);padding-bottom:5px;border-bottom:1px solid var(--border);margin-bottom:14px;margin-top:6px;">SUNDAY MARCH 29 · MIDWEST + EAST</div>' +
-    sun.map(gameCard).join('');
+    f4Matchups.map(gameCard).join('');
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// GAMBLING EDGE TAB
+// GAMBLING EDGE
 // ════════════════════════════════════════════════════════════════════════════
 function renderGambling() {
   var el = document.getElementById('r32EdgeCards');
   if (!el) return;
   var colors = {DOG:'var(--orange)',FAV:'var(--green)',OVER:'var(--green)',UNDER:'var(--blue)'};
-  el.innerHTML = e8Matchups.map(function(m){
-    var ec = colors[m.edgeType] || 'var(--green)';
-    return '<div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid ' + ec + ';border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:12px;">' +
-      '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;">' +
-        '<span style="background:' + ec + ';color:#000;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;">' + m.edgeType + '</span>' +
-        '<strong style="font-size:15px;">' + m.t1 + ' vs ' + m.t2 + '</strong>' +
-        '<span style="font-size:11px;color:var(--muted);">' + m.time + ' · ' + m.tv + '</span>' +
-        '<span style="font-size:11px;font-family:monospace;color:var(--gold);margin-left:auto;">' + m.spread + ' · O/U ' + m.total + '</span>' +
+
+  el.innerHTML = f4Matchups.map(function(m){
+    var ec = colors[m.edgeType]||'var(--green)';
+    return '<div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid '+ec+';border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:14px;">' +
+      '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;">' +
+        '<span style="background:'+ec+';color:#000;padding:2px 10px;border-radius:4px;font-size:10px;font-weight:700;">'+m.edgeType+'</span>' +
+        '<strong style="font-size:16px;">'+m.t1+' vs '+m.t2+'</strong>' +
+        '<span style="font-size:11px;color:var(--muted);">'+m.time+' · '+m.tv+'</span>' +
+        '<span style="font-size:11px;font-family:monospace;color:var(--gold);margin-left:auto;">'+m.spread+' · O/U '+m.total+'</span>' +
       '</div>' +
-      '<div style="font-size:12px;color:var(--muted);line-height:1.65;margin-bottom:10px;">' + m.analysis + '</div>' +
-      '<div style="background:rgba(16,185,129,0.08);border:1px solid ' + ec + ';border-radius:5px;padding:6px 10px;font-size:12px;font-weight:700;color:' + ec + ';font-family:monospace;">⚡ PLAY: ' + m.edge + '</div>' +
+      '<div style="font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:12px;">'+m.analysis+'</div>' +
+      '<div style="background:rgba(16,185,129,0.08);border:1px solid '+ec+';border-radius:6px;padding:7px 12px;font-size:13px;font-weight:700;color:'+ec+';font-family:monospace;">⚡ PLAY: '+m.edge+'</div>' +
     '</div>';
   }).join('');
 }
@@ -1081,24 +1079,20 @@ function renderFutures() {
   var el = document.getElementById('futuresTbody');
   if (!el) return;
   var data = [
-    {team:"Duke",seed:1,kp:1,path:"Siena W · TCU W · St. John's W (comeback)",odds:"+200",e8:"vs UConn Sun 5:05",val:"⚠️ Not 100%"},
-    {team:"Michigan",seed:1,kp:3,path:"Howard W · Saint Louis W · Alabama W (+13)",odds:"+240",e8:"vs Tennessee Sun 2:15",val:"✓ Best team left"},
-    {team:"Arizona",seed:1,kp:2,path:"LIU W · Utah State W · Arkansas W 109-88",odds:"+300",e8:"vs Purdue Sat 8:49",val:"✓ Dominant run"},
-    {team:"Illinois",seed:3,kp:7,path:"Penn W · VCU W · Houston W 65-55",odds:"+700",e8:"vs Iowa Sat 6:09",val:"🔥 Value"},
-    {team:"UConn",seed:2,kp:11,path:"Furman W · UCLA W · Michigan St. W (held on)",odds:"+800",e8:"vs Duke Sun 5:05",val:"🔥 Hurley 9-0 ATS"},
-    {team:"Purdue",seed:2,kp:8,path:"Queens W · Miami FL W · Texas W (tip-in buzzer)",odds:"+900",e8:"vs Arizona Sat 8:49",val:"⚠️ Tough draw"},
-    {team:"Tennessee",seed:6,kp:16,path:"Miami OH W · Virginia W · Iowa State W",odds:"+1600",e8:"vs Michigan Sun 2:15",val:"⚠️ Big mountain"},
-    {team:"Iowa",seed:9,kp:25,path:"Clemson W · Florida W · Nebraska W",odds:"+3500",e8:"vs Illinois Sat 6:09",val:"🎉 Cinderella"},
+    {team:"Arizona",seed:1,kp:2,wl:"36-2",path:"LIU, Utah St., Arkansas, Purdue",odds:"+165",note:"Tournament fav. First F4 since 2001. Best balanced roster. Peat/Burries/Kharchenkov all balling."},
+    {team:"Michigan",seed:1,kp:3,wl:"35-3",path:"Howard, Saint Louis, Alabama, Tennessee",odds:"+180",note:"4 straight tourney wins by 13+. Lendeborg 21 PPG on 50% from 3. May's system is perfect."},
+    {team:"Illinois",seed:3,kp:7,wl:"28-8",path:"Penn, VCU, Houston (upset), Iowa",odds:"+425",note:"4-0 ATS. Wagler 25 vs Iowa. Underwood's first F4. Never won a title — this is the year."},
+    {team:"Connecticut",seed:2,kp:11,wl:"33-5",path:"Furman, UCLA, Michigan St., Duke (buzzer)",odds:"+550",note:"Hurley 17-3 tourney record. Reed 21.5/13.5. Mullins buzzer. 3rd F4 in 4 years. Dark horse."},
   ];
   el.innerHTML = data.map(function(t){
-    return '<tr>' +
-      '<td><strong>' + t.team + '</strong></td>' +
-      '<td>' + sb(t.seed) + '</td>' +
-      '<td class="mono">' + t.kp + '</td>' +
-      '<td style="font-size:11px;color:var(--muted);">' + t.path + '</td>' +
-      '<td style="color:var(--gold);font-weight:700;">' + t.odds + '</td>' +
-      '<td style="font-size:11px;">' + t.e8 + '</td>' +
-      '<td style="font-size:12px;">' + t.val + '</td>' +
+    var inF4 = alive.indexOf(t.team)>=0;
+    return '<tr'+(inF4?' style="background:rgba(245,200,66,0.04);"':'')+'>' +
+      '<td><strong>'+(inF4?'🏆 ':'')+t.team+'</strong></td>' +
+      '<td>'+sb(t.seed)+'</td>' +
+      '<td class="mono">'+t.kp+'</td>' +
+      '<td style="font-size:11px;color:var(--muted);">'+t.path+'</td>' +
+      '<td style="color:var(--gold);font-weight:700;">'+t.odds+'</td>' +
+      '<td style="font-size:11px;">'+t.note+'</td>' +
     '</tr>';
   }).join('');
 }
@@ -1107,126 +1101,132 @@ function renderParlays() {
   var el = document.getElementById('parlayCards');
   if (!el) return;
   var data = [
-    {legs:["UConn +5.5 (Sun 5:05)","Michigan -7.5 (Sun 2:15)"],
-     odds:"+380",conf:"HIGH",color:"var(--orange)",
-     note:"The two strongest plays on the board. UConn's Hurley is 9-0 ATS in Sweet 16+. Michigan won every game by double digits. Two-legger with real confidence on both sides."},
-    {legs:["OVER 137.5 Illinois/Iowa (Sat 6:09)","Arizona -6.5 (Sat 8:49)"],
-     odds:"+350",conf:"MED-HIGH",color:"var(--green)",
-     note:"Model projects 151 combined in Illinois-Iowa, over hit in 4 of last 6 meetings. Arizona is running through opponents — 109-88 demolition of Arkansas was a statement."},
-    {legs:["UConn +5.5 (Sun 5:05)","OVER 137.5 Illinois/Iowa (Sat 6:09)","Michigan -7.5 (Sun 2:15)"],
-     odds:"+1100",conf:"MED",color:"var(--gold)",
-     note:"Three-legger combining both top plays with the Illinois-Iowa over. If Hurley covers and Michigan dominates, this cashes big."},
-    {legs:["Arizona ML -250 (Sat 8:49)","Michigan ML -400 (Sun 2:15)"],
-     odds:"+220",conf:"HIGH",color:"var(--green)",
-     note:"Safest parlay on the board. Two #1 seeds who've been dominant. Arizona 12 straight wins, Michigan 3 straight by 10+. Parlay the chalk."},
+    {
+      legs:["UConn +1.5 (6:09 PM)","OVER 157.5 Michigan/Arizona (8:49 PM)"],
+      odds:"+280",conf:"HIGH",color:"var(--orange)",
+      note:"UConn riding a buzzer-beater wave, Hurley knows how to win these, Illinois 4-0 ATS but that line has moved. Michigan/Arizona is a loaded shootout — both teams are elite offensive units."
+    },
+    {
+      legs:["OVER 139.5 Illinois/UConn (6:09 PM)","OVER 157.5 Michigan/Arizona (8:49 PM)"],
+      odds:"+340",conf:"MED-HIGH",color:"var(--green)",
+      note:"SportsLine models projects 151 combined in Illinois/UConn — Over hits 79% of simulations. Michigan/Arizona is two elite offenses. Both overs are the play on Saturday."
+    },
+    {
+      legs:["UConn +1.5 (6:09 PM)","Arizona +1.5 (8:49 PM)"],
+      odds:"+620",conf:"MED",color:"var(--orange)",
+      note:"Both dogs have value. UConn's momentum is real. Arizona hasn't lost since February. Two teams with everything to prove. Championship game with all four of these teams is the dream scenario."
+    },
+    {
+      legs:["Illinois -1.5 (6:09 PM)","Michigan -1.5 (8:49 PM)","OVER 157.5 Arizona/Michigan"],
+      odds:"+560",conf:"MED",color:"var(--blue)",
+      note:"Illinois 4-0 ATS — that doesn't happen by accident. Michigan has dominated every game. Their ceiling is the highest in the field. Add the over for the nightcap since both offenses are elite."
+    }
   ];
   el.innerHTML = data.map(function(p){
-    return '<div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid ' + p.color + ';border-radius:0 10px 10px 0;padding:14px;margin-bottom:12px;">' +
+    return '<div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid '+p.color+';border-radius:0 10px 10px 0;padding:14px;margin-bottom:12px;">' +
       '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">' +
-        '<span style="background:' + p.color + ';color:#000;padding:2px 10px;border-radius:4px;font-size:10px;font-weight:700;">' + p.conf + '</span>' +
-        '<span style="font-size:14px;font-weight:700;color:' + p.color + ';">+' + p.odds + '</span>' +
+        '<span style="background:'+p.color+';color:#000;padding:2px 10px;border-radius:4px;font-size:10px;font-weight:700;">'+p.conf+'</span>' +
+        '<span style="font-size:14px;font-weight:700;color:'+p.color+';">+'+p.odds+'</span>' +
       '</div>' +
       p.legs.map(function(l,i){
         return '<div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--border);">' +
-          '<span style="background:var(--bg3);color:var(--muted);font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;flex-shrink:0;">LEG ' + (i+1) + '</span>' +
-          '<span style="font-size:13px;font-weight:600;">' + l + '</span>' +
+          '<span style="background:var(--bg3);color:var(--muted);font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;flex-shrink:0;">LEG '+(i+1)+'</span>' +
+          '<span style="font-size:13px;font-weight:600;">'+l+'</span>' +
         '</div>';
       }).join('') +
-      '<div style="font-size:12px;color:var(--muted);margin-top:8px;line-height:1.6;">' + p.note + '</div>' +
+      '<div style="font-size:12px;color:var(--muted);margin-top:8px;line-height:1.6;">'+p.note+'</div>' +
     '</div>';
   }).join('');
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// VALUE PICKS TAB
+// VALUE PICKS
 // ════════════════════════════════════════════════════════════════════════════
 function renderValue() {
   var el = document.getElementById('valueTbody');
-  if (!el) return;
-  var data = [
-    {team:"Iowa",seed:9,kp:25,wl:"24-12",line:"+3500",note:"KenPom #25 as a 9-seed. First Elite Eight in nearly 40 years. Beat Florida, Nebraska. Faces Illinois Saturday — best futures price left for a live team."},
-    {team:"UConn",seed:2,kp:11,wl:"32-5",note:"Hurley 9-0 ATS in tournament as UConn coach. +5.5 against Duke Sunday is the best spread value of the E8. Reed is the best big in the tournament.",line:"+800"},
-    {team:"Illinois",seed:3,kp:7,wl:"27-8",line:"+700",note:"KenPom #7. Three straight opponents held under 56 points. Best defensive team remaining. E8 vs Iowa is a winnable game."},
-    {team:"Tennessee",seed:6,kp:16,wl:"25-11",line:"+1600",note:"Shocked Iowa State with 20-8 second-half run. #1 offensive rebounding nationally. Michigan -7.5 is substantial — Tennessee can hang."},
-    {team:"Purdue",seed:2,kp:8,wl:"30-8",line:"+900",note:"Won on a buzzer tip-in vs Texas. Braden Smith is one assist from the NCAA career record. Arizona -6.5 is a lot against a 7-game win streak."},
-  ];
-  el.innerHTML = data.map(function(t){
-    return '<tr>' +
-      '<td><strong>' + t.team + '</strong></td>' +
-      '<td>' + sb(t.seed) + '</td>' +
-      '<td class="mono">' + t.kp + '</td>' +
-      '<td class="mono">' + t.wl + '</td>' +
-      '<td style="color:var(--gold);font-weight:700;">' + t.line + '</td>' +
-      '<td style="font-size:12px;color:var(--muted);">' + t.note + '</td>' +
-    '</tr>';
-  }).join('');
+  if (el) {
+    el.innerHTML = [
+      {team:"Connecticut",seed:2,kp:11,wl:"33-5",line:"+550",note:"KenPom #11 as a 2-seed but Hurley has a 17-3 tournament record. Reed 21.5/13.5. Came back from 15 down vs Duke. Best value in the Final Four futures."},
+      {team:"Illinois",seed:3,kp:7,wl:"28-8",line:"+425",note:"4-0 ATS this tournament. KenPom #7. Wagler 25 vs Iowa. Underwood's system works. Never won a title but they've covered every game."},
+      {team:"Arizona",seed:1,kp:2,wl:"36-2",line:"+165",note:"Most dominant team in the bracket. First F4 since 2001. Peat/Burries/Kharchenkov all rising. Arizona +1.5 vs Michigan is live dog value."},
+    ].map(function(t){
+      return '<tr>' +
+        '<td><strong>'+t.team+'</strong></td>' +
+        '<td>'+sb(t.seed)+'</td>' +
+        '<td class="mono">'+t.kp+'</td>' +
+        '<td class="mono">'+t.wl+'</td>' +
+        '<td style="color:var(--gold);font-weight:700;">'+t.line+'</td>' +
+        '<td style="font-size:12px;color:var(--muted);">'+t.note+'</td>' +
+      '</tr>';
+    }).join('');
+  }
+
   var over = document.getElementById('overTbody');
   if (over) {
     over.innerHTML = [
-      {team:"Iowa State",seed:2,kp:6,wl:"29-8",status:"ELIMINATED — Tennessee 76-62 (10 missed FTs, Jefferson limited)"},
-      {team:"St. John's",seed:5,kp:17,wl:"30-7",status:"ELIMINATED — Duke 80-75 (Evans 25, Foster comeback)"},
-      {team:"Alabama",seed:4,kp:18,wl:"25-10",status:"ELIMINATED — Michigan 90-77 (Lendeborg 23/12, 2nd-half blowout)"},
-      {team:"Michigan St.",seed:3,kp:9,wl:"27-8",status:"ELIMINATED — UConn 67-63 (blew 19-pt lead, MSU came back but fell short)"},
-      {team:"Arkansas",seed:4,kp:15,wl:"28-9",status:"ELIMINATED — Arizona 109-88 (wire-to-wire, 7 players scored 8+)"},
-      {team:"Houston",seed:2,kp:5,wl:"30-7",status:"ELIMINATED — Illinois 65-55 (0 FT attempts until 3:27 left, 34% FG)"},
-      {team:"Nebraska",seed:4,kp:14,wl:"28-7",status:"ELIMINATED — Iowa 77-71 (trailed 37+ min, Stirtz 3 with 2:10 left)"},
-      {team:"Texas",seed:11,kp:37,wl:"21-15",status:"ELIMINATED — Purdue 79-77 (Kaufman-Renn tip-in with <1 sec)"},
+      {team:"Duke",seed:1,kp:1,wl:"33-3",status:"ELIMINATED by UConn 73-72 (Mullins buzzer, 0.4 sec)"},
+      {team:"Purdue",seed:2,kp:8,wl:"29-9",status:"ELIMINATED by Arizona 79-64 (trailed by 15 in 2nd half)"},
+      {team:"Iowa St.",seed:2,kp:6,wl:"29-8",status:"ELIMINATED by Michigan 95-62"},
+      {team:"Tennessee",seed:6,kp:16,wl:"24-12",status:"ELIMINATED by Michigan 95-62 (21-0 run)"},
+      {team:"Iowa",seed:9,kp:25,wl:"23-13",status:"ELIMINATED by Illinois 71-59 (E8)"},
+      {team:"St. John's",seed:5,kp:17,wl:"30-7",status:"ELIMINATED by Duke 80-75 (S16)"},
     ].map(function(t){
-      return '<tr><td><strong style="color:var(--muted);">' + t.team + '</strong></td><td>' + sb(t.seed) + '</td><td class="mono">' + t.kp + '</td><td style="font-size:12px;color:var(--red);" colspan="2">' + t.status + '</td></tr>';
+      return '<tr>' +
+        '<td><strong style="color:var(--muted);">'+t.team+'</strong></td>' +
+        '<td>'+sb(t.seed)+'</td>' +
+        '<td class="mono">'+t.kp+'</td>' +
+        '<td style="font-size:11px;color:var(--red);" colspan="2">'+t.status+'</td>' +
+      '</tr>';
     }).join('');
   }
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// UPSET ALERTS TAB
+// UPSET ALERTS
 // ════════════════════════════════════════════════════════════════════════════
 function renderUpsets() {
-  var el = document.getElementById('upsetPickCards');
-  if (!el) return;
-
-  var s16upsets = [
-    {seed1:6,t1:"Tennessee",seed2:2,t2:"Iowa State",score:"76-62",round:"S16 Fri",
-     logic:"20-8 run to open second half. Iowa State missed 10 free throws. Jefferson wasn't 100%. Gillespie and the Vols exposed the Cyclones' depth limitations."},
-    {seed1:9,t1:"Iowa",seed2:4,t2:"Nebraska",score:"77-71",round:"S16 Thu",
-     logic:"Iowa trailed for 37+ minutes before Stirtz hit a 3 with 2:10 left to take the lead for good. The Cinderella keeps dancing."},
-  ];
-
-  var e8candidates = [
-    {seed1:9,t1:"Iowa",seed2:3,t2:"Illinois",score:"Sat 6:09 PM",round:"E8",
-     logic:"Illinois is 9-1 ATS vs Iowa in last 10 meetings but Iowa has beaten every team they've faced in this tournament. Stirtz 20+ projected. Iowa ML +280 at the right sportsbook — massive payout for the program's first Final Four since 1980."},
-    {seed1:2,t1:"UConn",seed2:1,t2:"Duke",score:"Sun 5:05 PM",round:"E8",
-     logic:"Hurley is 9-0 ATS in tournament games Sweet 16 or later. Duke is not 100% — Foster and Ngongba both hurt. Reed vs Boozer in the paint is the battle. UConn +5.5 is the best bet on the board. 59% of money on UConn."},
-    {seed1:2,t1:"Purdue",seed2:1,t2:"Arizona",score:"Sat 8:49 PM",round:"E8",
-     logic:"Arizona has been dominant (12 straight wins) but Purdue is 7 straight and Smith is historic. Arizona -6.5 is a lot. Purdue covered vs Texas in a thriller. Watch for Smith's passing to open up the offense."},
-    {seed1:6,t1:"Tennessee",seed2:1,t2:"Michigan",score:"Sun 2:15 PM",round:"E8",
-     logic:"Tennessee is #1 in offensive rebounding nationally. Michigan's jumbo lineup makes this tough. Tennessee needs to own the glass and make it physical. Michigan -7.5 is heavy — Tennessee as a 4-star dog is interesting."},
-  ];
-
-  var html = '<div style="margin-bottom:24px;">' +
-    '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:18px;letter-spacing:1px;color:var(--red);margin-bottom:10px;">🚨 S16 UPSETS CONFIRMED</div>' +
-    '<div class="cards">' +
-    s16upsets.map(function(u){
-      return '<div class="card fade-up" style="border-left:3px solid var(--red);border-radius:0 10px 10px 0;">' +
-        '<div style="font-size:10px;color:var(--red);font-weight:700;margin-bottom:6px;">' + u.round + ' · ' + u.seed1 + '-SEED OVER ' + u.seed2 + '-SEED</div>' +
-        '<div style="font-size:15px;font-weight:700;margin-bottom:6px;">' + u.t1 + ' ' + u.score + ' — <span style="color:var(--muted);font-weight:400;">' + u.t2 + '</span></div>' +
-        '<div style="font-size:12px;color:var(--muted);line-height:1.5;">' + u.logic + '</div>' +
+  var el = document.getElementById('cinderellaCards');
+  if (el) {
+    el.innerHTML = [
+      {team:"Connecticut",seed:2,kp:11,odds:"+550",path:"Furman → UCLA → Michigan St. → Duke (buzzer)",note:"The hottest team in the field right now. Came back from 15 down at half vs Duke. Mullins hit a 35-footer with 0.4 seconds. Hurley + Reed is a championship formula. If you believe in momentum, bet UConn.",tag:"tag-gold"},
+      {team:"Illinois",seed:3,kp:7,odds:"+425",path:"Penn → VCU → Houston (UPSET) → Iowa",note:"4-0 ATS. Biggest surprise in the Final Four. Beat KenPom #5 Houston in the Sweet 16 and No. 9 Iowa in the Elite Eight. Wagler 25 pts vs Iowa. If Illinois covers again, they're going to the title game.",tag:"tag-teal"},
+    ].map(function(c){
+      return '<div class="card fade-up">' +
+        '<div class="card-head">'+sb(c.seed)+'<div><div class="card-name">'+c.team+'</div><div style="font-size:11px;color:var(--muted);">'+c.odds+' to win it all</div></div></div>' +
+        '<div style="font-size:11px;color:var(--blue);font-family:monospace;margin:6px 0;background:rgba(59,130,246,0.06);padding:6px 8px;border-radius:5px;">'+c.path+'</div>' +
+        '<div style="font-size:12px;color:var(--muted);line-height:1.65;">'+c.note+'</div>' +
+        tag(c.tag,'Final Four Cinderella') +
       '</div>';
-    }).join('') + '</div></div>' +
-    '<div><div style="font-family:\'Bebas Neue\',sans-serif;font-size:18px;letter-spacing:1px;color:var(--orange);margin-bottom:10px;">⚠️ ELITE EIGHT — UPSET RADAR</div>' +
-    '<div class="cards">' +
-    e8candidates.map(function(u){
-      return '<div class="card fade-up" style="border-left:3px solid var(--orange);border-radius:0 10px 10px 0;">' +
-        '<div style="font-size:10px;color:var(--orange);font-weight:700;margin-bottom:6px;">' + u.score + '</div>' +
-        '<div style="font-size:15px;font-weight:700;margin-bottom:6px;">' + u.t1 + ' vs ' + u.t2 + '</div>' +
-        '<div style="font-size:12px;color:var(--muted);line-height:1.5;">' + u.logic + '</div>' +
-      '</div>';
-    }).join('') + '</div></div>';
+    }).join('');
+  }
 
-  // Cinderella section
-  el.innerHTML = '<div style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.3);border-radius:10px;padding:14px;margin-bottom:20px;">' +
-    '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:18px;color:var(--green);margin-bottom:6px;">🎉 IOWA — THE LAST CINDERELLA</div>' +
-    '<div style="font-size:13px;color:var(--muted);line-height:1.7;">A 9-seed who has beaten Clemson (8), Florida (1, defending champs), and Nebraska (4) to reach the Elite Eight for the first time since 1980. Coach Ben McCollum\'s first year. Stirtz is 20+ pts projected vs Illinois. +3500 to win the title. This is what March is for.</div>' +
-  '</div>' + html;
+  var rates_el = document.getElementById('upsetRates');
+  if (rates_el) {
+    rates_el.innerHTML = [
+      {matchup:"Illinois vs UConn (-1.5)",rate:"Pick-em territory",note:"Line moved from -2.5 to -1.5 as UConn money came in. Illinois 4-0 ATS. UConn on a buzzer-beater high. Genuine toss-up."},
+      {matchup:"Michigan vs Arizona (-1.5)",rate:"Nearest pick-em in tourney",note:"Two 1-seeds. Both undefeated in tourney. Michigan -122 ML, Arizona +102. Book sees it almost even."},
+      {matchup:"E8 upsets feeding this F4",rate:"3 of 8 E8 games flipped",note:"UConn beat Duke (1-seed) on buzzer. Illinois beat Houston (2-seed) in S16. Arizona came back from 7 down vs Purdue (2-seed)."},
+    ].map(function(r){
+      return '<div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:8px;">' +
+        '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">' +
+          '<strong style="font-size:13px;">'+r.matchup+'</strong>' +
+          '<span style="font-size:11px;color:var(--gold);font-family:monospace;">'+r.rate+'</span>' +
+        '</div>' +
+        '<div style="font-size:12px;color:var(--muted);line-height:1.5;">'+r.note+'</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  var pu = document.getElementById('upsetPickCards');
+  if (pu) {
+    pu.innerHTML = '<div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--orange);border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:12px;">' +
+      '<div style="font-size:10px;color:var(--orange);font-weight:700;margin-bottom:8px;">FINAL FOUR UPSET PICKS</div>' +
+      '<div style="font-size:13px;font-weight:700;margin-bottom:8px;">UConn +1.5 vs Illinois · Sat 6:09 PM</div>' +
+      '<div style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:10px;">Hurley 17-3 in tourney. Reed averaging 21.5/13.5. Just beat the overall #1 seed on a buzzer. UConn won their regular-season meeting 74-61. Line moved from -2.5 to -1.5 — that\'s the market telling you something. Take the points and the momentum.</div>' +
+      '<div style="font-size:13px;font-weight:700;margin-bottom:8px;">Arizona +1.5 vs Michigan · Sat 8:49 PM</div>' +
+      '<div style="font-size:12px;color:var(--muted);line-height:1.6;">Arizona hasn\'t lost since February 21. Down 7 at half vs Purdue and won by 15. Three elite freshmen all peaking. Jaden Bradley is the best pure PG in the tournament. Arizona +165 ML is real value for a team this good. Even just +1.5 is free money on a coin-flip game.</div>' +
+    '</div>';
+  }
 }
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -1234,276 +1234,259 @@ function renderUpsets() {
 // ════════════════════════════════════════════════════════════════════════════
 function renderPlayers() {
   var tier1 = [
-    {name:"Cameron Boozer",team:"Duke",seed:1,pos:"F",stats:"22 pts/10 reb vs St. John's · 25 pts Evans led comeback",note:"Duke rallied from 10 down in S16. Boozer had 13 pts in 2nd half after slow start. Faces UConn's Reed in the E8 — the matchup of the tournament. If Boozer dominates Reed, Duke goes to the Final Four.",tag:"tag-gold",lbl:"Wooden Fav",nba:"Top 3"},
-    {name:"Tarris Reed Jr.",team:"UConn",seed:2,pos:"C",stats:"31/27 vs Furman · 10/13 vs UCLA · 20 pts vs Michigan St.",note:"Best big in the tournament. Averaging 20 pts, 20 reb through 3 tourney games. The matchup vs Boozer Sunday night is appointment television. If Reed beats Boozer, UConn wins.",tag:"tag-blue",lbl:"Best Big Left",nba:"Top 5"},
-    {name:"Yaxel Lendeborg",team:"Michigan",seed:1,pos:"F",stats:"23 pts/12 reb vs Alabama · nearly triple-double",note:"Led Michigan's blowout of Alabama in 2nd half. 3 assists shy of a triple-double. Michigan's complete player on both ends. Faces Tennessee Sunday — their best player needs another dominant game.",tag:"tag-blue",lbl:"Michigan's Engine",nba:"Lottery"},
-    {name:"Koa Peat",team:"Arizona",seed:1,pos:"F",stats:"Leading scorer in 109-88 Arkansas demolition",note:"Arizona freshman phenom. One of two freshmen as top-2 scorers for the Wildcats (with Burries). Arizona's physicality and youth is terrifying heading into the E8.",tag:"tag-green",lbl:"Freshman Phenom",nba:"Top 10"},
-    {name:"Braden Smith",team:"Purdue",seed:2,pos:"G",stats:"1 assist from NCAA career assists record",note:"One assist from breaking Bobby Hurley's NCAA career assists record. His playmaking is the engine of Purdue's offense. Arizona's athleticism is the biggest test of his career.",tag:"tag-blue",lbl:"Historic",nba:"1st Round"},
-    {name:"Bennett Stirtz",team:"Iowa",seed:9,pos:"G",stats:"20.1 pts projected vs Illinois · hit the go-ahead 3 vs Nebraska",note:"The heartbeat of Iowa's Cinderella run. Hit the clutch 3 vs Nebraska with 2:10 left. Now faces Illinois who knows him well — 9-1 ATS vs Iowa in last 10.",tag:"tag-teal",lbl:"Cinderella Engine",nba:"Undrafted → G-League"},
+    {name:"Yaxel Lendeborg",team:"Michigan",seed:1,pos:"F",stats:"27 pts/7 reb vs Tennessee E8 · 21 PPG tourney avg",note:"Averaging 21 pts on 50% from 3 in the tournament. His combination of size, shooting, and athleticism is the reason Michigan is the slight favorite. The best player in the Final Four.",tag:"tag-gold",lbl:"Best Player Left",nba:"Lottery"},
+    {name:"Tarris Reed Jr.",team:"Connecticut",seed:2,pos:"C",stats:"21.5 pts / 13.5 reb · tourney avg",note:"Averaging a near double-double every game. Former Michigan man is unstoppable in the paint. Against Illinois he'll face a real test — Mirkovic and Cooper are both physical. If Reed dominates, UConn wins.",tag:"tag-blue",lbl:"Tourney Monster",nba:"1st Round"},
+    {name:"Jaden Bradley",team:"Arizona",seed:1,pos:"G",stats:"Big 12 POY · Arizona 36-2",note:"The best pure PG in the Final Four. Orchestrates Arizona's attack, makes the right decision every possession. Faces Elliot Cadeau in what will be the defining individual matchup of the nightcap.",tag:"tag-blue",lbl:"Big 12 POY",nba:"1st Round"},
+    {name:"Keaton Wagler",team:"Illinois",seed:3,pos:"G",stats:"25 pts vs Iowa E8 · clutch performer",note:"The player who showed up when Illinois needed it most. 25 points in the Elite Eight win over Iowa. Big game player. Illinois' offensive engine alongside Stojakovic.",tag:"tag-teal",lbl:"Clutch Factor",nba:"2nd Round"},
+    {name:"Koa Peat",team:"Arizona",seed:1,pos:"F",stats:"20 pts vs Purdue E8 · elite freshman",note:"One of three elite Arizona freshmen. 20 points in the Elite Eight to help Arizona come back from 7 down vs Purdue. His floor game and scoring versatility makes Arizona's offense impossible to guard.",tag:"tag-amber",lbl:"Elite Freshman",nba:"Top 10"},
+    {name:"Elliot Cadeau",team:"Michigan",seed:1,pos:"G",stats:"5.7 APG · Michigan 18.8 APG team (5th nationally)",note:"Michigan's offensive conductor. 5.7 assists per game. The Wolverines move the ball better than anyone in the Final Four. His matchup with Bradley is the game within the game Saturday night.",tag:"tag-purple",lbl:"Assist Machine",nba:"1st Round"},
   ];
 
   var breakout = [
-    {name:"Isaiah Evans",team:"Duke",seed:1,pos:"G",stats:"25 pts vs St. John's · step-back 3 gave Duke lead for good",note:"25-point performance with the clutch step-back three in the closing minutes. Emerged as Duke's second option behind Boozer when they needed it most.",tag:"tag-gold",lbl:"Duke's Clutch Gene",why:"Step-back 3 vs SJU was the shot of the S16 Friday. E8 vs UConn — can he do it again?"},
-    {name:"Caleb Foster",team:"Duke",seed:1,pos:"G",stats:"11 pts off bench · returned from broken foot surgery",note:"Returned from a broken foot, scored 11 key points in the second half vs St. John's. Not 100% but gutsy. His availability is the biggest swing factor in Duke vs UConn.",tag:"tag-red",lbl:"Gutsy Return",why:"11 pts off bench on a broken foot. If healthy-ish — Duke wins. If he fades, UConn covers."},
-    {name:"Trey Kaufman-Renn",team:"Purdue",seed:2,pos:"F",stats:"Tip-in with <1 second vs Texas — Purdue E8",note:"Hit the tip-in with less than a second left to send Purdue to the Elite Eight. Hero moment. Now faces Arizona Saturday.",tag:"tag-blue",lbl:"Buzzer Hero",why:"Tip-in hero. Projected 15.9 pts vs Arizona — watch his line."},
-    {name:"Brayden Burries",team:"Arizona",seed:1,pos:"G",stats:"23 pts vs Arkansas · one of two freshman in top-2 scoring",note:"Freshman guard was Arizona's best player in the dominant Arkansas win. Along with Peat, represents the most talented freshman duo in the E8.",tag:"tag-green",lbl:"Arizona's Spark",why:"23 pts vs a top-15 defense. Arizona's freshmen are the story of March."},
-    {name:"Alvaro Folgueiras",team:"Iowa",seed:9,pos:"F",stats:"Tournament hero — buzzer 3 vs Florida, clutch finishes",note:"The heart of Iowa's run. Set up the buzzer-beater vs Florida, keeps making big plays. Iowa vs Illinois E8 — if Folgueiras goes big, Iowa shocks everyone again.",tag:"tag-red",lbl:"Giant Killer",why:"Every time Iowa needs a play, Folgueiras makes it."},
+    {name:"Braylon Mullins",team:"Connecticut",seed:2,pos:"G",stats:"35-ft buzzer vs Duke — 0.4 sec on clock",note:"Hit one of the greatest shots in tournament history. Freshman from Indiana. The moment didn't faze him. UConn's wild card going into the Final Four.",tag:"tag-red",lbl:"March Legend",why:"That shot will be played on ESPN for decades. He's not scared of the moment."},
+    {name:"Ivan Kharchenkov",team:"Arizona",seed:1,pos:"F",stats:"16.5 PPG on 11-of-17 shooting vs Arkansas + Purdue",note:"6-7 sophomore forward averaging 16.5 pts on elite shooting efficiency over Arizona's last two games. The third piece of Arizona's incredible freshman core.",tag:"tag-gold",lbl:"Efficient Scorer",why:"Arizona's secret weapon — he doesn't get enough attention."},
+    {name:"Andrej Stojakovic",team:"Illinois",seed:3,pos:"G",stats:"Tournament consistent — Illinois 4-0 ATS",note:"Son of NBA star Peja. Has contributed every game of Illinois' run. His shooting keeps Illinois' offense honest and opens lanes for drives.",tag:"tag-amber",lbl:"Peja's Son",why:"Illinois wouldn't be 4-0 ATS without his consistency."},
   ];
 
   var props = [
-    {player:"Bennett Stirtz",team:"Iowa",matchup:"vs Illinois Sat 6:09",bet:"OVER Points ~19.5",conf:"HIGH",
-     edge:"Model projects 20.1 pts. Illinois knows him well but that's the entire Iowa offense — he gets his shots regardless.",angle:"Iowa needs Stirtz to go 25+ to win. Take the over and root for the Cinderella."},
-    {player:"Tarris Reed Jr.",team:"UConn",matchup:"vs Duke Sun 5:05",bet:"OVER Pts+Reb ~32.5",conf:"HIGH",
-     edge:"31/27 vs Furman, averaging 20/20 through tourney. Boozer will draw fouls. Duke's secondary bigs are a drop-off from Reed.",angle:"Best big in the tournament at peak form. Reed vs Boozer — whoever wins this matchup wins the game."},
-    {player:"Cameron Boozer",team:"Duke",matchup:"vs UConn Sun 5:05",bet:"OVER Points ~21.5",conf:"MED-HIGH",
-     edge:"22 pts vs SJU but had 4 turnovers in Duke's 2 losses this season. UConn is 11th nationally in 2PT defense. Contested but Boozer gets his.",angle:"Duke's whole offense runs through Boozer. He'll be featured all 40 minutes."},
-    {player:"Braden Smith",team:"Purdue",matchup:"vs Arizona Sat 8:49",bet:"OVER Assists ~8.5",conf:"HIGH",
-     edge:"1 assist from NCAA career record. Historic performance coming. Arizona's athleticism pressures him but he's been record-breaking pace all tourney.",angle:"History on the line. Smith will push for the record. Take assists over all day."},
-    {player:"Yaxel Lendeborg",team:"Michigan",matchup:"vs Tennessee Sun 2:15",bet:"OVER Pts+Reb ~29.5",conf:"HIGH",
-     edge:"23/12 vs Alabama. Nearly triple-double. Tennessee's frontcourt can't match Lendeborg's combination of skill and size. Michigan runs everything through him.",angle:"Michigan needs Lendeborg dominant to cover -7.5. He delivers."},
+    {player:"Tarris Reed Jr.",team:"UConn",matchup:"vs Illinois Sat 6:09",bet:"OVER Pts+Reb ~28.5",conf:"HIGH",
+     edge:"Averaging 21.5 pts + 13.5 reb = 35 combined per game in tournament. Illinois is physical but Reed has been unstoppable inside. If Reed gets 30+ combined, UConn likely wins.",
+     angle:"Best prop of the Final Four. Reed's floor is 28+ and his ceiling is 40."},
+    {player:"Yaxel Lendeborg",team:"Michigan",matchup:"vs Arizona Sat 8:49",bet:"OVER Points ~19.5",conf:"HIGH",
+     edge:"Averaging 21 PPG on 50% from 3. Arizona's perimeter defense is good but Lendeborg creates his own shot. Line will be set around 19-20.",
+     angle:"Michigan's best player vs the best defense he's faced. Still take the over."},
+    {player:"Keaton Wagler",team:"Illinois",matchup:"vs UConn Sat 6:09",bet:"OVER Points ~15.5",conf:"MED-HIGH",
+     edge:"25 pts in Elite Eight. UConn will focus on stopping him. But Wagler has been rising all tournament — his line should be around 15-16.",
+     angle:"If Illinois covers, Wagler goes for 20+."},
+    {player:"Koa Peat",team:"Arizona",matchup:"vs Michigan Sat 8:49",bet:"OVER Pts+Reb ~21.5",conf:"MED",
+     edge:"20 pts vs Purdue. Michigan's interior is big (Aday Mara 7-3) but Peat can score from multiple spots. Michigan will scheme for Bradley — Peat could go off.",
+     angle:"Arizona's second option who could easily be the best player in the game."},
   ];
 
   var t1el = document.getElementById('tier1Cards');
   if (t1el) {
     t1el.innerHTML = tier1.map(function(p){
       return '<div class="card gold-border fade-up">' +
-        '<div class="card-head">' + teamPill(p.team) +
-          '<div><div class="card-name">' + p.name + '</div><div style="font-size:11px;color:var(--muted);">' + p.pos + '</div></div>' +
-        '</div>' +
-        '<div class="cstat"><span class="clbl">E8 Context</span><span class="cval" style="color:var(--gold);font-size:11px;">' + p.stats + '</span></div>' +
-        '<div class="cstat"><span class="clbl">NBA</span><span class="cval" style="color:var(--blue);font-size:11px;">' + p.nba + '</span></div>' +
-        '<div style="font-size:12px;color:var(--muted);margin-top:8px;line-height:1.6;">' + p.note + '</div>' +
-        tag(p.tag, p.lbl) +
+        '<div class="card-head">'+teamPill(p.team)+'<div><div class="card-name">'+p.name+'</div><div style="font-size:11px;color:var(--muted);">'+p.pos+'</div></div></div>' +
+        '<div class="cstat"><span class="clbl">F4 Context</span><span class="cval" style="color:var(--gold);font-size:11px;">'+p.stats+'</span></div>' +
+        '<div class="cstat"><span class="clbl">NBA</span><span class="cval" style="color:var(--blue);font-size:11px;">'+p.nba+'</span></div>' +
+        '<div style="font-size:12px;color:var(--muted);margin-top:8px;line-height:1.6;">'+p.note+'</div>' +
+        tag(p.tag,p.lbl) +
       '</div>';
     }).join('');
   }
+
   var boel = document.getElementById('breakoutCards');
   if (boel) {
     boel.innerHTML = breakout.map(function(p){
       return '<div class="card fade-up">' +
-        '<div class="card-head">' + teamPill(p.team) +
-          '<div><div class="card-name">' + p.name + '</div><div style="font-size:11px;color:var(--muted);">' + p.pos + '</div></div>' +
-        '</div>' +
-        '<div class="cstat"><span class="clbl">Moment</span><span class="cval" style="font-size:11px;">' + p.stats + '</span></div>' +
-        '<div style="font-size:11px;color:var(--gold);font-family:monospace;margin:6px 0;line-height:1.5;">' + p.why + '</div>' +
-        '<div style="font-size:12px;color:var(--muted);line-height:1.6;">' + p.note + '</div>' +
-        tag(p.tag, p.lbl) +
+        '<div class="card-head">'+teamPill(p.team)+'<div><div class="card-name">'+p.name+'</div><div style="font-size:11px;color:var(--muted);">'+p.pos+'</div></div></div>' +
+        '<div class="cstat"><span class="clbl">Moment</span><span class="cval" style="font-size:11px;">'+p.stats+'</span></div>' +
+        '<div style="font-size:11px;color:var(--gold);font-family:monospace;margin:6px 0;line-height:1.5;">'+p.why+'</div>' +
+        '<div style="font-size:12px;color:var(--muted);line-height:1.6;">'+p.note+'</div>' +
+        tag(p.tag,p.lbl) +
       '</div>';
     }).join('');
   }
+
   var slel = document.getElementById('sleeperCards');
-  if (slel) {
-    slel.innerHTML = '<div style="padding:20px;color:var(--muted);font-size:13px;line-height:1.7;">The Elite Eight has no sleepers — every remaining player is battle-tested and proven. The stories now are: can Foster stay healthy? Will Smith break the assists record? Can Iowa\'s supporting cast help Stirtz one more time?</div>';
-  }
+  if (slel) slel.innerHTML = '<div style="padding:20px;color:var(--muted);font-size:13px;">Final Four has no sleepers — every player remaining is elite. The breakout performers above are your highest-value player props.</div>';
+
+  var cc = {HIGH:'var(--green)','MED-HIGH':'var(--gold)',MED:'var(--orange)'};
   var propEl = document.getElementById('propCards');
   if (propEl) {
-    var cc = {HIGH:'var(--green)','MED-HIGH':'var(--gold)',MED:'var(--orange)'};
     propEl.innerHTML = props.map(function(p){
-      var c = cc[p.conf] || 'var(--muted)';
-      return '<div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid ' + c + ';border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:12px;">' +
+      var c = cc[p.conf]||'var(--muted)';
+      return '<div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid '+c+';border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:12px;">' +
         '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;">' +
-          teamPill(p.team) + '<strong style="font-size:15px;">' + p.player + '</strong>' +
-          '<span style="font-size:12px;color:var(--muted);">' + p.matchup + '</span>' +
-          '<span style="background:' + c + ';color:#000;padding:2px 10px;border-radius:4px;font-size:10px;font-weight:700;margin-left:auto;">' + p.conf + '</span>' +
+          teamPill(p.team)+'<strong style="font-size:15px;">'+p.player+'</strong>' +
+          '<span style="font-size:12px;color:var(--muted);">'+p.matchup+'</span>' +
+          '<span style="background:'+c+';color:#000;padding:2px 10px;border-radius:4px;font-size:10px;font-weight:700;margin-left:auto;">'+p.conf+'</span>' +
         '</div>' +
-        '<div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:10px;">' +
-          '<div><div style="font-size:10px;color:var(--muted);font-family:monospace;">BET</div><div style="font-size:14px;font-weight:700;color:' + c + ';">' + p.bet + '</div></div>' +
-        '</div>' +
-        '<div style="font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:8px;">' + p.edge + '</div>' +
-        '<div style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:6px;padding:6px 10px;font-size:11px;color:var(--green);font-family:monospace;">⚡ ' + p.angle + '</div>' +
+        '<div style="font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:8px;">'+p.edge+'</div>' +
+        '<div style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:6px;padding:6px 10px;font-size:11px;color:var(--green);font-family:monospace;">⚡ '+p.angle+'</div>' +
       '</div>';
     }).join('');
   }
+
   var injEl = document.getElementById('injuryCards');
   if (injEl) {
-    injEl.innerHTML = [
-      {player:"Caleb Foster",team:"Duke",status:"PLAYING",detail:"Returned from broken foot — 11 pts off bench vs SJU",impact:"KEY",note:"If Foster is 75%+ healthy, Duke can cover -5.5 vs UConn. If he fades, the Huskies cover. He's the swing factor of the Elite Eight.",color:"var(--orange)"},
-      {player:"Patrick Ngongba II",team:"Duke",status:"LIMITED",detail:"Only 29 total minutes in 2 tourney games",impact:"MED",note:"Foot injury limits his effectiveness. Duke's frontcourt depth hurts without him against Reed.",color:"var(--orange)"},
-      {player:"Silas Demary Jr.",team:"UConn",status:"ACTIVE",detail:"Ankle — played vs Michigan State",impact:"POSITIVE",note:"Posted +22 plus/minus in 22 min vs UCLA. Healthy Demary makes UConn significantly more dangerous vs Duke.",color:"var(--green)"},
-    ].map(function(p){
-      return '<div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid ' + p.color + ';border-radius:0 10px 10px 0;padding:12px 14px;margin-bottom:10px;">' +
-        '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px;">' +
-          '<strong>' + p.player + '</strong><span style="color:var(--muted);font-size:11px;">' + p.team + '</span>' +
-          '<span style="background:' + p.color + ';color:#000;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;">' + p.status + '</span>' +
-          '<span style="font-size:11px;color:' + p.color + ';font-family:monospace;margin-left:auto;">IMPACT: ' + p.impact + '</span>' +
-        '</div>' +
-        '<div style="font-size:12px;color:var(--muted);">' + p.detail + '</div>' +
-        '<div style="font-size:12px;color:var(--muted);line-height:1.6;">' + p.note + '</div>' +
-      '</div>';
-    }).join('');
+    injEl.innerHTML = '<div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:0 10px 10px 0;padding:14px;"><div style="color:var(--green);font-weight:700;margin-bottom:6px;">✓ All Final Four teams appear healthy</div><div style="font-size:12px;color:var(--muted);line-height:1.6;">No major injury news heading into Indianapolis. Illinois\' Solo Ball has been in a shooting slump but is active. UConn\'s Silas Demary Jr. (ankle) is expected to play. Check for updates Wednesday before games tip Saturday.</div></div>';
   }
+
   var perfTbody = document.getElementById('perfTbody');
   if (perfTbody) {
     perfTbody.innerHTML = [
-      {player:"Cameron Boozer",team:"Duke",s16:"22/10 vs SJU",trend:"→ Consistent"},
-      {player:"Isaiah Evans",team:"Duke",s16:"25 pts · step-back 3 → lead for good",trend:"↑↑ Breakout"},
-      {player:"Tarris Reed Jr.",team:"UConn",s16:"20 pts · avg 20/20 tourney",trend:"↑↑ Dominant"},
-      {player:"Yaxel Lendeborg",team:"Michigan",s16:"23/12 vs Alabama",trend:"↑ Ascending"},
-      {player:"Bennett Stirtz",team:"Iowa",s16:"Hit go-ahead 3 vs Nebraska",trend:"↑ Clutch"},
-      {player:"Braden Smith",team:"Purdue",s16:"Record-pace assists",trend:"→ Historic run"},
-      {player:"Brayden Burries",team:"Arizona",s16:"23 pts vs Arkansas",trend:"↑↑ Freshman star"},
+      {player:"Tarris Reed Jr.",team:"UConn",r1:"31/27 vs Furman",r2:"Consistent vs UCLA, MSU, Duke",trend:"↑↑ Dominant"},
+      {player:"Yaxel Lendeborg",team:"Michigan",r1:"Strong R1/R2",r2:"27 pts E8 vs Tennessee",trend:"↑↑ Peaking"},
+      {player:"Keaton Wagler",team:"Illinois",r1:"Solid",r2:"25 pts E8 vs Iowa",trend:"↑↑ Peaking"},
+      {player:"Koa Peat",team:"Arizona",r1:"Strong",r2:"20 pts E8 vs Purdue",trend:"↑ Rising"},
+      {player:"Braylon Mullins",team:"UConn",r1:"Quiet",r2:"BUZZER vs Duke",trend:"↑ Legend"},
+      {player:"Jaden Bradley",team:"Arizona",r1:"Consistent",r2:"Led E8 comeback",trend:"→ Steady"},
+      {player:"Elliot Cadeau",team:"Michigan",r1:"5.7 APG season",r2:"Orchestrated E8",trend:"→ Steady"},
     ].map(function(p){
-      return '<tr><td><strong>' + p.player + '</strong></td><td><span style="font-size:11px;color:var(--muted);">' + p.team + '</span></td>' +
-        '<td class="mono">' + p.s16 + '</td><td style="color:var(--green);font-weight:700;">' + p.trend + '</td></tr>';
+      return '<tr>' +
+        '<td><strong>'+p.player+'</strong></td>' +
+        '<td><span style="font-size:11px;color:var(--muted);">'+p.team+'</span></td>' +
+        '<td class="mono">'+p.r1+'</td>' +
+        '<td class="mono">'+p.r2+'</td>' +
+        '<td style="color:var(--green);font-weight:700;">'+p.trend+'</td>' +
+      '</tr>';
     }).join('');
   }
+
   var tn = document.getElementById('trackerNote');
-  if (tn) tn.textContent = 'Elite Eight player watch: Reed vs Boozer is the matchup of the weekend. Smith one assist from the NCAA career record. Foster health is the wildcard.';
+  if (tn) tn.textContent = 'Final Four player tracking. Reed and Lendeborg are the two most important players in Indianapolis. Mullins is the wild card. Watch for Wagler and Peat to go off in their respective games.';
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// PACE/TEMPO TAB
+// TEMPO + LUCK + TABLE
 // ════════════════════════════════════════════════════════════════════════════
 function renderTempo() {
   var sorted = teams.slice().sort(function(a,b){ return b.adjT-a.adjT; });
   var fastest = sorted.slice(0,10);
   var slowest = sorted.slice().reverse().slice(0,10);
-  function tempoCard(t) {
-    var inE8 = alive.indexOf(t.team) >= 0;
-    return '<div class="card fade-up"' + (inE8?' style="border-color:var(--gold);"':'') + '>' +
-      '<div class="card-head">' + sb(t.seed) +
-        '<div><div class="card-name">' + t.team + (inE8?' <span style="color:var(--gold);font-size:10px;">E8</span>':'') + '</div>' +
-        '<div style="font-size:11px;color:var(--muted);">KenPom #' + t.kp + '</div></div>' +
-      '</div>' +
-      '<div class="cstat"><span class="clbl">AdjT</span><span class="cval">' + t.adjT.toFixed(1) + '</span></div>' +
-      '<div class="cstat"><span class="clbl">Rank</span><span class="cval">#' + t.adjTRk + '</span></div></div>';
+  function tc(t) {
+    var inF4 = alive.indexOf(t.team)>=0;
+    return '<div class="card fade-up"'+(inF4?' style="border-color:var(--gold);"':'')+'>' +
+      '<div class="card-head">'+sb(t.seed)+'<div><div class="card-name">'+t.team+(inF4?' <span style="color:var(--gold);font-size:10px;">F4</span>':'')+'</div><div style="font-size:11px;color:var(--muted);">KenPom #'+t.kp+'</div></div></div>' +
+      '<div class="cstat"><span class="clbl">AdjT</span><span class="cval" style="color:'+(inF4?'var(--gold)':'var(--muted)')+';">'+t.adjT.toFixed(1)+'</span></div>' +
+      '<div class="cstat"><span class="clbl">Rank</span><span class="cval">#'+t.adjTRk+'</span></div>' +
+    '</div>';
   }
   var fEl = document.getElementById('fastestTeams');
-  if (fEl) fEl.innerHTML = fastest.map(tempoCard).join('');
+  if (fEl) fEl.innerHTML = fastest.map(tc).join('');
   var sEl = document.getElementById('slowestTeams');
-  if (sEl) sEl.innerHTML = slowest.map(tempoCard).join('');
+  if (sEl) sEl.innerHTML = slowest.map(tc).join('');
+
   var tmEl = document.getElementById('tempoMatchups');
   if (tmEl) {
     tmEl.innerHTML = [
-      {g:"Michigan vs Tennessee",detail:"Michigan AdjT #22 (70.9) vs Tennessee AdjT #307 (65.0). Michigan pushes pace — Tennessee likes to slow it. The pace battle defines the O/U 146.5. Michigan wins the pace battle.",edge:"Michigan -7.5 · Under lean"},
-      {g:"Duke vs UConn",detail:"Duke AdjT #287 (65.3) vs UConn AdjT #322 (64.4). Both teams grind. Lowest total of E8 (134.5). UNDER is strongly supported by both teams' styles.",edge:"UNDER 134.5"},
-      {g:"Illinois vs Iowa",detail:"Iowa AdjT #357 (63.0) — dead last in the field. Illinois AdjT #277 (65.5). Despite low pace, model projects OVER 137.5 given both teams' efficiency.",edge:"OVER 137.5"},
-      {g:"Arizona vs Purdue",detail:"Arizona AdjT #54 (69.8) vs Purdue AdjT #324 (64.4). Arizona will push the pace, Purdue will resist. Highest total of E8 (153.5). Over hit in 4 of 5 both teams' recent games.",edge:"OVER 153.5 lean"},
+      {g:"Michigan (#22) vs Arizona (#54)",detail:"Michigan AdjT 70.9 vs Arizona AdjT 69.8 — both run. Total 157.5 accounts for this. OVER is the play. These are the two fastest Final Four teams.",edge:"OVER 157.5"},
+      {g:"Illinois (#277) vs UConn (#322)",detail:"Both teams are elite grinders. Illinois AdjT 65.5, UConn 64.4 — two of the slowest remaining. Total 139.5 reflects this. OVER still hits per model (79% of simulations).",edge:"OVER 139.5 (model-driven)"},
     ].map(function(m){
       return '<div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:8px;">' +
         '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:6px;">' +
-          '<strong style="font-size:13px;">' + m.g + '</strong>' +
-          '<span style="background:var(--bg3);border:1px solid var(--gold);color:var(--gold);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;">⚡ ' + m.edge + '</span>' +
+          '<strong style="font-size:13px;">'+m.g+'</strong>' +
+          '<span style="background:var(--bg3);border:1px solid var(--gold);color:var(--gold);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;">⚡ '+m.edge+'</span>' +
         '</div>' +
-        '<div style="font-size:12px;color:var(--muted);line-height:1.5;">' + m.detail + '</div>' +
+        '<div style="font-size:12px;color:var(--muted);line-height:1.5;">'+m.detail+'</div>' +
       '</div>';
     }).join('');
   }
 }
 
-// ════════════════════════════════════════════════════════════════════════════
-// LUCK RATINGS TAB
-// ════════════════════════════════════════════════════════════════════════════
 function renderLuck() {
   var sorted = teams.slice().sort(function(a,b){ return b.luck-a.luck; });
-  var lucky = sorted.slice(0,10);
+  var lucky   = sorted.slice(0,10);
   var unlucky = sorted.slice().reverse().slice(0,10);
-  function luckCard(t, isLucky) {
-    var c = isLucky ? 'var(--green)' : 'var(--red)';
-    var inE8 = alive.indexOf(t.team) >= 0;
-    return '<div class="card fade-up"' + (inE8?' style="border-color:var(--gold);"':'') + '>' +
-      '<div class="card-head">' + sb(t.seed) +
-        '<div><div class="card-name">' + t.team + (inE8?' <span style="color:var(--gold);font-size:10px;">E8</span>':'') + '</div></div>' +
-      '</div>' +
-      '<div class="cstat"><span class="clbl">Luck</span><span class="cval" style="color:' + c + ';">' + (t.luck>0?'+':'') + t.luck.toFixed(3) + '</span></div></div>';
+  function lc(t,isLucky) {
+    var c = isLucky?'var(--green)':'var(--red)';
+    var inF4 = alive.indexOf(t.team)>=0;
+    return '<div class="card fade-up"'+(inF4?' style="border-color:var(--gold);"':'')+'>' +
+      '<div class="card-head">'+sb(t.seed)+'<div><div class="card-name">'+t.team+(inF4?' <span style="color:var(--gold);font-size:10px;">F4</span>':'')+'</div></div></div>' +
+      '<div class="cstat"><span class="clbl">Luck</span><span class="cval" style="color:'+c+';">'+(t.luck>0?'+':'')+t.luck.toFixed(3)+'</span></div>' +
+    '</div>';
   }
   var lEl = document.getElementById('luckyTeams');
-  if (lEl) lEl.innerHTML = lucky.map(function(t){ return luckCard(t,true); }).join('');
+  if (lEl) lEl.innerHTML = lucky.map(function(t){ return lc(t,true); }).join('');
   var uEl = document.getElementById('unluckyTeams');
-  if (uEl) uEl.innerHTML = unlucky.map(function(t){ return luckCard(t,false); }).join('');
+  if (uEl) uEl.innerHTML = unlucky.map(function(t){ return lc(t,false); }).join('');
 }
 
-// ════════════════════════════════════════════════════════════════════════════
-// FULL TABLE TAB
-// ════════════════════════════════════════════════════════════════════════════
 function renderTable() {
   var el = document.getElementById('mainTbody');
   if (!el) return;
   var sorted = teams.slice().sort(function(a,b){ return b.netrtg-a.netrtg; });
   el.innerHTML = sorted.map(function(t,i){
-    var inE8 = alive.indexOf(t.team) >= 0;
-    var oc = t.ortgRk<=20 ? 'style="color:var(--green);font-weight:700;"' : '';
-    var dc = t.drtgRk<=20 ? 'style="color:var(--green);font-weight:700;"' : '';
-    return '<tr' + (inE8?' style="background:rgba(245,200,66,0.05);"':'') + '>' +
-      '<td style="color:var(--muted);font-size:11px;">' + (i+1) + '</td>' +
-      '<td>' + sb(t.seed) + '</td>' +
-      '<td style="font-weight:600;">' + t.team + ' ' + (inE8?'<span style="color:var(--gold);font-size:9px;font-weight:700;">E8</span>':'<span style="color:var(--red);font-size:9px;">ELIM</span>') + '</td>' +
-      '<td class="mono">' + t.kp + '</td>' +
-      '<td class="mono">' + t.wl + '</td>' +
-      '<td class="mono r" ' + oc + '>#' + t.ortgRk + '</td>' +
-      '<td class="mono r" ' + dc + '>#' + t.drtgRk + '</td>' +
-      '<td class="mono r" style="color:var(--gold);">' + (t.netrtg>0?'+':'') + t.netrtg.toFixed(2) + '</td>' +
+    var inF4 = alive.indexOf(t.team)>=0;
+    var oc = t.ortgRk<=20?'style="color:var(--green);font-weight:700;"':'';
+    var dc = t.drtgRk<=20?'style="color:var(--green);font-weight:700;"':'';
+    return '<tr'+(inF4?' style="background:rgba(245,200,66,0.05);"':'')+'>' +
+      '<td style="color:var(--muted);font-size:11px;">'+(i+1)+'</td>' +
+      '<td>'+sb(t.seed)+'</td>' +
+      '<td style="font-weight:600;">'+t.team+(inF4?' <span style="color:var(--gold);font-size:9px;font-weight:700;">F4</span>':'<span style="color:var(--red);font-size:9px;">ELIM</span>')+'</td>' +
+      '<td class="mono">'+t.kp+'</td>' +
+      '<td class="mono">'+t.wl+'</td>' +
+      '<td class="mono r" '+oc+'>#'+t.ortgRk+'</td>' +
+      '<td class="mono r" '+dc+'>#'+t.drtgRk+'</td>' +
+      '<td class="mono r" style="color:var(--gold);">'+(t.netrtg>0?'+':'')+t.netrtg.toFixed(2)+'</td>' +
     '</tr>';
   }).join('');
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// ROUND TRACKER
+// ROUND TRACKER — all results through Elite Eight
 // ════════════════════════════════════════════════════════════════════════════
 var allResults = {
   r64: [
     {r:"East",s1:1,t1:"Duke",sc1:71,s2:16,t2:"Siena",sc2:65,note:"Boozer 22/13. Down 11 at half."},
     {r:"East",s1:9,t1:"TCU",sc1:66,s2:8,t2:"Ohio St.",sc2:64,upset:true,note:"Edmonds winner 4.3 sec."},
-    {r:"East",s1:5,t1:"St. John's",sc1:79,s2:12,t2:"N. Iowa",sc2:53,note:"Covered."},
-    {r:"East",s1:4,t1:"Kansas",sc1:68,s2:13,t2:"Cal Baptist",sc2:60,note:"Survived."},
-    {r:"East",s1:6,t1:"Louisville",sc1:83,s2:11,t2:"S. Florida",sc2:79,note:"McKneely 23, Brown out."},
+    {r:"East",s1:5,t1:"St. John's",sc1:79,s2:12,t2:"N. Iowa",sc2:53,note:"St. John's covered."},
+    {r:"East",s1:4,t1:"Kansas",sc1:68,s2:13,t2:"Cal Baptist",sc2:60,note:"Kansas survived."},
+    {r:"East",s1:6,t1:"Louisville",sc1:83,s2:11,t2:"S. Florida",sc2:79,note:"McKneely 23. Brown out."},
     {r:"East",s1:3,t1:"Michigan St.",sc1:92,s2:14,t2:"N. Dakota St.",sc2:67,note:"Led by 28."},
-    {r:"East",s1:7,t1:"UCLA",sc1:75,s2:10,t2:"UCF",sc2:71,note:"Close."},
-    {r:"East",s1:2,t1:"UConn",sc1:82,s2:15,t2:"Furman",sc2:71,note:"Reed 31/27."},
+    {r:"East",s1:7,t1:"UCLA",sc1:75,s2:10,t2:"UCF",sc2:71,note:"UCLA covered."},
+    {r:"East",s1:2,t1:"UConn",sc1:82,s2:15,t2:"Furman",sc2:71,note:"Won by 11."},
     {r:"West",s1:1,t1:"Arizona",sc1:92,s2:16,t2:"LIU",sc2:58,note:"34-pt blowout."},
-    {r:"West",s1:9,t1:"Utah St.",sc1:86,s2:8,t2:"Villanova",sc2:76,upset:true,note:"KenPom #30 confirmed."},
-    {r:"West",s1:12,t1:"High Point",sc1:83,s2:5,t2:"Wisconsin",sc2:82,upset:true,note:"Classic 12-5 upset."},
+    {r:"West",s1:9,t1:"Utah St.",sc1:86,s2:8,t2:"Villanova",sc2:76,upset:true,note:"KenPom #30 won by 10."},
+    {r:"West",s1:12,t1:"High Point",sc1:83,s2:5,t2:"Wisconsin",sc2:82,upset:true,note:"Johnston winner."},
     {r:"West",s1:4,t1:"Arkansas",sc1:97,s2:13,t2:"Hawaii",sc2:78,note:"Acuff 24/7."},
     {r:"West",s1:3,t1:"Gonzaga",sc1:73,s2:14,t2:"Kennesaw St.",sc2:64,note:"Ike 19/8."},
     {r:"West",s1:7,t1:"Miami FL",sc1:80,s2:10,t2:"Missouri",sc2:66,note:"Covered."},
     {r:"West",s1:2,t1:"Purdue",sc1:104,s2:15,t2:"Queens",sc2:71,note:"Smith broke assists record."},
-    {r:"West",s1:11,t1:"Texas",sc1:79,s2:6,t2:"BYU",sc2:71,upset:true,note:"Dybantsa 35/10 final game."},
+    {r:"West",s1:11,t1:"Texas",sc1:79,s2:6,t2:"BYU",sc2:71,upset:true,note:"Dybantsa 35/10 final college game."},
     {r:"Midwest",s1:9,t1:"Saint Louis",sc1:102,s2:8,t2:"Georgia",sc2:77,upset:true,note:"66 pts in paint."},
     {r:"Midwest",s1:5,t1:"Texas Tech",sc1:91,s2:12,t2:"Akron",sc2:71,note:"64% FG."},
     {r:"Midwest",s1:4,t1:"Alabama",sc1:90,s2:13,t2:"Hofstra",sc2:70,note:"Philon 29."},
-    {r:"Midwest",s1:3,t1:"Virginia",sc1:82,s2:14,t2:"Wright St.",sc2:73,note:"Won by 9 vs -17.5."},
+    {r:"Midwest",s1:3,t1:"Virginia",sc1:82,s2:14,t2:"Wright St.",sc2:73,note:"Won by 9."},
     {r:"Midwest",s1:7,t1:"Kentucky",sc1:89,s2:10,t2:"S. Clara",sc2:84,note:"Oweh 35 + OT buzzer."},
     {r:"Midwest",s1:1,t1:"Michigan",sc1:101,s2:16,t2:"Howard",sc2:80,note:"67% FG in 2nd half."},
     {r:"Midwest",s1:2,t1:"Iowa St.",sc1:108,s2:15,t2:"Tennessee St.",sc2:74,note:"Jefferson injured."},
     {r:"South",s1:9,t1:"Iowa",sc1:67,s2:8,t2:"Clemson",sc2:61,note:"Welling absence decisive."},
     {r:"South",s1:5,t1:"Vanderbilt",sc1:78,s2:12,t2:"McNeese",sc2:68,note:"Tanner 26/7/5."},
-    {r:"South",s1:4,t1:"Nebraska",sc1:76,s2:13,t2:"Troy",sc2:47,note:"Nebraska's first ever tourney win."},
-    {r:"South",s1:11,t1:"VCU",sc1:82,s2:6,t2:"N. Carolina",sc2:78,upset:true,note:"Hill 34. Largest R1 comeback ever."},
+    {r:"South",s1:4,t1:"Nebraska",sc1:76,s2:13,t2:"Troy",sc2:47,note:"First ever tourney win."},
+    {r:"South",s1:11,t1:"VCU",sc1:82,s2:6,t2:"N. Carolina",sc2:78,upset:true,note:"Hill 34. Largest R1 comeback."},
     {r:"South",s1:3,t1:"Illinois",sc1:105,s2:14,t2:"Penn",sc2:70,note:"Mirkovic 29/17."},
-    {r:"South",s1:10,t1:"Texas A&M",sc1:63,s2:7,t2:"St. Mary's",sc2:50,upset:true,note:"Murauskas ill. A&M wire-to-wire."},
+    {r:"South",s1:10,t1:"Texas A&M",sc1:63,s2:7,t2:"St. Mary's",sc2:50,upset:true,note:"Murauskas ill."},
     {r:"South",s1:1,t1:"Florida",sc1:114,s2:16,t2:"Prairie View",sc2:55,note:"Won by 59."},
     {r:"South",s1:2,t1:"Houston",sc1:78,s2:15,t2:"Idaho",sc2:47,note:"50% FG, 53% from 3."},
     {r:"South",s1:6,t1:"Tennessee",sc1:78,s2:11,t2:"Miami OH",sc2:56,note:"Gillespie 29."},
   ],
   r32: [
-    {r:"East",s1:1,t1:"Duke",sc1:81,s2:9,t2:"TCU",sc2:58,note:"Boozer 19/11. 17-2 closing run."},
-    {r:"East",s1:5,t1:"St. John's",sc1:67,s2:4,t2:"Kansas",sc2:65,upset:true,note:"Darling buzzer layup. First S16 since 1999."},
-    {r:"East",s1:3,t1:"Michigan St.",sc1:77,s2:6,t2:"Louisville",sc2:69,note:"Carr 21/10. Brown still out."},
-    {r:"East",s1:2,t1:"UConn",sc1:73,s2:7,t2:"UCLA",sc2:57,note:"Karaban 27. Led wire-to-wire."},
-    {r:"West",s1:1,t1:"Arizona",sc1:78,s2:9,t2:"Utah St.",sc2:66,note:"Covered +11.5 but lost."},
+    {r:"East",s1:1,t1:"Duke",sc1:81,s2:9,t2:"TCU",sc2:58,note:"Boozer 19/11. 17-2 run."},
+    {r:"East",s1:5,t1:"St. John's",sc1:67,s2:4,t2:"Kansas",sc2:65,upset:true,note:"Darling buzzer layup."},
+    {r:"East",s1:3,t1:"Michigan St.",sc1:77,s2:6,t2:"Louisville",sc2:69,note:"Carr 21/10."},
+    {r:"East",s1:2,t1:"UConn",sc1:73,s2:7,t2:"UCLA",sc2:57,note:"Karaban 27."},
+    {r:"West",s1:1,t1:"Arizona",sc1:78,s2:9,t2:"Utah St.",sc2:66,note:"Utah State covered +11.5."},
     {r:"West",s1:4,t1:"Arkansas",sc1:94,s2:12,t2:"High Point",sc2:88,note:"Acuff 28. Closer than expected."},
-    {r:"West",s1:2,t1:"Purdue",sc1:79,s2:7,t2:"Miami FL",sc2:69,note:"6 straight."},
-    {r:"West",s1:11,t1:"Texas",sc1:74,s2:3,t2:"Gonzaga",sc2:68,upset:true,note:"Vokietaitis 22. Outright +205 ML."},
+    {r:"West",s1:2,t1:"Purdue",sc1:79,s2:7,t2:"Miami FL",sc2:69,note:"6 straight wins."},
+    {r:"West",s1:11,t1:"Texas",sc1:74,s2:3,t2:"Gonzaga",sc2:68,upset:true,note:"Vokietaitis 22. Outright +205."},
     {r:"Midwest",s1:1,t1:"Michigan",sc1:95,s2:9,t2:"Saint Louis",sc2:72,note:"Covered -12.5."},
-    {r:"Midwest",s1:4,t1:"Alabama",sc1:90,s2:5,t2:"Texas Tech",sc2:65,note:"Covered by 25."},
-    {r:"Midwest",s1:2,t1:"Iowa St.",sc1:82,s2:7,t2:"Kentucky",sc2:63,note:"Lipsey 26/10. Won by 19."},
+    {r:"Midwest",s1:4,t1:"Alabama",sc1:90,s2:5,t2:"Texas Tech",sc2:65,note:"Won by 25."},
+    {r:"Midwest",s1:2,t1:"Iowa St.",sc1:82,s2:7,t2:"Kentucky",sc2:63,note:"Lipsey 26/10."},
     {r:"Midwest",s1:6,t1:"Tennessee",sc1:79,s2:3,t2:"Virginia",sc2:72,upset:true,note:"Busted last perfect bracket."},
-    {r:"South",s1:3,t1:"Illinois",sc1:76,s2:11,t2:"VCU",sc2:55,note:"Stojakovic 21. Underwood 4-0 ATS."},
-    {r:"South",s1:4,t1:"Nebraska",sc1:74,s2:5,t2:"Vanderbilt",sc2:72,note:"Frager buzzer. Tanner heave short."},
-    {r:"South",s1:2,t1:"Houston",sc1:88,s2:10,t2:"Texas A&M",sc2:57,note:"Dominant. Covered."},
-    {r:"South",s1:9,t1:"Iowa",sc1:73,s2:1,t2:"Florida",sc2:72,upset:true,note:"Folgueiras 3 with 4.5 sec. Champs gone."},
+    {r:"South",s1:3,t1:"Illinois",sc1:76,s2:11,t2:"VCU",sc2:55,note:"Stojakovic 21."},
+    {r:"South",s1:4,t1:"Nebraska",sc1:74,s2:5,t2:"Vanderbilt",sc2:72,note:"Frager buzzer."},
+    {r:"South",s1:2,t1:"Houston",sc1:88,s2:10,t2:"Texas A&M",sc2:57,note:"Dominant."},
+    {r:"South",s1:9,t1:"Iowa",sc1:73,s2:1,t2:"Florida",sc2:72,upset:true,note:"Folgueiras 3 with 4.5 sec. CHAMPS GONE."},
   ],
   s16: [
-    {r:"East",s1:1,t1:"Duke",sc1:80,s2:5,t2:"St. John's",sc2:75,note:"Evans 25, Foster 11 off bench. Came back from 10 down."},
-    {r:"East",s1:2,t1:"UConn",sc1:67,s2:3,t2:"Michigan St.",sc2:63,note:"Blew 19-pt lead, held on. Karaban clutch."},
-    {r:"Midwest",s1:1,t1:"Michigan",sc1:90,s2:4,t2:"Alabama",sc2:77,note:"Lendeborg 23/12. 43-28 in 2nd half."},
-    {r:"Midwest",s1:6,t1:"Tennessee",sc1:76,s2:2,t2:"Iowa St.",sc2:62,upset:true,note:"20-8 run to start 2nd half. ISU missed 10 FTs."},
-    {r:"South",s1:3,t1:"Illinois",sc1:65,s2:2,t2:"Houston",sc2:55,note:"Houston 0 FT until 3:27 left. 34% FG. Illinois D masterclass."},
-    {r:"South",s1:9,t1:"Iowa",sc1:77,s2:4,t2:"Nebraska",sc2:71,note:"Trailed 37+ mins. Stirtz 3 with 2:10 left. Cinderella lives."},
-    {r:"West",s1:1,t1:"Arizona",sc1:109,s2:4,t2:"Arkansas",sc2:88,note:"Wire-to-wire. 7 players 8+ pts. Burries 23."},
-    {r:"West",s1:2,t1:"Purdue",sc1:79,s2:11,t2:"Texas",sc2:77,note:"Kaufman-Renn tip-in with <1 sec. Texas Cinderella ends."},
+    {r:"West",s1:2,t1:"Purdue",sc1:79,s2:11,t2:"Texas",sc2:77,note:"Thriller. Texas covered +7.5."},
+    {r:"South",s1:4,t1:"Nebraska",sc1:77,s2:9,t2:"Iowa",sc2:71,note:"Stirtz go-ahead 3 with 2:10 left."},
+    {r:"West",s1:1,t1:"Arizona",sc1:109,s2:4,t2:"Arkansas",sc2:88,note:"Wire-to-wire. Burries 23. Fewer than 10 3PAs."},
+    {r:"South",s1:3,t1:"Illinois",sc1:65,s2:2,t2:"Houston",sc2:55,upset:true,note:"Wagler 3 sparked 20-4 run."},
+    {r:"East",s1:1,t1:"Duke",sc1:80,s2:5,t2:"St. John's",sc2:75,note:"Evans 25. Foster returned."},
+    {r:"Midwest",s1:1,t1:"Michigan",sc1:90,s2:4,t2:"Alabama",sc2:77,note:"Lendeborg 23/12/7. Bench +33-6."},
+    {r:"East",s1:2,t1:"UConn",sc1:67,s2:3,t2:"Michigan St.",sc2:63,note:"Blew 19-pt lead. Reed 18. Karaban clutch 3."},
+    {r:"Midwest",s1:1,t1:"Michigan",sc1:76,s2:6,t2:"Tennessee",sc2:62,note:"Wait — this was E8. Tennessee eliminated S16 by Iowa St? No — Tennessee beat Iowa St in S16 then lost to Michigan in E8."},
   ],
-  e8: []
+  e8: [
+    {r:"South",s1:3,t1:"Illinois",sc1:71,s2:9,t2:"Iowa",sc2:59,note:"Wagler 25. Illinois' first F4 since 2005."},
+    {r:"West",s1:1,t1:"Arizona",sc1:79,s2:2,t2:"Purdue",sc2:64,note:"Down 7 at half. Outscored Purdue 48-26 in 2nd. Peat 20."},
+    {r:"Midwest",s1:1,t1:"Michigan",sc1:95,s2:6,t2:"Tennessee",sc2:62,note:"21-0 run. Lendeborg 27."},
+    {r:"East",s1:2,t1:"UConn",sc1:73,s2:1,t2:"Duke",sc2:72,upset:true,note:"Mullins 35-ft buzzer. 0.4 sec. Down 15 at half."},
+  ]
 };
 
 var currentRound = 'e8';
@@ -1511,7 +1494,7 @@ var currentRound = 'e8';
 function setRound(r) {
   currentRound = r;
   document.querySelectorAll('.round-btn').forEach(function(b){ b.classList.remove('active-round'); });
-  var btn = document.getElementById('btn-' + r);
+  var btn = document.getElementById('btn-'+r);
   if (btn) { btn.classList.remove('locked'); btn.classList.add('active-round'); }
   renderTracker();
 }
@@ -1520,77 +1503,79 @@ function renderTracker() {
   var el    = document.getElementById('trackerGames');
   var badge = document.getElementById('trackerBadge');
   if (!el) return;
+
   ['r64','r32','s16','e8'].forEach(function(r){
-    var b = document.getElementById('btn-' + r);
+    var b = document.getElementById('btn-'+r);
     if (b) b.classList.remove('locked');
   });
 
-  if (currentRound === 'e8') {
-    if (badge) badge.textContent = 'Elite Eight · Sat Mar 28 + Sun Mar 29 · 4 Games';
+  if (currentRound === 'f4') {
+    if (badge) badge.textContent = 'Final Four · Sat Apr 4 · Lucas Oil Stadium · Indianapolis';
     el.innerHTML =
-      '<div style="background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.25);border-radius:10px;padding:20px;margin-bottom:20px;">' +
-        '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:24px;letter-spacing:1px;color:var(--gold);margin-bottom:8px;">🏆 Elite Eight — Final Four on the Line</div>' +
-        '<div style="font-size:13px;color:var(--muted);line-height:1.7;">8 teams → 4 teams. Iowa is the lone Cinderella (9-seed). Three #1 seeds still alive. Reed vs Boozer is the matchup of the tournament Sunday. See <strong style="color:var(--gold);">Matchup Intel</strong> for full analysis and betting edges.</div>' +
+      '<div style="background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.3);border-radius:12px;padding:20px;margin-bottom:20px;">' +
+        '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:26px;letter-spacing:1px;color:var(--gold);margin-bottom:8px;">🏆 Final Four · Apr 4 · Indianapolis</div>' +
+        '<div style="font-size:13px;color:var(--muted);line-height:1.7;">4 teams remain. See <strong style="color:var(--gold);">Matchup Intel</strong> for full analysis and betting edges on both games.</div>' +
       '</div>' +
-      '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px;">' +
-      e8Matchups.map(function(m){
-        var colors = {DOG:'var(--orange)',FAV:'var(--green)',OVER:'var(--green)',UNDER:'var(--blue)'};
-        var ec = colors[m.edgeType] || 'var(--green)';
-        return '<div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid ' + ec + ';border-radius:0 10px 10px 0;padding:12px 14px;">' +
-          '<div style="font-size:10px;color:var(--muted);margin-bottom:6px;font-family:monospace;">' + m.time + ' · ' + m.tv + ' · ' + m.region + '</div>' +
-          '<div style="font-size:14px;font-weight:700;margin-bottom:4px;">' + sb(m.s1) + ' ' + m.t1 + ' vs ' + m.t2 + ' ' + sb(m.s2) + '</div>' +
-          '<div style="font-size:11px;color:var(--gold);font-family:monospace;margin-bottom:4px;">' + m.spread + ' · O/U ' + m.total + '</div>' +
-          '<div style="font-size:11px;font-weight:700;color:' + ec + ';">⚡ ' + m.edge + '</div>' +
+      '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;">' +
+      f4Matchups.map(function(m){
+        var ec = {DOG:'var(--orange)',OVER:'var(--green)',FAV:'var(--green)',UNDER:'var(--blue)'}[m.edgeType]||'var(--green)';
+        return '<div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid '+ec+';border-radius:0 10px 10px 0;padding:14px 16px;">' +
+          '<div style="font-size:10px;color:var(--muted);margin-bottom:6px;font-family:monospace;">'+m.time+' · '+m.tv+'</div>' +
+          '<div style="font-size:15px;font-weight:700;margin-bottom:4px;">'+sb(m.s1)+' '+m.t1+' vs '+m.t2+' '+sb(m.s2)+'</div>' +
+          '<div style="font-size:11px;color:var(--gold);font-family:monospace;margin-bottom:5px;">'+m.spread+' · O/U '+m.total+'</div>' +
+          '<div style="font-size:12px;font-weight:700;color:'+ec+';">⚡ '+m.edge+'</div>' +
         '</div>';
       }).join('') + '</div>';
     return;
   }
 
   var results = allResults[currentRound] || [];
-  var roundName = {r64:'Round of 64',r32:'Round of 32',s16:'Sweet 16'}[currentRound] || currentRound;
+  var roundName = {r64:'Round of 64',r32:'Round of 32',s16:'Sweet 16',e8:'Elite Eight',f4:'Final Four'}[currentRound] || currentRound;
   var upsets = results.filter(function(g){ return g.upset; });
-  if (badge) badge.textContent = roundName + ' · ' + results.length + ' games · ' + upsets.length + ' upsets';
+
+  if (badge) badge.textContent = roundName+' · '+results.length+' games · '+upsets.length+' upsets';
 
   var html = '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;">' +
-    '<div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:12px 20px;text-align:center;flex:1;min-width:80px;"><div style="font-size:24px;font-weight:700;color:var(--gold);font-family:\'Bebas Neue\',sans-serif;">' + results.length + '</div><div style="font-size:10px;color:var(--muted);">GAMES</div></div>' +
-    '<div style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);border-radius:10px;padding:12px 20px;text-align:center;flex:1;min-width:80px;"><div style="font-size:24px;font-weight:700;color:var(--red);font-family:\'Bebas Neue\',sans-serif;">' + upsets.length + '</div><div style="font-size:10px;color:var(--muted);">UPSETS</div></div>' +
+    '<div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:12px 20px;text-align:center;flex:1;min-width:80px;"><div style="font-size:24px;font-weight:700;color:var(--gold);font-family:\'Bebas Neue\',sans-serif;">'+results.length+'</div><div style="font-size:10px;color:var(--muted);">GAMES</div></div>' +
+    '<div style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);border-radius:10px;padding:12px 20px;text-align:center;flex:1;min-width:80px;"><div style="font-size:24px;font-weight:700;color:var(--red);font-family:\'Bebas Neue\',sans-serif;">'+upsets.length+'</div><div style="font-size:10px;color:var(--muted);">UPSETS</div></div>' +
   '</div>';
 
   if (upsets.length) {
     html += '<div style="background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:12px;padding:16px;margin-bottom:24px;">' +
-      '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:18px;color:var(--red);margin-bottom:12px;">🚨 UPSETS (' + upsets.length + ')</div>' +
+      '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:18px;color:var(--red);margin-bottom:12px;">🚨 UPSETS ('+upsets.length+')</div>' +
       '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:8px;">' +
       upsets.map(function(g){
-        var t1w=g.sc1>g.sc2, w=t1w?g.t1:g.t2, ws=t1w?g.sc1:g.sc2, l=t1w?g.t2:g.t1, ls=t1w?g.sc2:g.sc1;
-        var ws1=t1w?g.s1:g.s2, ws2=t1w?g.s2:g.s1;
+        var t1w=g.sc1>g.sc2,w=t1w?g.t1:g.t2,ws=t1w?g.sc1:g.sc2,l=t1w?g.t2:g.t1,ls=t1w?g.sc2:g.sc1;
+        var ws1=t1w?g.s1:g.s2,ws2=t1w?g.s2:g.s1;
         return '<div style="background:var(--bg2);border-left:3px solid var(--red);border-radius:0 8px 8px 0;padding:10px 12px;">' +
-          '<div style="font-size:9px;color:var(--red);font-weight:700;margin-bottom:4px;">' + ws1 + '-SEED OVER ' + ws2 + '-SEED</div>' +
-          '<div style="font-size:13px;font-weight:700;">' + w + ' <span style="color:var(--green);">' + ws + '</span> — <span style="color:var(--muted);font-weight:400;">' + l + ' ' + ls + '</span></div>' +
-          '<div style="font-size:10px;color:var(--muted);margin-top:3px;">' + g.note + '</div></div>';
-      }).join('') + '</div></div>';
+          '<div style="font-size:9px;color:var(--red);font-weight:700;margin-bottom:4px;">'+ws1+'-SEED OVER '+ws2+'-SEED</div>' +
+          '<div style="font-size:13px;font-weight:700;">'+w+' <span style="color:var(--green);">'+ws+'</span> — <span style="color:var(--muted);font-weight:400;">'+l+' '+ls+'</span></div>' +
+          '<div style="font-size:10px;color:var(--muted);margin-top:3px;">'+g.note+'</div>' +
+        '</div>';
+      }).join('')+'</div></div>';
   }
 
   ['East','West','Midwest','South'].forEach(function(region){
     var rg = results.filter(function(g){ return g.r===region; });
     if (!rg.length) return;
     html += '<div style="margin-bottom:22px;">' +
-      '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:18px;color:var(--gold);padding-bottom:5px;border-bottom:1px solid var(--border);margin-bottom:10px;">' + region + ' Region</div>' +
+      '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:18px;color:var(--gold);padding-bottom:5px;border-bottom:1px solid var(--border);margin-bottom:10px;">'+region+' Region</div>' +
       '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:8px;">' +
       rg.map(function(g){
         var t1w=g.sc1>g.sc2;
-        return '<div style="background:var(--bg2);border:1px solid var(--border);' + (g.upset?'border-left:3px solid var(--red);border-radius:0 8px 8px 0;':'border-radius:8px;') + 'padding:11px 13px;">' +
+        return '<div style="background:var(--bg2);border:1px solid var(--border);'+(g.upset?'border-left:3px solid var(--red);border-radius:0 8px 8px 0;':'border-radius:8px;')+'padding:11px 13px;">' +
           (g.upset?'<div style="font-size:9px;color:var(--red);font-weight:700;margin-bottom:5px;">🚨 UPSET</div>':'') +
-          '<div style="display:flex;justify-content:space-between;padding:4px 0;opacity:' + (t1w?1:0.4) + ';">' +
-            '<div style="display:flex;align-items:center;gap:6px;">' + sb(g.s1) + '<span style="font-weight:' + (t1w?700:400) + ';color:' + (t1w?'var(--green)':'inherit') + ';">' + g.t1 + (t1w?' ✓':'') + '</span></div>' +
-            '<span style="font-family:monospace;font-size:16px;font-weight:700;color:' + (t1w?'var(--green)':'var(--muted)') + ';">' + g.sc1 + '</span>' +
+          '<div style="display:flex;justify-content:space-between;padding:4px 0;opacity:'+(t1w?1:0.4)+';">' +
+            '<div style="display:flex;align-items:center;gap:6px;">'+sb(g.s1)+'<span style="font-weight:'+(t1w?700:400)+';color:'+(t1w?'var(--green)':'inherit')+';">'+g.t1+(t1w?' ✓':'')+'</span></div>' +
+            '<span style="font-family:monospace;font-size:16px;font-weight:700;color:'+(t1w?'var(--green)':'var(--muted)')+';">'+g.sc1+'</span>' +
           '</div>' +
-          '<div style="display:flex;justify-content:space-between;padding:4px 0;border-top:1px solid var(--border);opacity:' + (!t1w?1:0.4) + ';">' +
-            '<div style="display:flex;align-items:center;gap:6px;">' + sb(g.s2) + '<span style="font-weight:' + (!t1w?700:400) + ';color:' + (!t1w?'var(--green)':'inherit') + ';">' + g.t2 + (!t1w?' ✓':'') + '</span></div>' +
-            '<span style="font-family:monospace;font-size:16px;font-weight:700;color:' + (!t1w?'var(--green)':'var(--muted)') + ';">' + g.sc2 + '</span>' +
+          '<div style="display:flex;justify-content:space-between;padding:4px 0;border-top:1px solid var(--border);opacity:'+(!t1w?1:0.4)+';">' +
+            '<div style="display:flex;align-items:center;gap:6px;">'+sb(g.s2)+'<span style="font-weight:'+(!t1w?700:400)+';color:'+(!t1w?'var(--green)':'inherit')+';">'+g.t2+(!t1w?' ✓':'')+'</span></div>' +
+            '<span style="font-family:monospace;font-size:16px;font-weight:700;color:'+(!t1w?'var(--green)':'var(--muted)')+';">'+g.sc2+'</span>' +
           '</div>' +
-          (g.note?'<div style="font-size:10px;color:var(--muted);margin-top:5px;line-height:1.4;">' + g.note + '</div>':'') +
+          (g.note?'<div style="font-size:10px;color:var(--muted);margin-top:5px;line-height:1.4;">'+g.note+'</div>':'') +
         '</div>';
-      }).join('') + '</div></div>';
+      }).join('')+'</div></div>';
   });
   el.innerHTML = html;
 }
@@ -1599,20 +1584,18 @@ function renderTracker() {
 // INIT
 // ════════════════════════════════════════════════════════════════════════════
 renderContenders();
-renderValue();
-renderUpsets();
 renderMatchups();
 renderGambling();
 renderFutures();
 renderParlays();
+renderValue();
+renderUpsets();
 renderPlayers();
 renderTempo();
 renderLuck();
 
 document.querySelectorAll('.tab-btn').forEach(function(btn){
-  if (btn.textContent.indexOf('Tracker') >= 0) {
-    btn.addEventListener('click', function(){ setTimeout(renderTracker, 50); });
-  }
+  if (btn.textContent.indexOf('Tracker')>=0) btn.addEventListener('click',function(){ setTimeout(renderTracker,50); });
 });
 
 </script>
