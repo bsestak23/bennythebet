@@ -601,10 +601,10 @@ footer strong { color: var(--gold); font-family: 'Bebas Neue'; font-size: 15px; 
 <div class="tab-panel" id="tab-matchups">
 
   <div class="section-head">
-    <div class="section-title">Final Four — Matchup Intel</div>
-    <div class="section-badge">Sat Apr 4 · 2 Games · Indianapolis</div>
+    <div class="section-title">National Championship — Matchup Intel</div>
+    <div class="section-badge">Mon Apr 6 · 8:50 PM ET · Lucas Oil Stadium</div>
   </div>
-  <p class="section-sub">Both Final Four matchups with spread, total, full tournament path, and the sharpest betting edge for each game.</p>
+  <p class="section-sub">Michigan vs UConn. One game. One champion. Full analysis, lines, injury context, and the sharp edge.</p>
 
   <!-- INJURY ALERTS -->
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px;margin-bottom:24px;">
@@ -639,8 +639,8 @@ footer strong { color: var(--gold); font-family: 'Bebas Neue'; font-size: 15px; 
   <!-- SWEET 16 BEST BETS -->
   <div class="section-gap">
     <div class="section-head">
-      <div class="section-title">Final Four — Best Bets</div>
-      <div class="section-badge">Sat Apr 4 · Indianapolis · 2 Games</div>
+      <div class="section-title">Championship — Best Bets</div>
+      <div class="section-badge">Mon Apr 6 · 8:50 PM ET · Indianapolis</div>
     </div>
     <p class="section-sub">Sharp edges on every Sweet 16 game — overs, unders, dogs, and fades. Foster OUT for Duke, Jefferson healthy for Iowa State. Big Ten sends 6 teams, Texas is the only double-digit seed remaining.</p>
     <div id="r32EdgeCards"></div>
@@ -656,7 +656,7 @@ footer strong { color: var(--gold); font-family: 'Bebas Neue'; font-size: 15px; 
     <div class="tbl-wrap">
       <table>
         <thead><tr>
-          <th>Team</th><th>Seed</th><th>KenPom</th><th>R1 Result</th><th>Current Odds</th><th>F4 Matchup</th><th>Value</th>
+          <th>Team</th><th>Seed</th><th>KenPom</th><th>R1 Result</th><th>Current Odds</th><th>Champ Matchup</th><th>Value</th>
         </tr></thead>
         <tbody id="futuresTbody"></tbody>
       </table>
@@ -822,6 +822,7 @@ footer strong { color: var(--gold); font-family: 'Bebas Neue'; font-size: 15px; 
     <button class="round-btn locked" id="btn-s16">Sweet 16</button>
     <button class="round-btn locked" id="btn-e8">Elite 8</button>
     <button class="round-btn locked" id="btn-f4">Final Four</button>
+        <button class="round-btn active-round" id="btn-champ" onclick="setRound('champ')">Championship</button>
     <button class="round-btn locked" id="btn-ncg">Championship</button>
   </div>
 
@@ -840,22 +841,22 @@ footer strong { color: var(--gold); font-family: 'Bebas Neue'; font-size: 15px; 
 
 <script>
 // ════════════════════════════════════════════════════════════════════════════
-// BENNYTHEBET — 2026 NCAA TOURNAMENT — FINAL FOUR UPDATE
+// BENNYTHEBET — 2026 NCAA TOURNAMENT — NATIONAL CHAMPIONSHIP UPDATE
+// Michigan vs UConn · Mon Apr 6 · 8:50 PM ET · TBS · Lucas Oil Stadium
 // ════════════════════════════════════════════════════════════════════════════
 
-// ── ALL 68 TEAMS RAW DATA [seed, team, kp, wl, netrtg, ortg, ortgRk, drtg, drtgRk, adjT, adjTRk, luck]
 var raw = [
 [1,"Duke",1,"33-3",38.90,128.0,4,89.1,2,65.3,287,0.049],
-[1,"Arizona",2,"36-2",37.66,127.7,5,90.0,3,69.8,54,0.023],
-[1,"Michigan",3,"35-3",37.59,126.6,8,89.0,1,70.9,22,0.045],
+[1,"Arizona",2,"36-3",37.66,127.7,5,90.0,3,69.8,54,0.023],
+[1,"Michigan",3,"36-3",37.59,126.6,8,89.0,1,70.9,22,0.045],
 [1,"Florida",4,"26-8",33.79,125.5,9,91.7,6,70.5,28,-0.036],
 [2,"Houston",5,"28-8",33.43,124.9,14,91.4,5,63.3,352,-0.006],
 [2,"Iowa St.",6,"29-8",32.42,123.8,21,91.4,4,66.5,225,-0.012],
-[3,"Illinois",7,"28-8",32.10,131.2,2,99.1,28,65.5,277,-0.050],
+[3,"Illinois",7,"28-9",32.10,131.2,2,99.1,28,65.5,277,-0.050],
 [2,"Purdue",8,"29-9",31.20,131.6,1,100.4,36,64.4,324,-0.006],
 [3,"Michigan St.",9,"27-8",28.31,123.0,24,94.7,13,66.0,252,0.005],
 [3,"Gonzaga",10,"30-4",28.10,122.0,29,93.9,9,68.6,111,0.072],
-[2,"Connecticut",11,"33-5",27.87,122.0,30,94.1,11,64.4,322,0.055],
+[2,"Connecticut",11,"34-5",27.87,122.0,30,94.1,11,64.4,322,0.055],
 [5,"Vanderbilt",12,"26-9",27.51,126.8,7,99.3,31,68.8,98,0.018],
 [3,"Virginia",13,"29-6",26.71,122.5,27,95.8,16,65.7,271,0.056],
 [4,"Nebraska",14,"28-7",26.16,118.5,55,92.4,7,66.7,218,0.034],
@@ -915,179 +916,114 @@ var raw = [
 [16,"Prairie View A&M",288,"18-18",-10.69,101.2,310,111.9,231,70.9,23,0.013]
 ];
 
-var teams = raw.map(function(r) {
+var teams = raw.map(function(r){
   return {seed:r[0],team:r[1],kp:r[2],wl:r[3],netrtg:r[4],
           ortg:r[5],ortgRk:r[6],drtg:r[7],drtgRk:r[8],adjT:r[9],adjTRk:r[10],luck:r[11]};
 });
 
-// ── FINAL FOUR TEAMS
-var alive = ["Illinois","Connecticut","Arizona","Michigan"];
+var alive = ["Michigan","Connecticut"];
 
-// ── HELPERS
-function sb(seed) {
-  var n = Math.min(parseInt(seed)||1,5);
-  return '<span class="sb s'+n+'">'+seed+'</span>';
-}
-function teamPill(team) {
-  return '<span style="background:var(--bg3);border:1px solid var(--border2);color:var(--gold);font-size:10px;font-weight:700;border-radius:4px;padding:3px 8px;white-space:nowrap;">'+team+'</span>';
-}
-function tag(cls,label) { return '<span class="tag '+cls+'">'+label+'</span>'; }
-function pct(rk) { return Math.round(Math.max(3,(1-(rk-1)/365)*100)); }
-function bar(rk,cls) {
-  return '<div class="rk-bar"><div class="rk-bg" style="width:52px"><div class="rk-fill '+cls+'" style="width:'+pct(rk)+'%"></div></div><span style="font-size:11px;color:var(--muted);min-width:30px;">#'+rk+'</span></div>';
-}
+function sb(seed){var n=Math.min(parseInt(seed)||1,5);return '<span class="sb s'+n+'">'+seed+'</span>';}
+function teamPill(team){return '<span style="background:var(--bg3);border:1px solid var(--border2);color:var(--gold);font-size:10px;font-weight:700;border-radius:4px;padding:3px 8px;white-space:nowrap;">'+team+'</span>';}
+function tag(cls,label){return '<span class="tag '+cls+'">'+label+'</span>';}
+function pct(rk){return Math.round(Math.max(3,(1-(rk-1)/365)*100));}
+function bar(rk,cls){return '<div class="rk-bar"><div class="rk-bg" style="width:52px"><div class="rk-fill '+cls+'" style="width:'+pct(rk)+'%"></div></div><span style="font-size:11px;color:var(--muted);min-width:30px;">#'+rk+'</span></div>';}
 
-// ── TAB SWITCHING
-function showTab(name) {
-  document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
-  document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
-  var panel = document.getElementById('tab-'+name);
-  if (panel) panel.classList.add('active');
-  var order = ['contenders','players','matchups','gambling','value','upsets','tempo','luck','table','tracker'];
-  var idx = order.indexOf(name);
-  var btns = document.querySelectorAll('.tab-btn');
-  if (idx>=0 && btns[idx]) btns[idx].classList.add('active');
-  if (name==='tracker') setTimeout(renderTracker,50);
-  if (name==='table')   setTimeout(renderTable,50);
+function showTab(name){
+  document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
+  document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
+  var panel=document.getElementById('tab-'+name);
+  if(panel) panel.classList.add('active');
+  var order=['contenders','players','matchups','gambling','value','upsets','tempo','luck','table','tracker'];
+  var idx=order.indexOf(name);
+  var btns=document.querySelectorAll('.tab-btn');
+  if(idx>=0&&btns[idx]) btns[idx].classList.add('active');
+  if(name==='tracker') setTimeout(renderTracker,50);
+  if(name==='table') setTimeout(renderTable,50);
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// CONTENDERS TAB
+// CHAMPIONSHIP MATCHUP
 // ════════════════════════════════════════════════════════════════════════════
-function renderContenders() {
-  var elite = teams.filter(function(t){ return t.ortgRk<=20 && t.drtgRk<=20; });
-  var extended = teams.filter(function(t){ return t.ortgRk<=30 && t.drtgRk<=30 && !(t.ortgRk<=20 && t.drtgRk<=20); });
+var champMatchup = {
+  t1:"Michigan",s1:1,t2:"Connecticut",s2:2,
+  spread:"Michigan -6.5",total:"144.5",
+  site:"Lucas Oil Stadium · Indianapolis",time:"Mon Apr 6 · 8:50 PM ET",tv:"TBS",
+  edge:"UConn +6.5",edgeType:"DOG",
+  path:"Michigan: Howard W, Saint Louis W, Alabama W, Tennessee W (21-0 run), Arizona W (91-73, Mara 26). UConn: Furman W, UCLA W, Michigan St. W, Duke W (Mullins buzzer), Illinois W (71-62, Reed 17/11).",
+  analysis:"Michigan is going for their first national title since 1989. They are the first team in tournament history to score 90+ points in all five games. Every win has been by double digits. But Yaxel Lendeborg (Big Ten POY) left the Arizona game with an ankle injury and is QUESTIONABLE tonight — his availability completely changes Michigan's ceiling. Aday Mara stepped up with 26 pts vs Arizona but Lendeborg is the engine. Without him at full strength, Michigan -6.5 is a lot. UConn is the dynasty. Hurley is 18-3 all-time in the tournament. Reed finishing his career in Indianapolis — 17 pts/11 reb vs Illinois. Karaban going for his third title. UConn held Illinois to just 3 assists in the Final Four — elite defensive execution. The line opened at -7.5 and has dropped to -6.5 as Lendeborg injury news spread. Books are already at -6.5, some down to -6. Tempo: Michigan AdjT #22 (70.9), UConn AdjT #322 (64.4) — the biggest pace mismatch of any game this tournament. If UConn can control tempo and get this into the 60s, they win. If Michigan runs them off the floor in transition, it's a blowout. Total 144.5 is 13 points lower than Michigan's Arizona game total — the books respect UConn's ability to slow this down."
+};
 
-  var el = document.getElementById('contenderCards');
-  if (el) {
-    el.innerHTML = elite.map(function(t){
-      var inF4 = alive.indexOf(t.team)>=0;
-      return '<div class="card gold-border fade-up"'+(inF4?'':' style="opacity:0.45"')+'>' +
-        '<div class="card-head">'+sb(t.seed)+
-          '<div><div class="card-name">'+t.team+'</div>' +
-          '<div style="font-size:11px;color:var(--muted);">KenPom #'+t.kp+' · '+t.wl+(inF4?' · <span style="color:var(--gold);">🏆 F4</span>':' · <span style="color:var(--red);">ELIM</span>')+'</div></div>' +
-        '</div>' +
-        '<div class="cstat"><span class="clbl">Net Rtg</span><span class="cval" style="color:var(--gold);">'+(t.netrtg>0?'+':'')+t.netrtg.toFixed(2)+'</span></div>' +
-        '<div class="cstat"><span class="clbl">ORtg</span>'+bar(t.ortgRk,'off-fill')+'</div>' +
-        '<div class="cstat"><span class="clbl">DRtg</span>'+bar(t.drtgRk,'def-fill')+'</div>' +
-      '</div>';
-    }).join('');
-  }
-
-  var note = document.getElementById('contenderNote');
-  if (note) note.innerHTML = '<strong>'+elite.length+' teams</strong> cleared top-20 on both offense AND defense. Of these, '+elite.filter(function(t){ return alive.indexOf(t.team)>=0; }).length+' are in the Final Four. The field is elite — every remaining team is a legitimate champion.';
-
-  var ext = document.getElementById('extendedCards');
-  if (ext) {
-    ext.innerHTML = extended.map(function(t){
-      var inF4 = alive.indexOf(t.team)>=0;
-      return '<div class="card fade-up"'+(inF4?'':' style="opacity:0.45"')+'>' +
-        '<div class="card-head">'+sb(t.seed)+
-          '<div><div class="card-name">'+t.team+'</div>' +
-          '<div style="font-size:11px;color:var(--muted);">KenPom #'+t.kp+(inF4?' · <span style="color:var(--gold);">F4</span>':' · <span style="color:var(--red);">ELIM</span>')+'</div></div>' +
-        '</div>' +
-        '<div class="cstat"><span class="clbl">Net Rtg</span><span class="cval">'+(t.netrtg>0?'+':'')+t.netrtg.toFixed(2)+'</span></div>' +
-        '<div class="cstat"><span class="clbl">O/D</span><span class="cval">#'+t.ortgRk+' / #'+t.drtgRk+'</span></div>' +
-      '</div>';
-    }).join('');
-  }
-}
-
-// ════════════════════════════════════════════════════════════════════════════
-// FINAL FOUR MATCHUPS — the two games
-// ════════════════════════════════════════════════════════════════════════════
-var f4Matchups = [
-  {
-    t1:"Illinois",s1:3,t2:"Connecticut",s2:2,
-    spread:"Illinois -1.5",total:"139.5",
-    region:"National Semi · Game 1",site:"Indianapolis",time:"Sat Apr 4 · 6:09 PM",tv:"TBS",
-    edge:"UConn +1.5",edgeType:"DOG",
-    path:"Illinois: Penn W, VCU W, Houston W (65-55 S16 upset), Iowa W (71-59 E8). UConn: Furman W, UCLA W, Michigan St. W (67-63), Duke W (73-72, Mullins buzzer from 35 ft).",
-    analysis:"Illinois is 4-0 ATS this tournament — every game covered. Keaton Wagler erupted for 25 pts vs Iowa. But UConn is riding the greatest momentum wave in the field — came back from 15 down at halftime vs Duke, Mullins hit a 35-foot buzzer that will live forever. Tarris Reed averaging 21.5 pts and 13.5 reb in the tournament. Hurley is 17-3 all-time as UConn's tournament coach. These two played in November — UConn won 74-61 holding Illinois to 32% FG and 21% from 3. Illinois has shot significantly fewer 3s in the tournament (strength). Line moved from -2.5 to -1.5 as money came in on UConn. Near pick-em for a reason. OVER model: SportsLine projects both teams clear 70 — 151 combined in simulations, Over hits 79% of the time."
-  },
-  {
-    t1:"Michigan",s1:1,t2:"Arizona",s2:1,
-    spread:"Michigan -1.5",total:"157.5",
-    region:"National Semi · Game 2",site:"Indianapolis",time:"Sat Apr 4 · 8:49 PM",tv:"TBS",
-    edge:"OVER 157.5",edgeType:"OVER",
-    path:"Michigan: Howard W, Saint Louis W, Alabama W (95-72), Tennessee W (95-62, 21-0 run). Arizona: LIU W, Utah State W, Arkansas W (109-88), Purdue W (79-64, comeback from -7 at half).",
-    analysis:"The marquee game of the tournament. Two 1-seeds, two elite offenses. Michigan averaging 22.5 pts margin of victory across 4 tourney games. Arizona averaging 20.5 pts margin. Lendeborg averaging 21 pts on 50% from 3. Arizona's Burries, Peat, and Kharchenkov — three elite freshmen. Bradley vs Cadeau is the guard matchup that decides this. Michigan is the slight favorite (-122 ML) but Arizona has been the most dominant team in the bracket. Arizona trailed Purdue by 7 at half and outscored them 48-26 in the second half — that's a team that doesn't quit. OVER 157.5: both offenses are elite and neither defense has been tested this late. Michigan allows 69.6 pts/game but Arizona scores on everyone. Arizona's tempo (#54 nationally) keeps possessions flowing."
-  }
-];
-
-function renderMatchups() {
-  var el = document.getElementById('r32MatchupCards');
-  if (!el) return;
-
-  function gameCard(m) {
-    var colors = {DOG:'var(--orange)',FAV:'var(--green)',OVER:'var(--green)',UNDER:'var(--blue)'};
-    var ec = colors[m.edgeType]||'var(--green)';
-    return '<div style="background:var(--bg2);border:1px solid var(--border);border-left:4px solid '+ec+';border-radius:0 12px 12px 0;padding:20px 22px;margin-bottom:18px;">' +
-      '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px;">' +
-        '<div style="display:flex;align-items:center;gap:10px;">' +
-          sb(m.s1)+'<span style="font-size:19px;font-weight:700;">'+m.t1+'</span>' +
-          '<span style="font-size:14px;color:var(--muted);">vs</span>' +
-          '<span style="font-size:19px;font-weight:700;">'+m.t2+'</span>'+sb(m.s2) +
+function renderMatchups(){
+  var el=document.getElementById('r32MatchupCards');
+  if(!el) return;
+  var ec='var(--orange)';
+  el.innerHTML=
+    '<div style="background:linear-gradient(135deg,rgba(245,200,66,0.12),rgba(245,200,66,0.04));border:2px solid rgba(245,200,66,0.4);border-radius:14px;padding:20px 22px;margin-bottom:24px;">' +
+      '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:28px;letter-spacing:2px;color:var(--gold);margin-bottom:4px;">🏆 2026 NATIONAL CHAMPIONSHIP</div>' +
+      '<div style="font-size:13px;color:var(--muted);">Lucas Oil Stadium · Indianapolis · Mon Apr 6 · 8:50 PM ET · TBS · One game. One champion.</div>' +
+    '</div>' +
+    '<div style="background:var(--bg2);border:1px solid var(--border);border-left:4px solid '+ec+';border-radius:0 14px 14px 0;padding:22px 24px;">' +
+      '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px;">' +
+        '<div style="display:flex;align-items:center;gap:12px;">' +
+          sb(champMatchup.s1)+'<span style="font-size:22px;font-weight:700;">'+champMatchup.t1+'</span>' +
+          '<span style="font-size:15px;color:var(--muted);">vs</span>' +
+          '<span style="font-size:22px;font-weight:700;">'+champMatchup.t2+'</span>'+sb(champMatchup.s2) +
         '</div>' +
         '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">' +
-          '<span style="font-size:11px;color:var(--muted);font-family:monospace;">'+m.region+' · '+m.site+' · '+m.time+' '+m.tv+'</span>' +
-          '<span style="background:var(--bg3);border:1px solid var(--border2);color:var(--gold);font-size:11px;font-weight:700;padding:3px 10px;border-radius:4px;font-family:monospace;">'+m.spread+'</span>' +
-          '<span style="background:var(--bg3);border:1px solid var(--border2);color:var(--muted);font-size:11px;padding:3px 10px;border-radius:4px;font-family:monospace;">O/U '+m.total+'</span>' +
+          '<span style="background:var(--bg3);border:1px solid var(--border2);color:var(--gold);font-size:12px;font-weight:700;padding:4px 12px;border-radius:4px;font-family:monospace;">'+champMatchup.spread+'</span>' +
+          '<span style="background:var(--bg3);border:1px solid var(--border2);color:var(--muted);font-size:12px;padding:4px 12px;border-radius:4px;font-family:monospace;">O/U '+champMatchup.total+'</span>' +
+          '<span style="background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.4);color:var(--red);font-size:11px;font-weight:700;padding:4px 10px;border-radius:4px;">⚠️ LENDEBORG QUESTIONABLE</span>' +
         '</div>' +
       '</div>' +
-      '<div style="font-size:12px;color:var(--blue);font-family:monospace;margin-bottom:10px;background:rgba(59,130,246,0.06);padding:8px 12px;border-radius:6px;line-height:1.55;"><strong>TOURNAMENT PATH:</strong> '+m.path+'</div>' +
-      '<div style="font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:16px;border-bottom:1px solid var(--border);padding-bottom:14px;">'+m.analysis+'</div>' +
-      '<div style="display:flex;align-items:center;gap:10px;">' +
-        '<span style="background:'+ec+';color:#000;padding:4px 12px;border-radius:4px;font-size:11px;font-weight:700;">'+m.edgeType+'</span>' +
-        '<span style="font-size:14px;font-weight:700;color:'+ec+';">⚡ '+m.edge+'</span>' +
+      '<div style="font-size:12px;color:var(--blue);font-family:monospace;margin-bottom:12px;background:rgba(59,130,246,0.06);padding:10px 12px;border-radius:6px;line-height:1.6;"><strong>FULL TOURNAMENT PATHS:</strong> '+champMatchup.path+'</div>' +
+      '<div style="font-size:13px;color:var(--muted);line-height:1.85;margin-bottom:18px;border-bottom:1px solid var(--border);padding-bottom:16px;">'+champMatchup.analysis+'</div>' +
+      '<div style="display:flex;align-items:center;gap:12px;">' +
+        '<span style="background:'+ec+';color:#000;padding:5px 14px;border-radius:4px;font-size:12px;font-weight:700;">DOG</span>' +
+        '<span style="font-size:15px;font-weight:700;color:'+ec+';">⚡ '+champMatchup.edge+'</span>' +
+        '<span style="font-size:12px;color:var(--muted);font-family:monospace;">ML: Michigan -298 · UConn +240</span>' +
       '</div>' +
     '</div>';
-  }
-
-  el.innerHTML =
-    '<div style="background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.3);border-radius:12px;padding:16px;margin-bottom:24px;">' +
-      '<div style="font-size:14px;color:var(--gold);font-weight:700;margin-bottom:4px;">🏆 Final Four · Lucas Oil Stadium · Indianapolis · Sat Apr 4</div>' +
-      '<div style="font-size:12px;color:var(--muted);">4 teams remain. Two 1-seeds meet in the nightcap. Hurley going for 3-in-4. Arizona\'s first Final Four since 2001. Illinois\' first since 2005. Michigan\'s first since 2018.</div>' +
-    '</div>' +
-    f4Matchups.map(gameCard).join('');
 }
 
-// ════════════════════════════════════════════════════════════════════════════
-// GAMBLING EDGE
-// ════════════════════════════════════════════════════════════════════════════
-function renderGambling() {
-  var el = document.getElementById('r32EdgeCards');
-  if (!el) return;
-  var colors = {DOG:'var(--orange)',FAV:'var(--green)',OVER:'var(--green)',UNDER:'var(--blue)'};
-
-  el.innerHTML = f4Matchups.map(function(m){
-    var ec = colors[m.edgeType]||'var(--green)';
-    return '<div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid '+ec+';border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:14px;">' +
+function renderGambling(){
+  var el=document.getElementById('r32EdgeCards');
+  if(!el) return;
+  el.innerHTML=
+    '<div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--orange);border-radius:0 10px 10px 0;padding:16px 18px;margin-bottom:14px;">' +
       '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;">' +
-        '<span style="background:'+ec+';color:#000;padding:2px 10px;border-radius:4px;font-size:10px;font-weight:700;">'+m.edgeType+'</span>' +
-        '<strong style="font-size:16px;">'+m.t1+' vs '+m.t2+'</strong>' +
-        '<span style="font-size:11px;color:var(--muted);">'+m.time+' · '+m.tv+'</span>' +
-        '<span style="font-size:11px;font-family:monospace;color:var(--gold);margin-left:auto;">'+m.spread+' · O/U '+m.total+'</span>' +
+        '<span style="background:var(--orange);color:#000;padding:3px 10px;border-radius:4px;font-size:11px;font-weight:700;">DOG</span>' +
+        '<strong style="font-size:17px;">UConn +6.5 · Championship Game</strong>' +
+        '<span style="font-size:11px;color:var(--muted);">Mon 8:50 PM · TBS</span>' +
+        '<span style="font-size:11px;font-family:monospace;color:var(--gold);margin-left:auto;">Michigan -6.5 · O/U 144.5</span>' +
       '</div>' +
-      '<div style="font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:12px;">'+m.analysis+'</div>' +
-      '<div style="background:rgba(16,185,129,0.08);border:1px solid '+ec+';border-radius:6px;padding:7px 12px;font-size:13px;font-weight:700;color:'+ec+';font-family:monospace;">⚡ PLAY: '+m.edge+'</div>' +
+      '<div style="font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:12px;">'+champMatchup.analysis+'</div>' +
+      '<div style="background:rgba(245,158,11,0.08);border:1px solid var(--orange);border-radius:6px;padding:8px 12px;font-size:13px;font-weight:700;color:var(--orange);font-family:monospace;">⚡ PLAY: UConn +6.5</div>' +
+    '</div>' +
+    '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-top:16px;">' +
+    [
+      {label:"UNDER 144.5",color:"var(--blue)",note:"UConn AdjT #322 — slowest team left. If they control pace and get this into the mid-60s vs mid-70s, the under is automatic. Line is already 13 pts lower than Michigan's Arizona game."},
+      {label:"UConn ML +240",color:"var(--orange)",note:"With Lendeborg questionable, +240 is real value. Hurley 18-3 in the tournament. Reed + Karaban in their final game. Championship experience is the difference."},
+      {label:"Reed Jr. OVER 18.5 pts",color:"var(--green)",note:"17 pts/11 reb vs Illinois in F4. Averaging 20+ on the tournament. Michigan's interior (Mara 7-3) will test him but Reed has answered every challenge."},
+      {label:"Michigan -6.5 (if Lendeborg plays)",color:"var(--green)",note:"If Lendeborg is confirmed active and full-go, Michigan covers this easily. They scored 91 on Arizona and 95 on Tennessee. Monitor his status before tip."}
+    ].map(function(b){
+      return '<div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid '+b.color+';border-radius:0 8px 8px 0;padding:12px 14px;">' +
+        '<div style="font-size:12px;font-weight:700;color:'+b.color+';margin-bottom:6px;">⚡ '+b.label+'</div>' +
+        '<div style="font-size:11px;color:var(--muted);line-height:1.5;">'+b.note+'</div>' +
+      '</div>';
+    }).join('') +
     '</div>';
-  }).join('');
 }
 
-function renderFutures() {
-  var el = document.getElementById('futuresTbody');
-  if (!el) return;
-  var data = [
-    {team:"Arizona",seed:1,kp:2,wl:"36-2",path:"LIU, Utah St., Arkansas, Purdue",odds:"+165",note:"Tournament fav. First F4 since 2001. Best balanced roster. Peat/Burries/Kharchenkov all balling."},
-    {team:"Michigan",seed:1,kp:3,wl:"35-3",path:"Howard, Saint Louis, Alabama, Tennessee",odds:"+180",note:"4 straight tourney wins by 13+. Lendeborg 21 PPG on 50% from 3. May's system is perfect."},
-    {team:"Illinois",seed:3,kp:7,wl:"28-8",path:"Penn, VCU, Houston (upset), Iowa",odds:"+425",note:"4-0 ATS. Wagler 25 vs Iowa. Underwood's first F4. Never won a title — this is the year."},
-    {team:"Connecticut",seed:2,kp:11,wl:"33-5",path:"Furman, UCLA, Michigan St., Duke (buzzer)",odds:"+550",note:"Hurley 17-3 tourney record. Reed 21.5/13.5. Mullins buzzer. 3rd F4 in 4 years. Dark horse."},
-  ];
-  el.innerHTML = data.map(function(t){
-    var inF4 = alive.indexOf(t.team)>=0;
-    return '<tr'+(inF4?' style="background:rgba(245,200,66,0.04);"':'')+'>' +
-      '<td><strong>'+(inF4?'🏆 ':'')+t.team+'</strong></td>' +
+function renderFutures(){
+  var el=document.getElementById('futuresTbody');
+  if(!el) return;
+  el.innerHTML=[
+    {team:"Michigan",seed:1,kp:3,wl:"36-3",odds:"-298 ML",path:"Howard, SLU, Alabama, Tennessee, Arizona",note:"First title since 1989. Scored 90+ in all 5 games. Lendeborg questionable (ankle). Mara 26 vs Arizona."},
+    {team:"Connecticut",seed:2,kp:11,wl:"34-5",odds:"+240 ML",path:"Furman, UCLA, MSU, Duke (buzzer), Illinois",note:"3rd title in 4 years. Hurley 18-3 tourney. Reed final game. Karaban goes for 3rd ring. Dynasty."},
+  ].map(function(t){
+    return '<tr style="background:rgba(245,200,66,0.04);">' +
+      '<td><strong>🏆 '+t.team+'</strong></td>' +
       '<td>'+sb(t.seed)+'</td>' +
       '<td class="mono">'+t.kp+'</td>' +
       '<td style="font-size:11px;color:var(--muted);">'+t.path+'</td>' +
@@ -1097,32 +1033,14 @@ function renderFutures() {
   }).join('');
 }
 
-function renderParlays() {
-  var el = document.getElementById('parlayCards');
-  if (!el) return;
-  var data = [
-    {
-      legs:["UConn +1.5 (6:09 PM)","OVER 157.5 Michigan/Arizona (8:49 PM)"],
-      odds:"+280",conf:"HIGH",color:"var(--orange)",
-      note:"UConn riding a buzzer-beater wave, Hurley knows how to win these, Illinois 4-0 ATS but that line has moved. Michigan/Arizona is a loaded shootout — both teams are elite offensive units."
-    },
-    {
-      legs:["OVER 139.5 Illinois/UConn (6:09 PM)","OVER 157.5 Michigan/Arizona (8:49 PM)"],
-      odds:"+340",conf:"MED-HIGH",color:"var(--green)",
-      note:"SportsLine models projects 151 combined in Illinois/UConn — Over hits 79% of simulations. Michigan/Arizona is two elite offenses. Both overs are the play on Saturday."
-    },
-    {
-      legs:["UConn +1.5 (6:09 PM)","Arizona +1.5 (8:49 PM)"],
-      odds:"+620",conf:"MED",color:"var(--orange)",
-      note:"Both dogs have value. UConn's momentum is real. Arizona hasn't lost since February. Two teams with everything to prove. Championship game with all four of these teams is the dream scenario."
-    },
-    {
-      legs:["Illinois -1.5 (6:09 PM)","Michigan -1.5 (8:49 PM)","OVER 157.5 Arizona/Michigan"],
-      odds:"+560",conf:"MED",color:"var(--blue)",
-      note:"Illinois 4-0 ATS — that doesn't happen by accident. Michigan has dominated every game. Their ceiling is the highest in the field. Add the over for the nightcap since both offenses are elite."
-    }
-  ];
-  el.innerHTML = data.map(function(p){
+function renderParlays(){
+  var el=document.getElementById('parlayCards');
+  if(!el) return;
+  el.innerHTML=[
+    {legs:["UConn +6.5","UNDER 144.5"],odds:"+420",color:"var(--orange)",conf:"HIGH",note:"Best two-leg combo tonight. UConn covers + tempo war = under. Both sides of this game tell the same story."},
+    {legs:["UConn +6.5","Reed Jr. OVER 18.5 pts"],odds:"+480",color:"var(--orange)",conf:"MED-HIGH",note:"If Reed dominates the interior, UConn wins the game. Both legs correlate — if UConn covers, Reed likely went off."},
+    {legs:["UConn ML +240 (small unit)"],odds:"+240",color:"var(--red)",conf:"MED",note:"One-leg ML play. Lendeborg questionable changes everything. Hurley has been here before. Don't sleep on the Huskies."},
+  ].map(function(p){
     return '<div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid '+p.color+';border-radius:0 10px 10px 0;padding:14px;margin-bottom:12px;">' +
       '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">' +
         '<span style="background:'+p.color+';color:#000;padding:2px 10px;border-radius:4px;font-size:10px;font-weight:700;">'+p.conf+'</span>' +
@@ -1133,24 +1051,58 @@ function renderParlays() {
           '<span style="background:var(--bg3);color:var(--muted);font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;flex-shrink:0;">LEG '+(i+1)+'</span>' +
           '<span style="font-size:13px;font-weight:600;">'+l+'</span>' +
         '</div>';
-      }).join('') +
+      }).join('')+
       '<div style="font-size:12px;color:var(--muted);margin-top:8px;line-height:1.6;">'+p.note+'</div>' +
     '</div>';
   }).join('');
 }
 
 // ════════════════════════════════════════════════════════════════════════════
+// CONTENDERS
+// ════════════════════════════════════════════════════════════════════════════
+function renderContenders(){
+  var elite=teams.filter(function(t){return t.ortgRk<=20&&t.drtgRk<=20;});
+  var extended=teams.filter(function(t){return t.ortgRk<=30&&t.drtgRk<=30&&!(t.ortgRk<=20&&t.drtgRk<=20);});
+  var el=document.getElementById('contenderCards');
+  if(el){
+    el.innerHTML=elite.map(function(t){
+      var alive2=alive.indexOf(t.team)>=0;
+      return '<div class="card gold-border fade-up"'+(alive2?'':' style="opacity:0.4"')+'>' +
+        '<div class="card-head">'+sb(t.seed)+'<div><div class="card-name">'+t.team+'</div>' +
+        '<div style="font-size:11px;color:var(--muted);">KenPom #'+t.kp+' · '+t.wl+(alive2?' · <span style="color:var(--gold);">🏆 CHAMP GAME</span>':' · <span style="color:var(--red);">ELIM</span>')+'</div></div></div>' +
+        '<div class="cstat"><span class="clbl">Net Rtg</span><span class="cval" style="color:var(--gold);">'+(t.netrtg>0?'+':'')+t.netrtg.toFixed(2)+'</span></div>' +
+        '<div class="cstat"><span class="clbl">ORtg</span>'+bar(t.ortgRk,'off-fill')+'</div>' +
+        '<div class="cstat"><span class="clbl">DRtg</span>'+bar(t.drtgRk,'def-fill')+'</div>' +
+      '</div>';
+    }).join('');
+  }
+  var note=document.getElementById('contenderNote');
+  if(note) note.innerHTML='Two teams remain. <strong>Michigan</strong> — the most dominant team in tournament history by scoring margin. <strong>UConn</strong> — going for their 3rd title in 4 years and the greatest dynasty run since UCLA. One champion tonight.';
+  var ext=document.getElementById('extendedCards');
+  if(ext){
+    ext.innerHTML=extended.map(function(t){
+      var alive2=alive.indexOf(t.team)>=0;
+      return '<div class="card fade-up"'+(alive2?'':' style="opacity:0.4"')+'>' +
+        '<div class="card-head">'+sb(t.seed)+'<div><div class="card-name">'+t.team+'</div>' +
+        '<div style="font-size:11px;color:var(--muted);">KenPom #'+t.kp+(alive2?' · <span style="color:var(--gold);">CHAMP</span>':' · <span style="color:var(--red);">ELIM</span>')+'</div></div></div>' +
+        '<div class="cstat"><span class="clbl">Net Rtg</span><span class="cval">'+(t.netrtg>0?'+':'')+t.netrtg.toFixed(2)+'</span></div>' +
+        '<div class="cstat"><span class="clbl">O/D</span><span class="cval">#'+t.ortgRk+' / #'+t.drtgRk+'</span></div>' +
+      '</div>';
+    }).join('');
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
 // VALUE PICKS
 // ════════════════════════════════════════════════════════════════════════════
-function renderValue() {
-  var el = document.getElementById('valueTbody');
-  if (el) {
-    el.innerHTML = [
-      {team:"Connecticut",seed:2,kp:11,wl:"33-5",line:"+550",note:"KenPom #11 as a 2-seed but Hurley has a 17-3 tournament record. Reed 21.5/13.5. Came back from 15 down vs Duke. Best value in the Final Four futures."},
-      {team:"Illinois",seed:3,kp:7,wl:"28-8",line:"+425",note:"4-0 ATS this tournament. KenPom #7. Wagler 25 vs Iowa. Underwood's system works. Never won a title but they've covered every game."},
-      {team:"Arizona",seed:1,kp:2,wl:"36-2",line:"+165",note:"Most dominant team in the bracket. First F4 since 2001. Peat/Burries/Kharchenkov all rising. Arizona +1.5 vs Michigan is live dog value."},
+function renderValue(){
+  var el=document.getElementById('valueTbody');
+  if(el){
+    el.innerHTML=[
+      {team:"Connecticut",seed:2,kp:11,wl:"34-5",line:"+240 ML",note:"Hurley 18-3 all-time in tourney. Reed + Karaban in their final game. Dynasty. Lendeborg injury makes this number look too good. Best value on the board."},
+      {team:"Michigan",seed:1,kp:3,wl:"36-3",line:"-298 ML",note:"First title since 1989. Scored 90+ in 5 straight games. If Lendeborg plays healthy, they cover -6.5. Monitor his status up to tip."},
     ].map(function(t){
-      return '<tr>' +
+      return '<tr style="background:rgba(245,200,66,0.04);">' +
         '<td><strong>'+t.team+'</strong></td>' +
         '<td>'+sb(t.seed)+'</td>' +
         '<td class="mono">'+t.kp+'</td>' +
@@ -1160,16 +1112,15 @@ function renderValue() {
       '</tr>';
     }).join('');
   }
-
-  var over = document.getElementById('overTbody');
-  if (over) {
-    over.innerHTML = [
-      {team:"Duke",seed:1,kp:1,wl:"33-3",status:"ELIMINATED by UConn 73-72 (Mullins buzzer, 0.4 sec)"},
-      {team:"Purdue",seed:2,kp:8,wl:"29-9",status:"ELIMINATED by Arizona 79-64 (trailed by 15 in 2nd half)"},
-      {team:"Iowa St.",seed:2,kp:6,wl:"29-8",status:"ELIMINATED by Michigan 95-62"},
-      {team:"Tennessee",seed:6,kp:16,wl:"24-12",status:"ELIMINATED by Michigan 95-62 (21-0 run)"},
-      {team:"Iowa",seed:9,kp:25,wl:"23-13",status:"ELIMINATED by Illinois 71-59 (E8)"},
-      {team:"St. John's",seed:5,kp:17,wl:"30-7",status:"ELIMINATED by Duke 80-75 (S16)"},
+  var over=document.getElementById('overTbody');
+  if(over){
+    over.innerHTML=[
+      {team:"Duke",seed:1,kp:1,wl:"33-3",status:"ELIMINATED by UConn 73-72 (Mullins buzzer, 0.4 sec) — E8"},
+      {team:"Arizona",seed:1,kp:2,wl:"36-3",status:"ELIMINATED by Michigan 91-73 — F4"},
+      {team:"Illinois",seed:3,kp:7,wl:"28-9",status:"ELIMINATED by UConn 71-62 — F4"},
+      {team:"Purdue",seed:2,kp:8,wl:"29-9",status:"ELIMINATED by Arizona 79-64 — E8"},
+      {team:"Iowa St.",seed:2,kp:6,wl:"29-8",status:"ELIMINATED by Michigan 95-62 — E8"},
+      {team:"Houston",seed:2,kp:5,wl:"28-8",status:"ELIMINATED by Illinois 65-55 — S16 (upset)"},
     ].map(function(t){
       return '<tr>' +
         '<td><strong style="color:var(--muted);">'+t.team+'</strong></td>' +
@@ -1182,30 +1133,28 @@ function renderValue() {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// UPSET ALERTS
+// UPSETS
 // ════════════════════════════════════════════════════════════════════════════
-function renderUpsets() {
-  var el = document.getElementById('cinderellaCards');
-  if (el) {
-    el.innerHTML = [
-      {team:"Connecticut",seed:2,kp:11,odds:"+550",path:"Furman → UCLA → Michigan St. → Duke (buzzer)",note:"The hottest team in the field right now. Came back from 15 down at half vs Duke. Mullins hit a 35-footer with 0.4 seconds. Hurley + Reed is a championship formula. If you believe in momentum, bet UConn.",tag:"tag-gold"},
-      {team:"Illinois",seed:3,kp:7,odds:"+425",path:"Penn → VCU → Houston (UPSET) → Iowa",note:"4-0 ATS. Biggest surprise in the Final Four. Beat KenPom #5 Houston in the Sweet 16 and No. 9 Iowa in the Elite Eight. Wagler 25 pts vs Iowa. If Illinois covers again, they're going to the title game.",tag:"tag-teal"},
+function renderUpsets(){
+  var el=document.getElementById('cinderellaCards');
+  if(el){
+    el.innerHTML=[
+      {team:"Connecticut",seed:2,kp:11,odds:"+240 tonight",path:"Furman → UCLA → MSU → Duke (buzzer) → Illinois → CHAMPIONSHIP",note:"One win away from being the greatest dynasty in modern college basketball history. Third title in four years. Hurley vs Mara/Lendeborg — the final chapter is tonight.",tag:"tag-gold"},
     ].map(function(c){
-      return '<div class="card fade-up">' +
-        '<div class="card-head">'+sb(c.seed)+'<div><div class="card-name">'+c.team+'</div><div style="font-size:11px;color:var(--muted);">'+c.odds+' to win it all</div></div></div>' +
+      return '<div class="card gold-border fade-up">' +
+        '<div class="card-head">'+sb(c.seed)+'<div><div class="card-name">'+c.team+'</div><div style="font-size:11px;color:var(--muted);">'+c.odds+'</div></div></div>' +
         '<div style="font-size:11px;color:var(--blue);font-family:monospace;margin:6px 0;background:rgba(59,130,246,0.06);padding:6px 8px;border-radius:5px;">'+c.path+'</div>' +
         '<div style="font-size:12px;color:var(--muted);line-height:1.65;">'+c.note+'</div>' +
-        tag(c.tag,'Final Four Cinderella') +
+        tag(c.tag,'Championship Underdog') +
       '</div>';
     }).join('');
   }
-
-  var rates_el = document.getElementById('upsetRates');
-  if (rates_el) {
-    rates_el.innerHTML = [
-      {matchup:"Illinois vs UConn (-1.5)",rate:"Pick-em territory",note:"Line moved from -2.5 to -1.5 as UConn money came in. Illinois 4-0 ATS. UConn on a buzzer-beater high. Genuine toss-up."},
-      {matchup:"Michigan vs Arizona (-1.5)",rate:"Nearest pick-em in tourney",note:"Two 1-seeds. Both undefeated in tourney. Michigan -122 ML, Arizona +102. Book sees it almost even."},
-      {matchup:"E8 upsets feeding this F4",rate:"3 of 8 E8 games flipped",note:"UConn beat Duke (1-seed) on buzzer. Illinois beat Houston (2-seed) in S16. Arizona came back from 7 down vs Purdue (2-seed)."},
+  var rates_el=document.getElementById('upsetRates');
+  if(rates_el){
+    rates_el.innerHTML=[
+      {matchup:"Michigan -6.5 vs UConn",rate:"Biggest tourney upset risk",note:"Lendeborg (ankle) is questionable. Line dropped from -7.5 to -6.5. Books and bettors both see value with UConn. If Lendeborg can't go, this is a 3-4 point game."},
+      {matchup:"UConn upset track record",rate:"Already beat 4 favorites",note:"UConn was the underdog vs Michigan State, Duke, and tonight. They've covered every game. Hurley 18-3 as UConn's tournament coach. Don't fade the dynasty."},
+      {matchup:"Biggest tournament upsets this year",rate:"5 double-digit upsets",note:"High Point 12 over Wisconsin 5 · VCU 11 over UNC 6 · Texas 11 over Gonzaga 3 · Iowa 9 over Florida 1 · Illinois 3 over Houston 2 (S16)"},
     ].map(function(r){
       return '<div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:8px;">' +
         '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">' +
@@ -1216,59 +1165,50 @@ function renderUpsets() {
       '</div>';
     }).join('');
   }
-
-  var pu = document.getElementById('upsetPickCards');
-  if (pu) {
-    pu.innerHTML = '<div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--orange);border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:12px;">' +
-      '<div style="font-size:10px;color:var(--orange);font-weight:700;margin-bottom:8px;">FINAL FOUR UPSET PICKS</div>' +
-      '<div style="font-size:13px;font-weight:700;margin-bottom:8px;">UConn +1.5 vs Illinois · Sat 6:09 PM</div>' +
-      '<div style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:10px;">Hurley 17-3 in tourney. Reed averaging 21.5/13.5. Just beat the overall #1 seed on a buzzer. UConn won their regular-season meeting 74-61. Line moved from -2.5 to -1.5 — that\'s the market telling you something. Take the points and the momentum.</div>' +
-      '<div style="font-size:13px;font-weight:700;margin-bottom:8px;">Arizona +1.5 vs Michigan · Sat 8:49 PM</div>' +
-      '<div style="font-size:12px;color:var(--muted);line-height:1.6;">Arizona hasn\'t lost since February 21. Down 7 at half vs Purdue and won by 15. Three elite freshmen all peaking. Jaden Bradley is the best pure PG in the tournament. Arizona +165 ML is real value for a team this good. Even just +1.5 is free money on a coin-flip game.</div>' +
+  var pu=document.getElementById('upsetPickCards');
+  if(pu){
+    pu.innerHTML='<div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--orange);border-radius:0 10px 10px 0;padding:16px;">' +
+      '<div style="font-size:11px;color:var(--orange);font-weight:700;margin-bottom:8px;">CHAMPIONSHIP UPSET PICK</div>' +
+      '<div style="font-size:14px;font-weight:700;margin-bottom:10px;">UConn +6.5 · Mon 8:50 PM ET</div>' +
+      '<div style="font-size:12px;color:var(--muted);line-height:1.7;">Lendeborg ankle injury drops Michigan\'s ceiling significantly. Even if he plays, he may be limited — and UConn\'s defense will test him harder than anyone has all tournament. Reed + Karaban in their last game together. Hurley knows how to win titles. The 6.5 is too many with the injury cloud. Take the points. If UConn wins outright at +240, even better.</div>' +
     '</div>';
   }
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// PLAYERS TAB
+// PLAYERS
 // ════════════════════════════════════════════════════════════════════════════
-function renderPlayers() {
-  var tier1 = [
-    {name:"Yaxel Lendeborg",team:"Michigan",seed:1,pos:"F",stats:"27 pts/7 reb vs Tennessee E8 · 21 PPG tourney avg",note:"Averaging 21 pts on 50% from 3 in the tournament. His combination of size, shooting, and athleticism is the reason Michigan is the slight favorite. The best player in the Final Four.",tag:"tag-gold",lbl:"Best Player Left",nba:"Lottery"},
-    {name:"Tarris Reed Jr.",team:"Connecticut",seed:2,pos:"C",stats:"21.5 pts / 13.5 reb · tourney avg",note:"Averaging a near double-double every game. Former Michigan man is unstoppable in the paint. Against Illinois he'll face a real test — Mirkovic and Cooper are both physical. If Reed dominates, UConn wins.",tag:"tag-blue",lbl:"Tourney Monster",nba:"1st Round"},
-    {name:"Jaden Bradley",team:"Arizona",seed:1,pos:"G",stats:"Big 12 POY · Arizona 36-2",note:"The best pure PG in the Final Four. Orchestrates Arizona's attack, makes the right decision every possession. Faces Elliot Cadeau in what will be the defining individual matchup of the nightcap.",tag:"tag-blue",lbl:"Big 12 POY",nba:"1st Round"},
-    {name:"Keaton Wagler",team:"Illinois",seed:3,pos:"G",stats:"25 pts vs Iowa E8 · clutch performer",note:"The player who showed up when Illinois needed it most. 25 points in the Elite Eight win over Iowa. Big game player. Illinois' offensive engine alongside Stojakovic.",tag:"tag-teal",lbl:"Clutch Factor",nba:"2nd Round"},
-    {name:"Koa Peat",team:"Arizona",seed:1,pos:"F",stats:"20 pts vs Purdue E8 · elite freshman",note:"One of three elite Arizona freshmen. 20 points in the Elite Eight to help Arizona come back from 7 down vs Purdue. His floor game and scoring versatility makes Arizona's offense impossible to guard.",tag:"tag-amber",lbl:"Elite Freshman",nba:"Top 10"},
-    {name:"Elliot Cadeau",team:"Michigan",seed:1,pos:"G",stats:"5.7 APG · Michigan 18.8 APG team (5th nationally)",note:"Michigan's offensive conductor. 5.7 assists per game. The Wolverines move the ball better than anyone in the Final Four. His matchup with Bradley is the game within the game Saturday night.",tag:"tag-purple",lbl:"Assist Machine",nba:"1st Round"},
+function renderPlayers(){
+  var tier1=[
+    {name:"Yaxel Lendeborg",team:"Michigan",seed:1,pos:"F",stats:"Big Ten POY · ⚠️ QUESTIONABLE (ankle)",note:"The most important player on the floor tonight — IF he plays. Left the Arizona game in the second half, didn't return. Round-the-clock treatment. Mara stepped up with 26 but Lendeborg is irreplaceable as Michigan's offensive engine. His status is the story of the night.",tag:"tag-red",lbl:"⚠️ INJURY WATCH",nba:"Lottery"},
+    {name:"Tarris Reed Jr.",team:"Connecticut",seed:2,pos:"C",stats:"Tournament avg: 20+ pts / 12+ reb",note:"Finishing his career in Indianapolis. The best individual performer of this tournament. 17/11 vs Illinois in the Final Four. Faces Michigan's massive interior of Mara (7-3) and Johnson (6-9) — this is the battle that decides the game.",tag:"tag-gold",lbl:"Reed's Last Dance",nba:"1st Round"},
+    {name:"Alex Karaban",team:"Connecticut",seed:2,pos:"F",stats:"Going for 3rd national title — 147th career start",note:"Set the record for most NCAA Tournament wins as a starter. Veteran leader for UConn's final game. His outside shooting spaces the floor for Reed and gives UConn a second elite option.",tag:"tag-blue",lbl:"3-Peat Chase",nba:"2nd Round"},
+    {name:"Aday Mara",team:"Michigan",seed:1,pos:"C",stats:"26 pts vs Arizona — stepped up for Lendeborg",note:"7-foot-3 junior center who had the best game of his career when Michigan needed it most. Averages 2.6 blocks per game in the tournament. If Lendeborg is limited, Mara becomes the engine. His matchup with Reed is the most physically imposing battle in championship game history.",tag:"tag-purple",lbl:"Stepped Up Big",nba:"1st Round"},
+    {name:"Elliot Cadeau",team:"Michigan",seed:1,pos:"G",stats:"8.6 APG · 2.6 TO/gm in tourney",note:"Michigan's offensive conductor averaging 8.6 assists per game in the tournament. The Wolverines lead the nation in assists. Cadeau controls Michigan's pace — against UConn's elite defense, his decision-making in the half-court is crucial.",tag:"tag-teal",lbl:"Point Guard Duel",nba:"1st Round"},
+    {name:"Braylon Mullins",team:"Connecticut",seed:2,pos:"G",stats:"15 pts vs Illinois F4 · Hometown hero (Indianapolis)",note:"Playing in his hometown tonight. He hit the buzzer-beater vs Duke that sent UConn to Indianapolis, and tonight he plays the title game in front of his family and friends. The freshman sensation is the wild card in this game.",tag:"tag-amber",lbl:"Hometown Hero",nba:"TBD"},
   ];
 
-  var breakout = [
-    {name:"Braylon Mullins",team:"Connecticut",seed:2,pos:"G",stats:"35-ft buzzer vs Duke — 0.4 sec on clock",note:"Hit one of the greatest shots in tournament history. Freshman from Indiana. The moment didn't faze him. UConn's wild card going into the Final Four.",tag:"tag-red",lbl:"March Legend",why:"That shot will be played on ESPN for decades. He's not scared of the moment."},
-    {name:"Ivan Kharchenkov",team:"Arizona",seed:1,pos:"F",stats:"16.5 PPG on 11-of-17 shooting vs Arkansas + Purdue",note:"6-7 sophomore forward averaging 16.5 pts on elite shooting efficiency over Arizona's last two games. The third piece of Arizona's incredible freshman core.",tag:"tag-gold",lbl:"Efficient Scorer",why:"Arizona's secret weapon — he doesn't get enough attention."},
-    {name:"Andrej Stojakovic",team:"Illinois",seed:3,pos:"G",stats:"Tournament consistent — Illinois 4-0 ATS",note:"Son of NBA star Peja. Has contributed every game of Illinois' run. His shooting keeps Illinois' offense honest and opens lanes for drives.",tag:"tag-amber",lbl:"Peja's Son",why:"Illinois wouldn't be 4-0 ATS without his consistency."},
+  var props=[
+    {player:"Tarris Reed Jr.",team:"UConn",matchup:"vs Michigan Mon 8:50",bet:"OVER Pts+Reb ~28.5",conf:"HIGH",
+     edge:"Averaging 20+ pts and 12+ reb in the tournament. Michigan's interior is massive but Reed has dominated everyone. Career finale — he'll empty the tank.",
+     angle:"Best prop of the championship. Reed's floor is 28 combined and his ceiling is 40+."},
+    {player:"Aday Mara",team:"Michigan",matchup:"vs UConn Mon 8:50",bet:"OVER Points ~14.5",conf:"MED-HIGH",
+     edge:"26 pts vs Arizona when Lendeborg went down. Now the primary interior threat. UConn will face him all night and he's been the most improved player in the tournament.",
+     angle:"If Lendeborg is limited, Mara's line will be set low — smash the over."},
+    {player:"Elliot Cadeau",team:"Michigan",matchup:"vs UConn Mon 8:50",bet:"OVER Assists ~7.5",conf:"MED-HIGH",
+     edge:"8.6 APG in the tournament. Michigan's entire offensive system runs through him. Even in a slower game vs UConn he'll rack up assists.",
+     angle:"Michigan's best player prop if you like them to win."},
+    {player:"Braylon Mullins",team:"UConn",matchup:"vs UConn Mon 8:50",bet:"OVER Points ~13.5",conf:"MED",
+     edge:"15 pts vs Illinois in the Final Four. Playing in Indianapolis — his hometown. That's not a coincidence. He plays his best in big moments.",
+     angle:"Local kid in the championship game. He goes off tonight."},
   ];
 
-  var props = [
-    {player:"Tarris Reed Jr.",team:"UConn",matchup:"vs Illinois Sat 6:09",bet:"OVER Pts+Reb ~28.5",conf:"HIGH",
-     edge:"Averaging 21.5 pts + 13.5 reb = 35 combined per game in tournament. Illinois is physical but Reed has been unstoppable inside. If Reed gets 30+ combined, UConn likely wins.",
-     angle:"Best prop of the Final Four. Reed's floor is 28+ and his ceiling is 40."},
-    {player:"Yaxel Lendeborg",team:"Michigan",matchup:"vs Arizona Sat 8:49",bet:"OVER Points ~19.5",conf:"HIGH",
-     edge:"Averaging 21 PPG on 50% from 3. Arizona's perimeter defense is good but Lendeborg creates his own shot. Line will be set around 19-20.",
-     angle:"Michigan's best player vs the best defense he's faced. Still take the over."},
-    {player:"Keaton Wagler",team:"Illinois",matchup:"vs UConn Sat 6:09",bet:"OVER Points ~15.5",conf:"MED-HIGH",
-     edge:"25 pts in Elite Eight. UConn will focus on stopping him. But Wagler has been rising all tournament — his line should be around 15-16.",
-     angle:"If Illinois covers, Wagler goes for 20+."},
-    {player:"Koa Peat",team:"Arizona",matchup:"vs Michigan Sat 8:49",bet:"OVER Pts+Reb ~21.5",conf:"MED",
-     edge:"20 pts vs Purdue. Michigan's interior is big (Aday Mara 7-3) but Peat can score from multiple spots. Michigan will scheme for Bradley — Peat could go off.",
-     angle:"Arizona's second option who could easily be the best player in the game."},
-  ];
-
-  var t1el = document.getElementById('tier1Cards');
-  if (t1el) {
-    t1el.innerHTML = tier1.map(function(p){
+  var t1el=document.getElementById('tier1Cards');
+  if(t1el){
+    t1el.innerHTML=tier1.map(function(p){
       return '<div class="card gold-border fade-up">' +
         '<div class="card-head">'+teamPill(p.team)+'<div><div class="card-name">'+p.name+'</div><div style="font-size:11px;color:var(--muted);">'+p.pos+'</div></div></div>' +
-        '<div class="cstat"><span class="clbl">F4 Context</span><span class="cval" style="color:var(--gold);font-size:11px;">'+p.stats+'</span></div>' +
+        '<div class="cstat"><span class="clbl">Tonight</span><span class="cval" style="color:var(--gold);font-size:11px;">'+p.stats+'</span></div>' +
         '<div class="cstat"><span class="clbl">NBA</span><span class="cval" style="color:var(--blue);font-size:11px;">'+p.nba+'</span></div>' +
         '<div style="font-size:12px;color:var(--muted);margin-top:8px;line-height:1.6;">'+p.note+'</div>' +
         tag(p.tag,p.lbl) +
@@ -1276,27 +1216,19 @@ function renderPlayers() {
     }).join('');
   }
 
-  var boel = document.getElementById('breakoutCards');
-  if (boel) {
-    boel.innerHTML = breakout.map(function(p){
-      return '<div class="card fade-up">' +
-        '<div class="card-head">'+teamPill(p.team)+'<div><div class="card-name">'+p.name+'</div><div style="font-size:11px;color:var(--muted);">'+p.pos+'</div></div></div>' +
-        '<div class="cstat"><span class="clbl">Moment</span><span class="cval" style="font-size:11px;">'+p.stats+'</span></div>' +
-        '<div style="font-size:11px;color:var(--gold);font-family:monospace;margin:6px 0;line-height:1.5;">'+p.why+'</div>' +
-        '<div style="font-size:12px;color:var(--muted);line-height:1.6;">'+p.note+'</div>' +
-        tag(p.tag,p.lbl) +
-      '</div>';
-    }).join('');
+  var boel=document.getElementById('breakoutCards');
+  if(boel){
+    boel.innerHTML='<div style="padding:20px;color:var(--muted);font-size:13px;line-height:1.7;">Every player still standing has broken out. Mullins hit the shot of the tournament. Mara went for 26 in the Final Four. Reed has been the best player game-by-game. No sleepers left — just two elite programs going for everything.</div>';
   }
 
-  var slel = document.getElementById('sleeperCards');
-  if (slel) slel.innerHTML = '<div style="padding:20px;color:var(--muted);font-size:13px;">Final Four has no sleepers — every player remaining is elite. The breakout performers above are your highest-value player props.</div>';
+  var slel=document.getElementById('sleeperCards');
+  if(slel) slel.innerHTML='<div style="padding:20px;color:var(--muted);font-size:13px;">No sleepers. This is the national championship game.</div>';
 
-  var cc = {HIGH:'var(--green)','MED-HIGH':'var(--gold)',MED:'var(--orange)'};
-  var propEl = document.getElementById('propCards');
-  if (propEl) {
-    propEl.innerHTML = props.map(function(p){
-      var c = cc[p.conf]||'var(--muted)';
+  var cc={HIGH:'var(--green)','MED-HIGH':'var(--gold)',MED:'var(--orange)'};
+  var propEl=document.getElementById('propCards');
+  if(propEl){
+    propEl.innerHTML=props.map(function(p){
+      var c=cc[p.conf]||'var(--muted)';
       return '<div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid '+c+';border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:12px;">' +
         '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;">' +
           teamPill(p.team)+'<strong style="font-size:15px;">'+p.player+'</strong>' +
@@ -1309,21 +1241,27 @@ function renderPlayers() {
     }).join('');
   }
 
-  var injEl = document.getElementById('injuryCards');
-  if (injEl) {
-    injEl.innerHTML = '<div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:0 10px 10px 0;padding:14px;"><div style="color:var(--green);font-weight:700;margin-bottom:6px;">✓ All Final Four teams appear healthy</div><div style="font-size:12px;color:var(--muted);line-height:1.6;">No major injury news heading into Indianapolis. Illinois\' Solo Ball has been in a shooting slump but is active. UConn\'s Silas Demary Jr. (ankle) is expected to play. Check for updates Wednesday before games tip Saturday.</div></div>';
+  var injEl=document.getElementById('injuryCards');
+  if(injEl){
+    injEl.innerHTML='<div style="background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.25);border-radius:10px;padding:16px;">' +
+      '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">' +
+        '<span style="background:var(--red);color:#000;padding:3px 10px;border-radius:4px;font-size:11px;font-weight:700;">QUESTIONABLE</span>' +
+        '<strong style="font-size:15px;">Yaxel Lendeborg — Michigan</strong>' +
+        '<span style="font-size:12px;color:var(--muted);">Ankle injury · Left Arizona game in 2nd half</span>' +
+      '</div>' +
+      '<div style="font-size:12px;color:var(--muted);line-height:1.7;">Round-the-clock treatment. Participating in walkthrough this morning. "That will tell them a lot." — Tracy Wolfson. If he plays full minutes, Michigan covers. If he\'s limited or out, this is a 3-4 point game at best. The line moved from -7.5 to -6.5 on this news. <strong style="color:var(--gold);">Monitor his status right up to tip-off.</strong></div>' +
+    '</div>';
   }
 
-  var perfTbody = document.getElementById('perfTbody');
-  if (perfTbody) {
-    perfTbody.innerHTML = [
-      {player:"Tarris Reed Jr.",team:"UConn",r1:"31/27 vs Furman",r2:"Consistent vs UCLA, MSU, Duke",trend:"↑↑ Dominant"},
-      {player:"Yaxel Lendeborg",team:"Michigan",r1:"Strong R1/R2",r2:"27 pts E8 vs Tennessee",trend:"↑↑ Peaking"},
-      {player:"Keaton Wagler",team:"Illinois",r1:"Solid",r2:"25 pts E8 vs Iowa",trend:"↑↑ Peaking"},
-      {player:"Koa Peat",team:"Arizona",r1:"Strong",r2:"20 pts E8 vs Purdue",trend:"↑ Rising"},
-      {player:"Braylon Mullins",team:"UConn",r1:"Quiet",r2:"BUZZER vs Duke",trend:"↑ Legend"},
-      {player:"Jaden Bradley",team:"Arizona",r1:"Consistent",r2:"Led E8 comeback",trend:"→ Steady"},
-      {player:"Elliot Cadeau",team:"Michigan",r1:"5.7 APG season",r2:"Orchestrated E8",trend:"→ Steady"},
+  var perfTbody=document.getElementById('perfTbody');
+  if(perfTbody){
+    perfTbody.innerHTML=[
+      {player:"Tarris Reed Jr.",team:"UConn",r1:"31/27 vs Furman",r2:"17/11 vs Illinois F4",trend:"↑↑ Dominant all tourney"},
+      {player:"Aday Mara",team:"Michigan",r1:"2.6 BLK/gm",r2:"26 pts vs Arizona F4",trend:"↑↑ Stepped up huge"},
+      {player:"Braylon Mullins",team:"UConn",r1:"35-ft buzzer vs Duke",r2:"15 pts vs Illinois",trend:"↑ Moment maker"},
+      {player:"Yaxel Lendeborg",team:"Michigan",r1:"21 PPG / 50% 3PT",r2:"Injured vs Arizona",trend:"⚠️ QUESTIONABLE"},
+      {player:"Alex Karaban",team:"UConn",r1:"27 pts vs UCLA",r2:"Consistent all tourney",trend:"→ Steady veteran"},
+      {player:"Elliot Cadeau",team:"Michigan",r1:"8.6 APG tourney",r2:"Orchestrated F4 win",trend:"→ Steady"},
     ].map(function(p){
       return '<tr>' +
         '<td><strong>'+p.player+'</strong></td>' +
@@ -1335,77 +1273,71 @@ function renderPlayers() {
     }).join('');
   }
 
-  var tn = document.getElementById('trackerNote');
-  if (tn) tn.textContent = 'Final Four player tracking. Reed and Lendeborg are the two most important players in Indianapolis. Mullins is the wild card. Watch for Wagler and Peat to go off in their respective games.';
+  var tn=document.getElementById('trackerNote');
+  if(tn) tn.textContent='Championship night. Lendeborg is the player to watch before and during the game. Reed vs Mara is the battle that decides the title.';
 }
 
 // ════════════════════════════════════════════════════════════════════════════
 // TEMPO + LUCK + TABLE
 // ════════════════════════════════════════════════════════════════════════════
-function renderTempo() {
-  var sorted = teams.slice().sort(function(a,b){ return b.adjT-a.adjT; });
-  var fastest = sorted.slice(0,10);
-  var slowest = sorted.slice().reverse().slice(0,10);
-  function tc(t) {
-    var inF4 = alive.indexOf(t.team)>=0;
-    return '<div class="card fade-up"'+(inF4?' style="border-color:var(--gold);"':'')+'>' +
-      '<div class="card-head">'+sb(t.seed)+'<div><div class="card-name">'+t.team+(inF4?' <span style="color:var(--gold);font-size:10px;">F4</span>':'')+'</div><div style="font-size:11px;color:var(--muted);">KenPom #'+t.kp+'</div></div></div>' +
-      '<div class="cstat"><span class="clbl">AdjT</span><span class="cval" style="color:'+(inF4?'var(--gold)':'var(--muted)')+';">'+t.adjT.toFixed(1)+'</span></div>' +
+function renderTempo(){
+  var sorted=teams.slice().sort(function(a,b){return b.adjT-a.adjT;});
+  var fastest=sorted.slice(0,10);
+  var slowest=sorted.slice().reverse().slice(0,10);
+  function tc(t){
+    var alive2=alive.indexOf(t.team)>=0;
+    return '<div class="card fade-up"'+(alive2?' style="border-color:var(--gold);"':'')+'>' +
+      '<div class="card-head">'+sb(t.seed)+'<div><div class="card-name">'+t.team+(alive2?' <span style="color:var(--gold);font-size:10px;">CHAMP</span>':'')+'</div><div style="font-size:11px;color:var(--muted);">KenPom #'+t.kp+'</div></div></div>' +
+      '<div class="cstat"><span class="clbl">AdjT</span><span class="cval" style="color:'+(alive2?'var(--gold)':'var(--muted)')+';">'+t.adjT.toFixed(1)+'</span></div>' +
       '<div class="cstat"><span class="clbl">Rank</span><span class="cval">#'+t.adjTRk+'</span></div>' +
     '</div>';
   }
-  var fEl = document.getElementById('fastestTeams');
-  if (fEl) fEl.innerHTML = fastest.map(tc).join('');
-  var sEl = document.getElementById('slowestTeams');
-  if (sEl) sEl.innerHTML = slowest.map(tc).join('');
-
-  var tmEl = document.getElementById('tempoMatchups');
-  if (tmEl) {
-    tmEl.innerHTML = [
-      {g:"Michigan (#22) vs Arizona (#54)",detail:"Michigan AdjT 70.9 vs Arizona AdjT 69.8 — both run. Total 157.5 accounts for this. OVER is the play. These are the two fastest Final Four teams.",edge:"OVER 157.5"},
-      {g:"Illinois (#277) vs UConn (#322)",detail:"Both teams are elite grinders. Illinois AdjT 65.5, UConn 64.4 — two of the slowest remaining. Total 139.5 reflects this. OVER still hits per model (79% of simulations).",edge:"OVER 139.5 (model-driven)"},
-    ].map(function(m){
-      return '<div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:8px;">' +
-        '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:6px;">' +
-          '<strong style="font-size:13px;">'+m.g+'</strong>' +
-          '<span style="background:var(--bg3);border:1px solid var(--gold);color:var(--gold);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;">⚡ '+m.edge+'</span>' +
-        '</div>' +
-        '<div style="font-size:12px;color:var(--muted);line-height:1.5;">'+m.detail+'</div>' +
-      '</div>';
-    }).join('');
+  var fEl=document.getElementById('fastestTeams');
+  if(fEl) fEl.innerHTML=fastest.map(tc).join('');
+  var sEl=document.getElementById('slowestTeams');
+  if(sEl) sEl.innerHTML=slowest.map(tc).join('');
+  var tmEl=document.getElementById('tempoMatchups');
+  if(tmEl){
+    tmEl.innerHTML='<div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--blue);border-radius:0 10px 10px 0;padding:14px 16px;">' +
+      '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">' +
+        '<strong>Michigan (#22, AdjT 70.9) vs UConn (#322, AdjT 64.4)</strong>' +
+        '<span style="background:var(--bg3);border:1px solid var(--blue);color:var(--blue);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;">⚡ UNDER 144.5</span>' +
+      '</div>' +
+      '<div style="font-size:12px;color:var(--muted);line-height:1.6;">The biggest tempo mismatch of the entire tournament. Michigan wants to run; UConn wants to grind. AdjT gap of 6.5 possessions is enormous. UConn held Illinois to 3 total assists in the Final Four — they will try to turn this into a 65-68 game. If they succeed, Michigan can\'t outscore them. Total 144.5 is set 13 pts below Michigan\'s Arizona game — the books respect UConn\'s defensive identity. UNDER is the lean.</div>' +
+    '</div>';
   }
 }
 
-function renderLuck() {
-  var sorted = teams.slice().sort(function(a,b){ return b.luck-a.luck; });
-  var lucky   = sorted.slice(0,10);
-  var unlucky = sorted.slice().reverse().slice(0,10);
-  function lc(t,isLucky) {
-    var c = isLucky?'var(--green)':'var(--red)';
-    var inF4 = alive.indexOf(t.team)>=0;
-    return '<div class="card fade-up"'+(inF4?' style="border-color:var(--gold);"':'')+'>' +
-      '<div class="card-head">'+sb(t.seed)+'<div><div class="card-name">'+t.team+(inF4?' <span style="color:var(--gold);font-size:10px;">F4</span>':'')+'</div></div></div>' +
+function renderLuck(){
+  var sorted=teams.slice().sort(function(a,b){return b.luck-a.luck;});
+  var lucky=sorted.slice(0,10);
+  var unlucky=sorted.slice().reverse().slice(0,10);
+  function lc(t,isLucky){
+    var c=isLucky?'var(--green)':'var(--red)';
+    var alive2=alive.indexOf(t.team)>=0;
+    return '<div class="card fade-up"'+(alive2?' style="border-color:var(--gold);"':'')+'>' +
+      '<div class="card-head">'+sb(t.seed)+'<div><div class="card-name">'+t.team+(alive2?' <span style="color:var(--gold);font-size:10px;">CHAMP</span>':'')+'</div></div></div>' +
       '<div class="cstat"><span class="clbl">Luck</span><span class="cval" style="color:'+c+';">'+(t.luck>0?'+':'')+t.luck.toFixed(3)+'</span></div>' +
     '</div>';
   }
-  var lEl = document.getElementById('luckyTeams');
-  if (lEl) lEl.innerHTML = lucky.map(function(t){ return lc(t,true); }).join('');
-  var uEl = document.getElementById('unluckyTeams');
-  if (uEl) uEl.innerHTML = unlucky.map(function(t){ return lc(t,false); }).join('');
+  var lEl=document.getElementById('luckyTeams');
+  if(lEl) lEl.innerHTML=lucky.map(function(t){return lc(t,true);}).join('');
+  var uEl=document.getElementById('unluckyTeams');
+  if(uEl) uEl.innerHTML=unlucky.map(function(t){return lc(t,false);}).join('');
 }
 
-function renderTable() {
-  var el = document.getElementById('mainTbody');
-  if (!el) return;
-  var sorted = teams.slice().sort(function(a,b){ return b.netrtg-a.netrtg; });
-  el.innerHTML = sorted.map(function(t,i){
-    var inF4 = alive.indexOf(t.team)>=0;
-    var oc = t.ortgRk<=20?'style="color:var(--green);font-weight:700;"':'';
-    var dc = t.drtgRk<=20?'style="color:var(--green);font-weight:700;"':'';
-    return '<tr'+(inF4?' style="background:rgba(245,200,66,0.05);"':'')+'>' +
+function renderTable(){
+  var el=document.getElementById('mainTbody');
+  if(!el) return;
+  var sorted=teams.slice().sort(function(a,b){return b.netrtg-a.netrtg;});
+  el.innerHTML=sorted.map(function(t,i){
+    var alive2=alive.indexOf(t.team)>=0;
+    var oc=t.ortgRk<=20?'style="color:var(--green);font-weight:700;"':'';
+    var dc=t.drtgRk<=20?'style="color:var(--green);font-weight:700;"':'';
+    return '<tr'+(alive2?' style="background:rgba(245,200,66,0.06);"':'')+'>' +
       '<td style="color:var(--muted);font-size:11px;">'+(i+1)+'</td>' +
       '<td>'+sb(t.seed)+'</td>' +
-      '<td style="font-weight:600;">'+t.team+(inF4?' <span style="color:var(--gold);font-size:9px;font-weight:700;">F4</span>':'<span style="color:var(--red);font-size:9px;">ELIM</span>')+'</td>' +
+      '<td style="font-weight:600;">'+t.team+(alive2?' <span style="color:var(--gold);font-size:9px;font-weight:700;">🏆</span>':'<span style="color:var(--red);font-size:9px;">ELIM</span>')+'</td>' +
       '<td class="mono">'+t.kp+'</td>' +
       '<td class="mono">'+t.wl+'</td>' +
       '<td class="mono r" '+oc+'>#'+t.ortgRk+'</td>' +
@@ -1416,17 +1348,17 @@ function renderTable() {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// ROUND TRACKER — all results through Elite Eight
+// ROUND TRACKER — all results through Final Four
 // ════════════════════════════════════════════════════════════════════════════
-var allResults = {
-  r64: [
+var allResults={
+  r64:[
     {r:"East",s1:1,t1:"Duke",sc1:71,s2:16,t2:"Siena",sc2:65,note:"Boozer 22/13. Down 11 at half."},
     {r:"East",s1:9,t1:"TCU",sc1:66,s2:8,t2:"Ohio St.",sc2:64,upset:true,note:"Edmonds winner 4.3 sec."},
     {r:"East",s1:5,t1:"St. John's",sc1:79,s2:12,t2:"N. Iowa",sc2:53,note:"St. John's covered."},
     {r:"East",s1:4,t1:"Kansas",sc1:68,s2:13,t2:"Cal Baptist",sc2:60,note:"Kansas survived."},
-    {r:"East",s1:6,t1:"Louisville",sc1:83,s2:11,t2:"S. Florida",sc2:79,note:"McKneely 23. Brown out."},
+    {r:"East",s1:6,t1:"Louisville",sc1:83,s2:11,t2:"S. Florida",sc2:79,note:"McKneely 23."},
     {r:"East",s1:3,t1:"Michigan St.",sc1:92,s2:14,t2:"N. Dakota St.",sc2:67,note:"Led by 28."},
-    {r:"East",s1:7,t1:"UCLA",sc1:75,s2:10,t2:"UCF",sc2:71,note:"UCLA covered."},
+    {r:"East",s1:7,t1:"UCLA",sc1:75,s2:10,t2:"UCF",sc2:71,note:"Covered."},
     {r:"East",s1:2,t1:"UConn",sc1:82,s2:15,t2:"Furman",sc2:71,note:"Won by 11."},
     {r:"West",s1:1,t1:"Arizona",sc1:92,s2:16,t2:"LIU",sc2:58,note:"34-pt blowout."},
     {r:"West",s1:9,t1:"Utah St.",sc1:86,s2:8,t2:"Villanova",sc2:76,upset:true,note:"KenPom #30 won by 10."},
@@ -1435,26 +1367,26 @@ var allResults = {
     {r:"West",s1:3,t1:"Gonzaga",sc1:73,s2:14,t2:"Kennesaw St.",sc2:64,note:"Ike 19/8."},
     {r:"West",s1:7,t1:"Miami FL",sc1:80,s2:10,t2:"Missouri",sc2:66,note:"Covered."},
     {r:"West",s1:2,t1:"Purdue",sc1:104,s2:15,t2:"Queens",sc2:71,note:"Smith broke assists record."},
-    {r:"West",s1:11,t1:"Texas",sc1:79,s2:6,t2:"BYU",sc2:71,upset:true,note:"Dybantsa 35/10 final college game."},
+    {r:"West",s1:11,t1:"Texas",sc1:79,s2:6,t2:"BYU",sc2:71,upset:true,note:"Dybantsa 35/10."},
     {r:"Midwest",s1:9,t1:"Saint Louis",sc1:102,s2:8,t2:"Georgia",sc2:77,upset:true,note:"66 pts in paint."},
     {r:"Midwest",s1:5,t1:"Texas Tech",sc1:91,s2:12,t2:"Akron",sc2:71,note:"64% FG."},
     {r:"Midwest",s1:4,t1:"Alabama",sc1:90,s2:13,t2:"Hofstra",sc2:70,note:"Philon 29."},
     {r:"Midwest",s1:3,t1:"Virginia",sc1:82,s2:14,t2:"Wright St.",sc2:73,note:"Won by 9."},
     {r:"Midwest",s1:7,t1:"Kentucky",sc1:89,s2:10,t2:"S. Clara",sc2:84,note:"Oweh 35 + OT buzzer."},
-    {r:"Midwest",s1:1,t1:"Michigan",sc1:101,s2:16,t2:"Howard",sc2:80,note:"67% FG in 2nd half."},
+    {r:"Midwest",s1:1,t1:"Michigan",sc1:101,s2:16,t2:"Howard",sc2:80,note:"67% FG 2nd half."},
     {r:"Midwest",s1:2,t1:"Iowa St.",sc1:108,s2:15,t2:"Tennessee St.",sc2:74,note:"Jefferson injured."},
     {r:"South",s1:9,t1:"Iowa",sc1:67,s2:8,t2:"Clemson",sc2:61,note:"Welling absence decisive."},
     {r:"South",s1:5,t1:"Vanderbilt",sc1:78,s2:12,t2:"McNeese",sc2:68,note:"Tanner 26/7/5."},
     {r:"South",s1:4,t1:"Nebraska",sc1:76,s2:13,t2:"Troy",sc2:47,note:"First ever tourney win."},
-    {r:"South",s1:11,t1:"VCU",sc1:82,s2:6,t2:"N. Carolina",sc2:78,upset:true,note:"Hill 34. Largest R1 comeback."},
+    {r:"South",s1:11,t1:"VCU",sc1:82,s2:6,t2:"N. Carolina",sc2:78,upset:true,note:"Hill 34. Largest comeback."},
     {r:"South",s1:3,t1:"Illinois",sc1:105,s2:14,t2:"Penn",sc2:70,note:"Mirkovic 29/17."},
     {r:"South",s1:10,t1:"Texas A&M",sc1:63,s2:7,t2:"St. Mary's",sc2:50,upset:true,note:"Murauskas ill."},
     {r:"South",s1:1,t1:"Florida",sc1:114,s2:16,t2:"Prairie View",sc2:55,note:"Won by 59."},
-    {r:"South",s1:2,t1:"Houston",sc1:78,s2:15,t2:"Idaho",sc2:47,note:"50% FG, 53% from 3."},
+    {r:"South",s1:2,t1:"Houston",sc1:78,s2:15,t2:"Idaho",sc2:47,note:"50% FG."},
     {r:"South",s1:6,t1:"Tennessee",sc1:78,s2:11,t2:"Miami OH",sc2:56,note:"Gillespie 29."},
   ],
-  r32: [
-    {r:"East",s1:1,t1:"Duke",sc1:81,s2:9,t2:"TCU",sc2:58,note:"Boozer 19/11. 17-2 run."},
+  r32:[
+    {r:"East",s1:1,t1:"Duke",sc1:81,s2:9,t2:"TCU",sc2:58,note:"Boozer 19/11 bounce-back."},
     {r:"East",s1:5,t1:"St. John's",sc1:67,s2:4,t2:"Kansas",sc2:65,upset:true,note:"Darling buzzer layup."},
     {r:"East",s1:3,t1:"Michigan St.",sc1:77,s2:6,t2:"Louisville",sc2:69,note:"Carr 21/10."},
     {r:"East",s1:2,t1:"UConn",sc1:73,s2:7,t2:"UCLA",sc2:57,note:"Karaban 27."},
@@ -1469,79 +1401,85 @@ var allResults = {
     {r:"South",s1:3,t1:"Illinois",sc1:76,s2:11,t2:"VCU",sc2:55,note:"Stojakovic 21."},
     {r:"South",s1:4,t1:"Nebraska",sc1:74,s2:5,t2:"Vanderbilt",sc2:72,note:"Frager buzzer."},
     {r:"South",s1:2,t1:"Houston",sc1:88,s2:10,t2:"Texas A&M",sc2:57,note:"Dominant."},
-    {r:"South",s1:9,t1:"Iowa",sc1:73,s2:1,t2:"Florida",sc2:72,upset:true,note:"Folgueiras 3 with 4.5 sec. CHAMPS GONE."},
+    {r:"South",s1:9,t1:"Iowa",sc1:73,s2:1,t2:"Florida",sc2:72,upset:true,note:"Folgueiras 3 with 4.5 sec."},
   ],
-  s16: [
-    {r:"West",s1:2,t1:"Purdue",sc1:79,s2:11,t2:"Texas",sc2:77,note:"Thriller. Texas covered +7.5."},
+  s16:[
+    {r:"West",s1:2,t1:"Purdue",sc1:79,s2:11,t2:"Texas",sc2:77,note:"Texas covered +7.5."},
     {r:"South",s1:4,t1:"Nebraska",sc1:77,s2:9,t2:"Iowa",sc2:71,note:"Stirtz go-ahead 3 with 2:10 left."},
-    {r:"West",s1:1,t1:"Arizona",sc1:109,s2:4,t2:"Arkansas",sc2:88,note:"Wire-to-wire. Burries 23. Fewer than 10 3PAs."},
+    {r:"West",s1:1,t1:"Arizona",sc1:109,s2:4,t2:"Arkansas",sc2:88,note:"Burries 23."},
     {r:"South",s1:3,t1:"Illinois",sc1:65,s2:2,t2:"Houston",sc2:55,upset:true,note:"Wagler 3 sparked 20-4 run."},
     {r:"East",s1:1,t1:"Duke",sc1:80,s2:5,t2:"St. John's",sc2:75,note:"Evans 25. Foster returned."},
-    {r:"Midwest",s1:1,t1:"Michigan",sc1:90,s2:4,t2:"Alabama",sc2:77,note:"Lendeborg 23/12/7. Bench +33-6."},
-    {r:"East",s1:2,t1:"UConn",sc1:67,s2:3,t2:"Michigan St.",sc2:63,note:"Blew 19-pt lead. Reed 18. Karaban clutch 3."},
-    {r:"Midwest",s1:1,t1:"Michigan",sc1:76,s2:6,t2:"Tennessee",sc2:62,note:"Wait — this was E8. Tennessee eliminated S16 by Iowa St? No — Tennessee beat Iowa St in S16 then lost to Michigan in E8."},
+    {r:"Midwest",s1:1,t1:"Michigan",sc1:90,s2:4,t2:"Alabama",sc2:77,note:"Lendeborg 23/12/7."},
+    {r:"East",s1:2,t1:"UConn",sc1:67,s2:3,t2:"Michigan St.",sc2:63,note:"Reed 18. Karaban clutch 3."},
+    {r:"Midwest",s1:1,t1:"Michigan",sc1:76,s2:6,t2:"Tennessee",sc2:62,note:"Mich covered -4.5 easily."},
   ],
-  e8: [
-    {r:"South",s1:3,t1:"Illinois",sc1:71,s2:9,t2:"Iowa",sc2:59,note:"Wagler 25. Illinois' first F4 since 2005."},
-    {r:"West",s1:1,t1:"Arizona",sc1:79,s2:2,t2:"Purdue",sc2:64,note:"Down 7 at half. Outscored Purdue 48-26 in 2nd. Peat 20."},
+  e8:[
+    {r:"South",s1:3,t1:"Illinois",sc1:71,s2:9,t2:"Iowa",sc2:59,note:"Wagler 25. First F4 since 2005."},
+    {r:"West",s1:1,t1:"Arizona",sc1:79,s2:2,t2:"Purdue",sc2:64,note:"Down 7 at half. Peat 20."},
     {r:"Midwest",s1:1,t1:"Michigan",sc1:95,s2:6,t2:"Tennessee",sc2:62,note:"21-0 run. Lendeborg 27."},
-    {r:"East",s1:2,t1:"UConn",sc1:73,s2:1,t2:"Duke",sc2:72,upset:true,note:"Mullins 35-ft buzzer. 0.4 sec. Down 15 at half."},
+    {r:"East",s1:2,t1:"UConn",sc1:73,s2:1,t2:"Duke",sc2:72,upset:true,note:"Mullins 35-ft buzzer. 0.4 sec."},
+  ],
+  f4:[
+    {r:"National Semi 1",s1:2,t1:"UConn",sc1:71,s2:3,t2:"Illinois",sc2:62,note:"Reed 17/11. UConn held Illinois to 3 assists. Mullins dagger 3 late."},
+    {r:"National Semi 2",s1:1,t1:"Michigan",sc1:91,s2:1,t2:"Arizona",sc2:73,note:"Mara 26 (Lendeborg injured). First team ever to score 90+ in 5 straight tourney games."},
   ]
 };
 
-var currentRound = 'e8';
+var currentRound='f4';
 
-function setRound(r) {
-  currentRound = r;
-  document.querySelectorAll('.round-btn').forEach(function(b){ b.classList.remove('active-round'); });
-  var btn = document.getElementById('btn-'+r);
-  if (btn) { btn.classList.remove('locked'); btn.classList.add('active-round'); }
+function setRound(r){
+  currentRound=r;
+  document.querySelectorAll('.round-btn').forEach(function(b){b.classList.remove('active-round');});
+  var btn=document.getElementById('btn-'+r);
+  if(btn){btn.classList.remove('locked');btn.classList.add('active-round');}
   renderTracker();
 }
 
-function renderTracker() {
-  var el    = document.getElementById('trackerGames');
-  var badge = document.getElementById('trackerBadge');
-  if (!el) return;
-
-  ['r64','r32','s16','e8'].forEach(function(r){
-    var b = document.getElementById('btn-'+r);
-    if (b) b.classList.remove('locked');
+function renderTracker(){
+  var el=document.getElementById('trackerGames');
+  var badge=document.getElementById('trackerBadge');
+  if(!el) return;
+  ['r64','r32','s16','e8','f4','champ'].forEach(function(r){
+    var b=document.getElementById('btn-'+r);
+    if(b) b.classList.remove('locked');
   });
 
-  if (currentRound === 'f4') {
-    if (badge) badge.textContent = 'Final Four · Sat Apr 4 · Lucas Oil Stadium · Indianapolis';
-    el.innerHTML =
-      '<div style="background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.3);border-radius:12px;padding:20px;margin-bottom:20px;">' +
-        '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:26px;letter-spacing:1px;color:var(--gold);margin-bottom:8px;">🏆 Final Four · Apr 4 · Indianapolis</div>' +
-        '<div style="font-size:13px;color:var(--muted);line-height:1.7;">4 teams remain. See <strong style="color:var(--gold);">Matchup Intel</strong> for full analysis and betting edges on both games.</div>' +
-      '</div>' +
-      '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;">' +
-      f4Matchups.map(function(m){
-        var ec = {DOG:'var(--orange)',OVER:'var(--green)',FAV:'var(--green)',UNDER:'var(--blue)'}[m.edgeType]||'var(--green)';
-        return '<div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid '+ec+';border-radius:0 10px 10px 0;padding:14px 16px;">' +
-          '<div style="font-size:10px;color:var(--muted);margin-bottom:6px;font-family:monospace;">'+m.time+' · '+m.tv+'</div>' +
-          '<div style="font-size:15px;font-weight:700;margin-bottom:4px;">'+sb(m.s1)+' '+m.t1+' vs '+m.t2+' '+sb(m.s2)+'</div>' +
-          '<div style="font-size:11px;color:var(--gold);font-family:monospace;margin-bottom:5px;">'+m.spread+' · O/U '+m.total+'</div>' +
-          '<div style="font-size:12px;font-weight:700;color:'+ec+';">⚡ '+m.edge+'</div>' +
-        '</div>';
-      }).join('') + '</div>';
+  if(currentRound==='champ'){
+    if(badge) badge.textContent='National Championship · Mon Apr 6 · 8:50 PM ET · TBS';
+    el.innerHTML=
+      '<div style="background:linear-gradient(135deg,rgba(245,200,66,0.12),rgba(245,200,66,0.04));border:2px solid rgba(245,200,66,0.4);border-radius:14px;padding:22px;margin-bottom:20px;">' +
+        '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:28px;letter-spacing:2px;color:var(--gold);margin-bottom:6px;">🏆 NATIONAL CHAMPIONSHIP TONIGHT</div>' +
+        '<div style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px;">Michigan (36-3) vs UConn (34-5) · Lucas Oil Stadium · 8:50 PM ET · TBS · See <strong style="color:var(--gold);">Matchup Intel</strong> for full analysis.</div>' +
+        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">' +
+          '<div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:12px 14px;">' +
+            '<div style="font-size:10px;color:var(--muted);font-family:monospace;margin-bottom:4px;">MICHIGAN · #1 SEED · 36-3</div>' +
+            '<div style="font-size:13px;line-height:1.5;">5 straight wins by 13+. First team ever to score 90+ in 5 tourney games. First title since 1989. Lendeborg ⚠️ questionable.</div>' +
+          '</div>' +
+          '<div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:12px 14px;">' +
+            '<div style="font-size:10px;color:var(--muted);font-family:monospace;margin-bottom:4px;">UCONN · #2 SEED · 34-5</div>' +
+            '<div style="font-size:13px;line-height:1.5;">3rd title in 4 years. Hurley 18-3 tourney record. Reed + Karaban final game. Mullins hometown hero. Dynasty.</div>' +
+          '</div>' +
+        '</div>' +
+        '<div style="margin-top:14px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">' +
+          '<span style="font-size:12px;font-family:monospace;color:var(--gold);">Michigan -6.5 · O/U 144.5</span>' +
+          '<span style="font-size:12px;font-weight:700;color:var(--orange);">⚡ OUR PLAY: UConn +6.5</span>' +
+        '</div>' +
+      '</div>';
     return;
   }
 
-  var results = allResults[currentRound] || [];
-  var roundName = {r64:'Round of 64',r32:'Round of 32',s16:'Sweet 16',e8:'Elite Eight',f4:'Final Four'}[currentRound] || currentRound;
-  var upsets = results.filter(function(g){ return g.upset; });
+  var results=allResults[currentRound]||[];
+  var roundName={r64:'Round of 64',r32:'Round of 32',s16:'Sweet 16',e8:'Elite Eight',f4:'Final Four'}[currentRound]||currentRound;
+  var upsets=results.filter(function(g){return g.upset;});
+  if(badge) badge.textContent=roundName+' · '+results.length+' games · '+upsets.length+' upsets';
 
-  if (badge) badge.textContent = roundName+' · '+results.length+' games · '+upsets.length+' upsets';
-
-  var html = '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;">' +
+  var html='<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;">' +
     '<div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:12px 20px;text-align:center;flex:1;min-width:80px;"><div style="font-size:24px;font-weight:700;color:var(--gold);font-family:\'Bebas Neue\',sans-serif;">'+results.length+'</div><div style="font-size:10px;color:var(--muted);">GAMES</div></div>' +
     '<div style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);border-radius:10px;padding:12px 20px;text-align:center;flex:1;min-width:80px;"><div style="font-size:24px;font-weight:700;color:var(--red);font-family:\'Bebas Neue\',sans-serif;">'+upsets.length+'</div><div style="font-size:10px;color:var(--muted);">UPSETS</div></div>' +
   '</div>';
 
-  if (upsets.length) {
-    html += '<div style="background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:12px;padding:16px;margin-bottom:24px;">' +
+  if(upsets.length){
+    html+='<div style="background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:12px;padding:16px;margin-bottom:24px;">' +
       '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:18px;color:var(--red);margin-bottom:12px;">🚨 UPSETS ('+upsets.length+')</div>' +
       '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:8px;">' +
       upsets.map(function(g){
@@ -1555,11 +1493,12 @@ function renderTracker() {
       }).join('')+'</div></div>';
   }
 
-  ['East','West','Midwest','South'].forEach(function(region){
-    var rg = results.filter(function(g){ return g.r===region; });
-    if (!rg.length) return;
-    html += '<div style="margin-bottom:22px;">' +
-      '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:18px;color:var(--gold);padding-bottom:5px;border-bottom:1px solid var(--border);margin-bottom:10px;">'+region+' Region</div>' +
+  var regions=currentRound==='f4'?['National Semi 1','National Semi 2']:['East','West','Midwest','South'];
+  regions.forEach(function(region){
+    var rg=results.filter(function(g){return g.r===region;});
+    if(!rg.length) return;
+    html+='<div style="margin-bottom:22px;">' +
+      '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:18px;color:var(--gold);padding-bottom:5px;border-bottom:1px solid var(--border);margin-bottom:10px;">'+region+'</div>' +
       '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:8px;">' +
       rg.map(function(g){
         var t1w=g.sc1>g.sc2;
@@ -1577,7 +1516,7 @@ function renderTracker() {
         '</div>';
       }).join('')+'</div></div>';
   });
-  el.innerHTML = html;
+  el.innerHTML=html;
 }
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -1593,9 +1532,8 @@ renderUpsets();
 renderPlayers();
 renderTempo();
 renderLuck();
-
 document.querySelectorAll('.tab-btn').forEach(function(btn){
-  if (btn.textContent.indexOf('Tracker')>=0) btn.addEventListener('click',function(){ setTimeout(renderTracker,50); });
+  if(btn.textContent.indexOf('Tracker')>=0) btn.addEventListener('click',function(){setTimeout(renderTracker,50);});
 });
 
 </script>
